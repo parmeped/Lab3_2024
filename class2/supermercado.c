@@ -7,6 +7,9 @@ void procesar_evento(int id_cola, mensaje msg)
 {
     char cadena[100];
     static int cantidad = 0;
+    logInfo("test");
+    logWarn("test");
+    logErr("test");
 
     printf("Destino %d\n", (int)msg.long_dest);
     printf("Remitente %d\n", (int)msg.int_rte);
@@ -44,6 +47,6 @@ int main()
         recibir_mensajes(id_cola, MSG_SUPERMERCADO, &msg);
         procesar_evento(id_cola, msg);
     }
-    
+
     return 0;
 }

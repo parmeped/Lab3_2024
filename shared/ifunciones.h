@@ -1,5 +1,5 @@
-#ifndef _FUNCIONES_H
-#define _FUNCIONES_H
+#ifndef _IFUNCIONES_H
+#define _IFUNCIONES_H
 
 #include <unistd.h>
 #include <stdio.h>
@@ -13,6 +13,16 @@
 
 #define CLAVE_BASE 33
 #define SEMAFORO0 0
+
+#define LOG_LEVEL DEBUG
+
+typedef enum
+{
+    NONE, // NONE
+    DEBUG, // ALL
+    WARN, // ONLY WARN AND ERR
+    ERR // ONLY ERR
+}LogLevel;
 
 #define LARGO_TMENSAJE 1024
 
@@ -37,6 +47,9 @@ int recibir_mensajes(int, long, mensaje*);
 int enviar_mensaje(int, long, int, int, char*);
 
 void printLn();
+void logErr(char*);
+void logInfo(char*);
+void logWarn(char*);
 
 #endif
 
