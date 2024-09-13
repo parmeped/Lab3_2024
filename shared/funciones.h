@@ -137,7 +137,7 @@ void logInfo(char* message)
     {
         return;
     }
-    printf("\033[32mError\033[0m: %s\n", message);
+    printf("\033[32mInfo\033[0m: %s\n", message);
 }
 
 void logWarn(char* message)
@@ -146,5 +146,5 @@ void logWarn(char* message)
     {
         return;
     }
-    printf("\033[33mError\033[0m: %s\n", message);
+    printf("\033[33mWarn\033[0m: %s\n", message);
 }

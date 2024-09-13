@@ -4,6 +4,8 @@
 #define LARGO_DESCRIPCION 100
 #define CANT_SEMAFORO 1
 
+#define LARGO_MENSAJE 1024;
+
 typedef struct tipo_datos datos;
 struct tipo_datos
 {
