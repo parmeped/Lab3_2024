@@ -62,7 +62,7 @@ void sem_oper(int id, int cual, int op)
     semop(id, &operacion, 1);
 }
 
-void levanta_semaforo(int id, int cual)
+void libero_semaforo(int id, int cual)
 {
     sem_oper(id, cual, 1);
 }

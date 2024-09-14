@@ -30,7 +30,7 @@ key_t creo_clave(int);
 void* creo_memoria(int, int*, int);
 int creo_semaforo(int);
 void inicio_semaforo(int, int, int);
-void levanta_semaforo(int, int);
+void libero_semaforo(int, int);
 void espera_semaforo(int, int);
 int creo_id_cola_mensajes(int);
 int borrar_mensajes(int);

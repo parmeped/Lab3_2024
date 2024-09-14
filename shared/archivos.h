@@ -39,5 +39,15 @@ void cerrar_archivo(FILE *fp)
     fclose(fp);
 }
 
+void borrar_archivo(char *path)
+{
+    char msg[100];
+    sprintf(msg, "Borrando archivo: %s", path);
+
+    logWarn(msg);
+    remove(path);
+}
+
+
 // Leer archivo completo
 // append al archivo
