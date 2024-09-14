@@ -1,4 +1,5 @@
 #include "iarchivos.h"
+#include <iostream>
 
 namespace archivos
 {

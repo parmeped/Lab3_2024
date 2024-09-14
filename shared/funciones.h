@@ -1,4 +1,5 @@
 #include "ifunciones.h"
+#include <iostream>
 
 namespace funciones
 {
