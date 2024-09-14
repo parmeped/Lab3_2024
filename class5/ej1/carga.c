@@ -31,15 +31,15 @@ int main()
             while ((vuelo < MIN_VUELO && vuelo > MAX_VUELO) || vuelo == 0)
             {
                 sprintf(info, "Favor de ingresar vuelo (%d-%d)", MIN_VUELO, MAX_VUELO);
-                printf(info);
+                print(info);
                 scanf("%d", vuelo);
             }
-            printf("Favor de ingresar destino");
+            print("Favor de ingresar destino");
             scanf("%s", destino);
 
-            printf("Favor de ingresar nombre");
+            print("Favor de ingresar nombre");
             scanf("%s", nombre);
-            fpritnf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s", vuelo, destino, nombre);
+            fprintf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s", vuelo, destino, nombre);
 
         }
         libero_semaforo(id_semaforo, 0);
