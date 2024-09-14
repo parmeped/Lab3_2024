@@ -1,2 +1,2 @@
-#define DIR_ARCHIVO "producto.txt"
+#define DIR_ARCHIVO "producto.dat"
 #define TIEMPO_SLEEP 1000
