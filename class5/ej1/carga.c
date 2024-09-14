@@ -30,11 +30,10 @@ int main()
 
             while ((vuelo < MIN_VUELO && vuelo > MAX_VUELO) || vuelo == 0)
             {
-                sprintf(info, "Favor de ingresar vuelo (%d-%d)", MIN_VUELO, MAX_VUELO);
-                print(info);
+                printf("Favor de ingresar vuelo (%d-%d)", MIN_VUELO, MAX_VUELO);
                 scanf("%d", vuelo);
             }
-            print("Favor de ingresar destino");
+            printf("Favor de ingresar destino");
             scanf("%s", destino);
 
             print("Favor de ingresar nombre");
