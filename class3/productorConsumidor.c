@@ -46,7 +46,7 @@ int main()
 
         while (!feof(fp))
         {
-            fscanf(fp, "PRODUCTO-%02d\n", read_prod_id);
+            fscanf(fp, "PRODUCTO-%02d\n", &read_prod_id);
             sprintf(info, "Consumido producto: %d", read_prod_id);
             logInfo(info);
         }
