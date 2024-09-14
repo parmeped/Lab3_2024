@@ -1,2 +1,2 @@
-#include <archivos.h>
-#include <funciones.h>
+#include "archivos.h"
+#include "funciones.h"
