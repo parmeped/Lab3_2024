@@ -8,7 +8,7 @@ int main()
     FILE *fp;
     char info[100];
 
-    int prod_id = 0;    
+    int prod_id = 1;    
     int lote_prod = 10;    
     int prod_quota = 10;
     while (1)
@@ -27,8 +27,11 @@ int main()
             logInfo(info);
             fprintf(fp, "PRODUCTO-%02d\n", prod_id);
         }
+        
+        cerrar_archivo(fp);
+        sprintf("Durmiendo por %d", TIEMPO_SLEEP);
+        logWarn(info);
         sleep(TIEMPO_SLEEP);
     }
-    cerrar_archivo(fp);
     exit(0);
 }
