@@ -27,9 +27,9 @@ int main()
             logInfo(info);
             fprintf(fp, "PRODUCTO-%02d\n", prod_id);
         }
-        
+
         cerrar_archivo(fp);
-        sprintf("Durmiendo por %d", TIEMPO_SLEEP);
+        sprintf(info, "Durmiendo por %d", TIEMPO_SLEEP);
         logWarn(info);
         sleep(TIEMPO_SLEEP);
     }
