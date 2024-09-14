@@ -1,2 +1,3 @@
-#include "archivos.h"
-#include "funciones.h"
+#include "icommon.h"
+#include "iarchivos.h"
+#include "ifunciones.h"
