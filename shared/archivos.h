@@ -1,4 +1,5 @@
 #include "iarchivos.h"
+#include "icommon.h"
 
 FILE *abrir_archivo_lectura(char *path)
 {

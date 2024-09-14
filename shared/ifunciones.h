@@ -14,15 +14,6 @@
 #define CLAVE_BASE 33
 #define SEMAFORO0 0
 
-#define LOG_LEVEL DEBUG
-
-typedef enum
-{
-    NONE, // NONE
-    DEBUG, // ALL
-    WARN, // ONLY WARN AND ERR
-    ERR // ONLY ERR
-}LogLevel;
 
 #define LARGO_TMENSAJE 1024
 
@@ -46,10 +37,6 @@ int borrar_mensajes(int);
 int recibir_mensajes(int, long, mensaje*);
 int enviar_mensaje(int, long, int, int, char*);
 
-void printLn();
-void logErr(char*);
-void logInfo(char*);
-void logWarn(char*);
 
 #endif
 
