@@ -14,7 +14,7 @@ int main()
     id_semaforo = creo_semaforo(1);
     inicio_semaforo(id_semaforo, 0, SEM_VERDE);
 
-    while(1)
+    while(vuelo != 0)
     {
         espera_semaforo(id_semaforo, 0);
         fp = abrir_archivo_escritura(FILE_NAME);
