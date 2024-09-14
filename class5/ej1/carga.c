@@ -17,22 +17,24 @@ int main()
     while(1)
     {
         espera_semaforo(id_semaforo, 0);
+        fp = abrir_archivo_escritura(FILE_NAME);
+        if (fp == NULL) 
+        {
+            // if file can't be accesses wait for access.
+            logErr("Cant access file");
+            exit(0);
+        }
 
         while (vuelo != 0) 
         {
-            fp = abrir_archivo_escritura(FILE_NAME);
-            if (fp == NULL) 
+            printf("Favor de ingresar vuelo (%d-%d)", MIN_VUELO, MAX_VUELO);
+            scanf("%d", &vuelo);
+            
+            if (vuelo == 0 || vuelo > MAX_VUELO || vuelo < MIN_VUELO)
             {
-                // if file can't be accesses wait for access.
-                logErr("Cant access file");
-                exit(0);
+                break;   
             }
 
-            while ((vuelo < MIN_VUELO && vuelo > MAX_VUELO) || vuelo == 0)
-            {
-                printf("Favor de ingresar vuelo (%d-%d)", MIN_VUELO, MAX_VUELO);
-                scanf("%d", &vuelo);
-            }
             printf("Favor de ingresar destino");
             scanf("%s", destino);
 
