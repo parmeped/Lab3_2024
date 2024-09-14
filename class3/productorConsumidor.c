@@ -11,10 +11,12 @@ int main()
     int prod_id = 1;    
     int lote_prod = 10;    
     int prod_quota = 10;
+    int read_prod_id;
+    int mini_sleep = TIEMPO_SLEEP / 10;
     while (1)
     {
         lote_prod = prod_quota + prod_id;
-        fp = append_archivo(DIR_ARCHIVO);
+        fp = abrir_archivo_escritura(DIR_ARCHIVO);
         if (fp == NULL)
         {
             logErr("No se puede abrir el archivo");
@@ -29,9 +31,30 @@ int main()
         }
 
         cerrar_archivo(fp);
+        sprintf(info, "Durmiendo por %d", mini_sleep);
+        logWarn(info);
+        sleep(mini_sleep);
+
+        logInfo("Consumiendo productos");
+
+        fp = abrir_archivo_lectura(DIR_ARCHIVO);
+        if (fp == NULL)
+        {
+            logErr("No se puede abrir el archivo");
+            exit(0);
+        }
+
+        while (!feof(fp))
+        {
+            fscanf(fp, "PRODUCTO-%02d\n", read_prod_id);
+            sprintf(info, "Consumido producto: %d", read_prod_id);
+            logInfo(info);
+        }
+        cerrar_archivo(fp);
+
         sprintf(info, "Durmiendo por %d", TIEMPO_SLEEP);
         logWarn(info);
-        sleep(TIEMPO_SLEEP);
+        sleep(TIEMPO_SLEEP);       
     }
     exit(0);
 }
