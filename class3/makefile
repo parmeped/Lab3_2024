@@ -1,9 +1,9 @@
 # Esto es un comentario.
 CC = g++
-all : productor
+all : prodCons
 
-productor : productor.c ../shared/framework.h ../shared/definiciones.h 
-	cc -o productor productor.c
+prodCons : productorConsumidor.c ../shared/framework.h ../shared/definiciones.h 
+	cc -o productorConsumidor productorConsumidor.c
 
 clean : 
-	rm -rf *o *dat productor
+	rm -rf *o *dat productorConsumidor
