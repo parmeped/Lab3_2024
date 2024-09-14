@@ -6,6 +6,8 @@ int main()
     logInfo("Iniciando produccion");
 
     FILE *fp;
+    char* info[100];
+
     int prod_id = 0;    
     int lote_prod = 10;    
     int prod_quota = 10;
@@ -19,9 +21,9 @@ int main()
             exit(0);
         }
         
-        for (prod_id ; i < lote_prod; prod_id++)
+        for (; prod_id < lote_prod; prod_id++)
         {
-            logInfo("Produciendo: %d", prod_id);
+            logInfo(sprintf(info, "Produciendo: %d", prod_id));
             fprintf(fp, "PRODUCTO-%02d\n", prod_id);
         }
         sleep(TIEMPO_SLEEP);
