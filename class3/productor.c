@@ -23,7 +23,8 @@ int main()
         
         for (; prod_id < lote_prod; prod_id++)
         {
-            logInfo(sprintf(info, "Produciendo: %d", prod_id));
+            sprintf(info, "Produciendo: %d", prod_id);
+            logInfo(info);
             fprintf(fp, "PRODUCTO-%02d\n", prod_id);
         }
         sleep(TIEMPO_SLEEP);
