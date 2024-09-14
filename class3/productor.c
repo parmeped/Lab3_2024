@@ -6,7 +6,7 @@ int main()
     logInfo("Iniciando produccion");
 
     FILE *fp;
-    char* info[100];
+    char info[100];
 
     int prod_id = 0;    
     int lote_prod = 10;    
