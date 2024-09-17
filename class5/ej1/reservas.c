@@ -14,7 +14,9 @@ int main()
     char nombre[100];
 
     id_semaforo = creo_semaforo();
-
+    
+    logInfo("Testing changes");
+    
     while(1)
     {
         espera_semaforo(id_semaforo, 0);
@@ -33,7 +35,7 @@ int main()
             fscanf(fp, "%s", print_message);
             printLnf(print_message);
         }
-        
+
         sprintf(nuevo_filename, FILE_NAME_EJ1_RENAME, lote_reserva);
         renombrar_archivo(FILE_NAME_EJ1, nuevo_filename);
         cerrar_archivo(fp);
