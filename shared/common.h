@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "icommon.h"
 
-void printLn()
+void printSep()
 {
-    printf("---------------------------------\n");
+    printLnf("---------------------------------");
 }
 
 void logErr(char *message)
@@ -31,4 +31,36 @@ void logWarn(char *message)
         return;
     }
     printf("\033[33mWarn\033[0m: %s\n", message);
+}
+
+void printLnf(char *message)
+{
+    printf(message);
+    printf("\n");
+}
+
+void spinner(int duration_seconds) {
+    // Array of spinner characters
+    const char spinner_chars[] = {'\\', '|', '/', '-'};
+    const int num_chars = sizeof(spinner_chars) / sizeof(spinner_chars[0]);
+    
+    time_t start_time = time(NULL);
+    int i = 0;
+
+    while (1) {
+        time_t current_time = time(NULL);
+        if (difftime(current_time, start_time) >= duration_seconds) {
+            break;
+        }
+
+        printf("\r%c", spinner_chars[i]);
+        fflush(stdout);
+
+        i = (i + 1) % num_chars;
+        
+        usleep(duration_seconds / 100);
+    }
+
+    printf("\r ");
+    fflush(stdout);
 }

@@ -27,22 +27,25 @@ int main()
                 exit(0);
             }
             
-            printf("Favor de ingresar vuelo (%d-%d)", MIN_VUELO, MAX_VUELO);
+            printLnf("Favor de ingresar vuelo, 0 para salir. (%d-%d)", MIN_VUELO, MAX_VUELO);
             scanf("%d", &vuelo);
+            
+            while (fgetc(stdin) != '\n' && !feof(stdin));
             
             if (vuelo == 0 || vuelo > MAX_VUELO || vuelo < MIN_VUELO)
             {
                 break;   
             }
 
-            printf("Favor de ingresar destino");
+            printLnf("Favor de ingresar destino");
             scanf("%s", destino);
 
-            printf("Favor de ingresar nombre");
+            printLnf("Favor de ingresar nombre");
             scanf("%s", nombre);
             fprintf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s", vuelo, destino, nombre);
+            printSep();
         }
-        libero_semaforo_usleep(id_semaforo, 0, TIEMPO_SLEEP_CARGA * 1000);
+        libero_semaforo_spinner(id_semaforo, 0, TIEMPO_SLEEP_CARGA * 1000);
         cerrar_archivo(fp);        
     }
 }

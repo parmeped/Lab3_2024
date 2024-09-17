@@ -11,9 +11,16 @@ typedef enum
     ERR // ONLY ERR
 }LogLevel;
 
-void printLn();
+/// @brief Prints a separation line.
+void printSep();
+/// @brief Prints message, then adds a line break.
+/// @param message The message to print.
+void printLnf(char*);
 void logErr(char*);
 void logInfo(char*);
 void logWarn(char*);
+/// @brief Prints a spinner on the console.
+/// @param duration The amount the spinner has to display, expressed in seconds. 
+void spinner(int);
 
 #endif
