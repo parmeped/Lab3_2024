@@ -9,5 +9,6 @@ FILE* append_archivo(char* path);
 void borrar_archivo(char* path);
 FILE* abrir_archivo(char* path, char* modo);
 void cerrar_archivo(FILE*);
+int renombrar_archivo(char* viejo_nombre, char* nuevo_nombre);
 
 #endif

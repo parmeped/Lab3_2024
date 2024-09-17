@@ -19,13 +19,15 @@ int main()
         while(vuelo != 0)
         {
             espera_semaforo(id_semaforo, 0);
-            fp = abrir_archivo_escritura(FILE_NAME);
+            fp = abrir_archivo_escritura(FILE_NAME_EJ1);
             if (fp == NULL) 
             {
                 // if file can't be accesses wait for access.
-                logErr("Cant access file");
-                exit(0);
+                sprintf(print_message, "Archivo en uso, esperando por %d segundos...", SEGS_SLEEP_CARGA);
+                logErr(print_message);
+                break;
             }
+
             sprintf(print_message, "Favor de ingresar vuelo, 0 para salir. (%d-%d)", MIN_VUELO, MAX_VUELO);
             printLnf(print_message);
             scanf("%d", &vuelo);
@@ -34,6 +36,8 @@ int main()
 
             if (vuelo == 0 || vuelo > MAX_VUELO || vuelo < MIN_VUELO)
             {
+                sprintf(print_message, "Se ingresó un vuelo invalido o 0. (%d)", vuelo);
+                printLnf(print_message);
                 break;   
             }
 
@@ -45,7 +49,8 @@ int main()
             fprintf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s", vuelo, destino, nombre);
             printSep();
         }
+        cerrar_archivo(fp);
         libero_semaforo_spinner(id_semaforo, 0, SEGS_SLEEP_CARGA);
-        cerrar_archivo(fp);        
     }
+    exit(0);
 }
