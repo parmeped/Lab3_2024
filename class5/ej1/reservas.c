@@ -24,10 +24,10 @@ int main()
         fp = abrir_archivo_lectura(FILE_NAME_EJ1);
         if (fp == NULL) 
         {
-            sprintf(print_message, "Archivo en uso, esperando por %d segundos...", SEGS_SLEEP_RES);
+            sprintf(print_message, "Archivo en uso, esperando por %d segundos...", USEGS_SLEEP_RES);
             logErr(print_message);
             cerrar_archivo(fp);
-            libero_semaforo_spinner(id_semaforo, 0, SEGS_SLEEP_CARGA);
+            libero_semaforo_spinner(id_semaforo, 0, USEGS_SLEEP_RES);
             continue;
         }
 
@@ -45,6 +45,6 @@ int main()
             cant_reservas = 0;
         }
         cerrar_archivo(fp);
-        libero_semaforo_spinner(id_semaforo, 0, SEGS_SLEEP_CARGA);
+        libero_semaforo_spinner(id_semaforo, 0, USEGS_SLEEP_RES);
     }
 }

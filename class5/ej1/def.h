@@ -6,4 +6,4 @@
 #define FILE_NAME_EJ1_RENAME "lote.%d.dat"
 
 #define SEGS_SLEEP_CARGA 3
-#define SEGS_SLEEP_RES 4
+#define USEGS_SLEEP_RES 300
