@@ -39,14 +39,14 @@ int main()
             {
                 printLnf("Cerrando lote");
                 vuelo = -1;
-                break;   
+                break;
             }
 
             if (vuelo > MAX_VUELO || vuelo < MIN_VUELO)
             {
                 sprintf(print_message, "Se ingresó un vuelo invalido (%d)", vuelo);
                 printLnf(print_message);
-                break;   
+                continue;
             }
 
             printLnf("Favor de ingresar destino");
@@ -54,7 +54,7 @@ int main()
 
             printLnf("Favor de ingresar nombre");
             scanf("%s", nombre);
-            fprintf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s", vuelo, destino, nombre);
+            fprintf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s\n", vuelo, destino, nombre);
             printSep();
         }
         cerrar_archivo(fp);
