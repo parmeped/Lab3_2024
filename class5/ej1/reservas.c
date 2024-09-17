@@ -27,7 +27,7 @@ int main()
             sprintf(print_message, "Archivo en uso, esperando por %d milisegundos...", USEGS_SLEEP_RES);
             logErr(print_message);
             cerrar_archivo(fp);
-            libero_semaforo_spinner(id_semaforo, 0, USEGS_SLEEP_RES);
+            libero_semaforo_uspinner(id_semaforo, 0, USEGS_SLEEP_RES);
             continue;
         }
 
@@ -47,6 +47,6 @@ int main()
             cant_reservas = 0;
         }
         cerrar_archivo(fp);
-        libero_semaforo_spinner(id_semaforo, 0, USEGS_SLEEP_RES);
+        libero_semaforo_uspinner(id_semaforo, 0, USEGS_SLEEP_RES);
     }
 }

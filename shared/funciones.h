@@ -73,6 +73,12 @@ void libero_semaforo_spinner(int id, int cual, int sleepTime)
     spinner(sleepTime);
 }
 
+void libero_semaforo_uspinner(int id, int cual, int sleepTime)
+{
+    sem_oper(id, cual, 1);
+    uspinner(sleepTime);
+}
+
 void espera_semaforo(int id, int cual)
 {
     sem_oper(id, cual, -1);
