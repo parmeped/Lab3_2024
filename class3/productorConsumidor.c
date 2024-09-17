@@ -12,7 +12,7 @@ int main()
     int lote_prod = 10;    
     int prod_quota = 10;
     int read_prod_id;
-    int mini_sleep = TIEMPO_SLEEP / 10;
+    int mini_sleep = TIEMPO_SLEEP_CARGA / 10;
     while (1)
     {
         lote_prod = prod_quota + prod_id;
@@ -52,9 +52,9 @@ int main()
         }
         cerrar_archivo(fp);
 
-        sprintf(info, "Durmiendo por %d", TIEMPO_SLEEP);
+        sprintf(info, "Durmiendo por %d", TIEMPO_SLEEP_CARGA);
         logWarn(info);
-        sleep(TIEMPO_SLEEP);       
+        sleep(TIEMPO_SLEEP_CARGA);       
     }
     exit(0);
 }
