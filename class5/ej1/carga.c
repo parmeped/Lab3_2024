@@ -17,7 +17,7 @@ int main()
     while(1)
     {
         espera_semaforo(id_semaforo, 0);
-        fp = abrir_archivo_escritura(FILE_NAME_EJ1);
+        fp = append_archivo(FILE_NAME_EJ1);
 
         while(vuelo != 0)
         {
