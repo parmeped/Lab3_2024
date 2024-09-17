@@ -24,7 +24,7 @@ int main()
         fp = abrir_archivo_lectura(FILE_NAME_EJ1);
         if (fp == NULL) 
         {
-            sprintf(print_message, "Archivo en uso, esperando por %d segundos...", USEGS_SLEEP_RES);
+            sprintf(print_message, "Archivo en uso, esperando por %d milisegundos...", USEGS_SLEEP_RES);
             logErr(print_message);
             cerrar_archivo(fp);
             libero_semaforo_spinner(id_semaforo, 0, USEGS_SLEEP_RES);
@@ -33,6 +33,7 @@ int main()
 
         while (!feof(fp))
         {
+            logInfo("Leyendo reservas");
             cant_reservas++;
             fscanf(fp, "%s", print_message);
             printLnf(print_message);
@@ -41,6 +42,7 @@ int main()
         sprintf(nuevo_filename, FILE_NAME_EJ1_RENAME, lote_reserva);
         if (cant_reservas > 0) 
         {
+            logInfo("Renombrando archivo");
             renombrar_archivo(FILE_NAME_EJ1, nuevo_filename);
             cant_reservas = 0;
         }
