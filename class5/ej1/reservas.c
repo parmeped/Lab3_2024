@@ -24,8 +24,7 @@ int main()
         if (fp == NULL) 
         {
             sprintf(print_message, "Archivo en uso, esperando por %d milisegundos...", USEGS_SLEEP_RES);
-            logErr(print_message);
-            cerrar_archivo(fp);
+            logWarn(print_message);            
             libero_semaforo_mspinner(id_semaforo, 0, USEGS_SLEEP_RES);
             continue;
         }
