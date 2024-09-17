@@ -45,7 +45,7 @@ int main()
             fprintf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s", vuelo, destino, nombre);
             printSep();
         }
-        libero_semaforo_spinner(id_semaforo, 0, TIEMPO_SLEEP_CARGA * 1000);
+        libero_semaforo_spinner(id_semaforo, 0, SEGS_SLEEP_CARGA);
         cerrar_archivo(fp);        
     }
 }

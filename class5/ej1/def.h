@@ -4,4 +4,4 @@
 
 #define FILE_NAME "lote.dat"
 
-#define TIEMPO_SLEEP_CARGA 300
+#define SEGS_SLEEP_CARGA 3

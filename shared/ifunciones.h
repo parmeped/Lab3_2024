@@ -31,7 +31,11 @@ void* creo_memoria(int, int*, int);
 int creo_semaforo(int);
 void inicio_semaforo(int, int, int);
 void libero_semaforo(int, int);
-void libero_semaforo_usleep(int, int, int);
+/// @brief Libera semaforo y muestra un spinner que dura SegundosSpinner
+/// @param  Id El id del array de semaforos
+/// @param  Cual Que semaforo del array liberar
+/// @param  SegundosSpinner los segundos que durará el spinner
+void libero_semaforo_spinner(int, int, int);
 void espera_semaforo(int, int);
 int creo_id_cola_mensajes(int);
 int borrar_mensajes(int);
