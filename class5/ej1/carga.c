@@ -38,6 +38,7 @@ int main()
             if (vuelo == 0)
             {
                 printLnf("Cerrando lote");
+                vuelo = -1;
                 break;   
             }
 

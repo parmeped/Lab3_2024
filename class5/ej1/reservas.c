@@ -37,10 +37,11 @@ int main()
             printLnf(print_message);
         }
 
-        sprintf(nuevo_filename, FILE_NAME_EJ1_RENAME, lote_reserva);
         if (cant_reservas > 0) 
         {
-            logInfo("Renombrando archivo");
+            sprintf(nuevo_filename, FILE_NAME_EJ1_RENAME, lote_reserva);
+            sprintf(print_message, "Renombrando archivo: %s", nuevo_filename);
+            logInfo(print_message);
             renombrar_archivo(FILE_NAME_EJ1, nuevo_filename);
             cant_reservas = 0;
         }
