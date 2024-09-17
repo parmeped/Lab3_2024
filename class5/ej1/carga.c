@@ -16,10 +16,11 @@ int main()
 
     while(1)
     {
+        espera_semaforo(id_semaforo, 0);
+        fp = abrir_archivo_escritura(FILE_NAME_EJ1);
+        
         while(vuelo != 0)
         {
-            espera_semaforo(id_semaforo, 0);
-            fp = abrir_archivo_escritura(FILE_NAME_EJ1);
             if (fp == NULL) 
             {
                 // if file can't be accesses wait for access.

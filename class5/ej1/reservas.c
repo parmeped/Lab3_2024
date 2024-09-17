@@ -9,6 +9,7 @@ int main()
     char nuevo_filename[LARGO_MENSAJE];
 
     int lote_reserva = 1;
+    int cant_reservas = 0;
     int vuelo = 1;
     char destino[100];
     char nombre[100];
@@ -32,12 +33,17 @@ int main()
 
         while (!feof(fp))
         {
+            cant_reservas++;
             fscanf(fp, "%s", print_message);
             printLnf(print_message);
         }
 
         sprintf(nuevo_filename, FILE_NAME_EJ1_RENAME, lote_reserva);
-        renombrar_archivo(FILE_NAME_EJ1, nuevo_filename);
+        if (cant_reservas > 0) 
+        {
+            renombrar_archivo(FILE_NAME_EJ1, nuevo_filename);
+            cant_reservas = 0;
+        }
         cerrar_archivo(fp);
         libero_semaforo_spinner(id_semaforo, 0, SEGS_SLEEP_CARGA);
     }
