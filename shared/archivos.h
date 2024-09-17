@@ -50,7 +50,7 @@ void borrar_archivo(char *path)
 
 int renombrar_archivo(char *viejo_nombre, char *nuevo_nombre)
 {
-    return int rename(viejo_nombre, nuevo_nombre);
+    return rename(viejo_nombre, nuevo_nombre);
 }
 
 // Leer archivo completo
