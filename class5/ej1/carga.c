@@ -5,7 +5,7 @@ int main()
 {
     FILE *fp;
     int id_semaforo;
-    char info[LARGO_MENSAJE];
+    char print_message[LARGO_MENSAJE];
 
     int vuelo = 1;
     char destino[100];
@@ -26,12 +26,12 @@ int main()
                 logErr("Cant access file");
                 exit(0);
             }
-            
-            printLnf("Favor de ingresar vuelo, 0 para salir. (%d-%d)", MIN_VUELO, MAX_VUELO);
+            sprintf(print_message, "Favor de ingresar vuelo, 0 para salir. (%d-%d)", MIN_VUELO, MAX_VUELO);
+            printLnf(print_message);
             scanf("%d", &vuelo);
             
             while (fgetc(stdin) != '\n' && !feof(stdin));
-            
+
             if (vuelo == 0 || vuelo > MAX_VUELO || vuelo < MIN_VUELO)
             {
                 break;   

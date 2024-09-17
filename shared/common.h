@@ -37,8 +37,7 @@ void logWarn(char *message)
 
 void printLnf(char *message)
 {
-    printf(message);
-    printf("\n");
+    printf("%s\n", message);
 }
 
 void spinner(int duration_seconds) {
