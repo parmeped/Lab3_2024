@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <time.h>
+
 #include "icommon.h"
 
 void printSep()
@@ -33,7 +35,7 @@ void logWarn(char *message)
     printf("\033[33mWarn\033[0m: %s\n", message);
 }
 
-void printLnf(char *message)
+void printLnf(char message)
 {
     printf(message);
     printf("\n");

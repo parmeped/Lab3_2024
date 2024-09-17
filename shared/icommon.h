@@ -15,7 +15,7 @@ typedef enum
 void printSep();
 /// @brief Prints message, then adds a line break.
 /// @param message The message to print.
-void printLnf(char*);
+void printLnf(char);
 void logErr(char*);
 void logInfo(char*);
 void logWarn(char*);
