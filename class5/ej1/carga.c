@@ -18,7 +18,7 @@ int main()
     {
         espera_semaforo(id_semaforo, 0);
         fp = abrir_archivo_escritura(FILE_NAME_EJ1);
-        
+
         while(vuelo != 0)
         {
             if (fp == NULL) 
@@ -35,11 +35,17 @@ int main()
             
             while (fgetc(stdin) != '\n' && !feof(stdin));
 
-            if (vuelo == 0 || vuelo > MAX_VUELO || vuelo < MIN_VUELO)
+            if (vuelo == 0)
             {
-                sprintf(print_message, "Se ingresó un vuelo invalido o 0. (%d)", vuelo);
-                printLnf(print_message);
+                printLnf("Cerrando lote");
                 break;   
+            }
+
+            if (vuelo > MAX_VUELO || vuelo < MIN_VUELO)
+            {
+                sprintf(print_message, "Se ingresó un vuelo invalido (%d)", vuelo);
+                printLnf(print_message);
+                continue;   
             }
 
             printLnf("Favor de ingresar destino");
