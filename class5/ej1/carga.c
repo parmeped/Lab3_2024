@@ -45,7 +45,7 @@ int main()
             {
                 sprintf(print_message, "Se ingresó un vuelo invalido (%d)", vuelo);
                 printLnf(print_message);
-                continue;   
+                break;   
             }
 
             printLnf("Favor de ingresar destino");

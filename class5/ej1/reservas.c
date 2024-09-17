@@ -16,8 +16,6 @@ int main()
 
     id_semaforo = creo_semaforo(1);
     
-    logInfo("Testing changes");
-
     while(1)
     {
         espera_semaforo(id_semaforo, 0);

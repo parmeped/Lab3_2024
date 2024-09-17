@@ -8,7 +8,7 @@ key_t creo_clave(int r_clave)
 
     if (clave == (key_t)-1)
     {
-        printf("Error: no se puede conseguir clave para memoria compartida\n");
+        logErr("No se puede conseguir clave para memoria compartida");
         exit(0);
     }
     return clave;
@@ -22,14 +22,14 @@ void *creo_memoria(int size, int *r_id_memoria, int clave_base)
 
     if (id_memoria == -1)
     {
-        printf("Error: no se puede conseguir memoria compartida\n");
+        logErr("No se puede conseguir memoria compartida.");
         exit(0);
     }
 
     ptr_memoria = (void *)shmat(id_memoria, (char *)0, 0);
     if (ptr_memoria == NULL)
     {
-        printf("Error: no se puede conseguir memoria compartida\n");
+        logErr("No se puede conseguir memoria compartida.");
         exit(0);
     }
     *r_id_memoria = id_memoria;
@@ -42,7 +42,7 @@ int creo_semaforo(int cantidad)
     int id_semaforo = semget(clave, cantidad, 0600 | IPC_CREAT);
     if (id_semaforo == -1)
     {
-        printf("Error: no se puede crear semaforo \n");
+        logErr("No se puede crear semaforo.");
         exit(0);
     }
     return id_semaforo;
@@ -89,7 +89,7 @@ int creo_id_cola_mensajes(int clave)
     int id_cola = msgget(creo_clave(clave), 0600 | IPC_CREAT);
     if (id_cola == -1)
     {
-        printf("Error: no se pudo crear identificador para cola mensajes\n");
+        logErr("No se pudo crear identificador para cola mensajes.");
         exit(0);
     }
     return id_cola;
