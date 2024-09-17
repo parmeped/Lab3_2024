@@ -28,6 +28,6 @@ void logWarn(char*);
 void spinner(int);
 /// @brief Prints a spinner on the console.
 /// @param duration The amount the spinner has to display, expressed in mili seconds. 
-void uSpinner(int);
+void mSpinner(int);
 
 #endif

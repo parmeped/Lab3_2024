@@ -64,7 +64,7 @@ void spinner(int duration_seconds) {
 }
 
 
-void uSpinner(int duration_mseconds) {
+void mSpinner(int duration_mseconds) {
     // Array of spinner characters
     const char spinner_chars[] = {'\\', '|', '/', '-'};
     const int num_chars = sizeof(spinner_chars) / sizeof(spinner_chars[0]);
@@ -73,7 +73,7 @@ void uSpinner(int duration_mseconds) {
 
     while (loop < duration_mseconds) {
         loop++;
-        usleep(1);
+        usleep(1000);
 
         printf("\r%c", spinner_chars[i]);
         fflush(stdout);

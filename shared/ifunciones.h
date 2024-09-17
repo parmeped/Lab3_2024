@@ -40,7 +40,7 @@ void libero_semaforo_spinner(int, int, int);
 /// @param  Id El id del array de semaforos
 /// @param  Cual Que semaforo del array liberar
 /// @param  USegundosSpinner los milisegundos que durará el spinner
-void libero_semaforo_uspinner(int, int, int);
+void libero_semaforo_mspinner(int, int, int);
 void espera_semaforo(int, int);
 int creo_id_cola_mensajes(int);
 int borrar_mensajes(int);
