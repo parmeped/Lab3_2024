@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <time.h>
-
 #include "icommon.h"
 
 void printSep()
