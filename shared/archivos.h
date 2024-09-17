@@ -27,8 +27,8 @@ FILE *abrir_archivo(char *path, char *modo)
 
     if (fp == NULL)
     {
-        logErr("No se encontró puntero para archivo.");
-        exit(0);
+        logErr("No se encontro puntero para archivo.");
+        return NULL;
     }
     return fp;
 }

@@ -15,7 +15,8 @@ int main()
     char nombre[100];
 
     id_semaforo = creo_semaforo(1);
-    
+    logInfo("Iniciando reservas");
+
     while(1)
     {
         espera_semaforo(id_semaforo, 0);
