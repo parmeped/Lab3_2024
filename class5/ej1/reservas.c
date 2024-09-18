@@ -30,9 +30,9 @@ int main()
         }
 
         logInfo("Leyendo reservas");
-        while (fscanf(fp, "Vuelo: %d, Destino: %99s, Pasajero: %99s\n", &vuelo, destino, nombre) == 3)
+        while (fscanf(fp, "Vuelo:%d,Destino:%99s,Pasajero:%99s\n", &vuelo, destino, nombre) == 3)
         {
-            sprintf(print_message, "Vuelo: %d, Destino: %s, Pasajero: %s\n", vuelo, destino, nombre);
+            sprintf(print_message, "Vuelo:%d,Destino:%s,Pasajero:%s\n", vuelo, destino, nombre);
             printLnf(print_message);
             cant_reservas++;
         }
