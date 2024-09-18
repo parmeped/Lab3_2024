@@ -54,7 +54,7 @@ int main()
 
             printLnf("Favor de ingresar nombre");
             scanf("%s", nombre);
-            fprintf(fp, "Vuelo:%d,Destino:%s,Pasajero:%s\n", vuelo, destino, nombre);
+            fprintf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s\n", vuelo, destino, nombre);
             printSep();
         }
         cerrar_archivo(fp);
