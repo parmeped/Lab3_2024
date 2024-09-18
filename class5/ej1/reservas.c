@@ -10,9 +10,6 @@ int main()
 
     int lote_reserva = 1;
     int cant_reservas = 0;
-    int vuelo = 1;
-    char destino[100];
-    char nombre[100];
     char line[256]; 
 
     id_semaforo = creo_semaforo(1);
@@ -33,15 +30,8 @@ int main()
         logInfo("Leyendo reservas");
         while (fgets(line, sizeof(line), fp) != NULL)
         {
-            if (sscanf(line, "Vuelo: %d, Destino: %49s, Pasajero: %49s", &vuelo, destino, nombre) == 3) {
-                cant_reservas++;
-                snprintf(print_message, sizeof(print_message), "Vuelo: %d, Destino: %s, Pasajero: %s\n", vuelo, destino, nombre);
-                printLnf(print_message);
-            } 
-            else 
-            {
-                fprintf(stderr, "Error parsing line: %s", line);
-            }
+            printLnf(line);
+            cant_reservas++;
         }
 
         if (cant_reservas > 0) 
