@@ -30,12 +30,11 @@ int main()
         }
 
         logInfo("Leyendo reservas");
-        while (!feof(fp))
+        while (fscanf(fp, "Vuelo: %d, Destino: %99s, Pasajero: %99s\n", &vuelo, destino, nombre) == 3)
         {
-            cant_reservas++;
-            fscanf(fp, "Vuelo: %d, Destino: %s, Pasajero: %s\n", &vuelo, destino, nombre);
             sprintf(print_message, "Vuelo: %d, Destino: %s, Pasajero: %s\n", vuelo, destino, nombre);
             printLnf(print_message);
+            cant_reservas++;
         }
 
         if (cant_reservas > 0) 
@@ -49,4 +48,6 @@ int main()
         cerrar_archivo(fp);
         libero_semaforo_mspinner(id_semaforo, 0, USEGS_SLEEP_RES);
     }
+    logWarn("Finalizando reservas");
+    exit(0);
 }
