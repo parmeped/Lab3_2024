@@ -8,7 +8,7 @@ int main()
     char print_message[LARGO_MENSAJE];
     char nuevo_filename[LARGO_MENSAJE];
 
-    int lote_reserva = 1;
+    int lote_reserva = 0;
     int cant_reservas = 0;
     char line[256]; 
 
@@ -36,6 +36,7 @@ int main()
 
         if (cant_reservas > 0) 
         {
+            lote_reserva++;
             sprintf(nuevo_filename, FILE_NAME_EJ1_RENAME, lote_reserva);
             sprintf(print_message, "Renombrando archivo: %s", nuevo_filename);
             logInfo(print_message);
