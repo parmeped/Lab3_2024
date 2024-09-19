@@ -58,9 +58,11 @@ int main()
             logInfo("Productos disponibles:");
             for (int i = 0; i < array_size_productos; i++)
             {
-                sprintf(print_message, "Producto: %s, Id: %d", productos[i].descripcion, productos[i].id);
+                sprintf(print_message, "Producto: %s, Id: %d, precio: %d", productos[i].descripcion, productos[i].id, productos[i].importe);
                 logInfo(print_message);
             }
+            sprintf(print_message, "Total en productos: %d", total);
+            logInfo(print_message);
             
             sprintf(print_message, "Ingrese Id producto, %d para salir", DERIVADOR_EXIT);
             logInfo(print_message);
@@ -90,6 +92,7 @@ int main()
             }
 
             compras[id_producto - 1].cantidad += cantidad;
+            total += compras[id_producto - 1].cantidad * productos[id_producto - 1].importe;
         }
 
         logInfo("Productos adquiridos:");
@@ -97,8 +100,6 @@ int main()
         {
             sprintf(print_message, "Producto: %s, Cantidad: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad);    
             logInfo(print_message);
-            total += compras[i].cantidad * productos[i].importe;
-            
             // reset
             compras[i].cantidad = 0;
         }

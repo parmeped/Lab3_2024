@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
         if (fp == NULL) 
         {
             logErr("No se pudo abrir archivo para lectura");
+            libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
             continue;
         }
 
