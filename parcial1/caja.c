@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
     char print_message[LARGO_MENSAJE];
     
     int caj_id = atoi(argv[1]);
-    if (caj_id != CAJ_ID || caj_id != CAJ_ID2) 
+    if (caj_id != CAJ_ID && caj_id != CAJ_ID2) 
     {
         sprintf(print_message, "Id invalido, debe ser %d o %d", CAJ_ID, CAJ_ID2);
         logInfo(print_message);
