@@ -20,7 +20,7 @@ int main()
     Compra compras[10];
     FILE *fp;
 
-    for (int i = 0; i < sizeof(productos); i++)
+    for (int i = 0; i < (sizeof(productos) / sizeof(productos[0])); i++)
     {
         compras[i].id = productos[i].id;
         compras[i].cantidad = 0;
@@ -83,7 +83,7 @@ int main()
         }
 
         logInfo("Productos adquiridos:");
-        for (int i = 0; i < sizeof(compras); i++)
+        for (int i = 0; i < (sizeof(compras) / sizeof(compras[0])); i++)
         {
             sprintf(print_message, "Producto: %s, Cantidad: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad);    
             logInfo(print_message);
