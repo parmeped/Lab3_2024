@@ -37,24 +37,19 @@ int main(int argc, char *argv[])
 
         fscanf(fp, ARCHIVO_LINE, &total);
         
-        logInfo(print_message);
-
+        logInfo("Procesando compra...");
         if (total > AMOUNT_PROCESS && processHigher20000) 
         {
-            logErr("Procesando compra...");
             sprintf(print_message, "Leido total %d por %d", total, CAJ_ID);
-            logInfo(print_message);
-            libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
-            continue;
         }
         else 
         {
-            logErr("Procesando compra...");
             sprintf(print_message, "Leido total %d por %d", total, CAJ_ID2);
-            logInfo(print_message);
-            libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
-            continue;
         }
+        
+        logInfo(print_message);
+        borrar_archivo(NOMBRE_ARCHIVO);
+        libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
     }
     return 0;
 }
