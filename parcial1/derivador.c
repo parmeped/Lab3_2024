@@ -22,7 +22,8 @@ int main()
 
     for (int i = 0; i < sizeof(productos); i++)
     {
-        compras[i] = { .id = productos[i].id, .cantidad = 0};
+        compras[i].id = productos[i].id;
+        compras[i].cantidad = 0;
     }
 
     int id_semaforo;
@@ -77,13 +78,6 @@ int main()
             sprintf(print_message, "Ingresar cantidad del producto elegido: %s", productos[id_producto - 1].descripcion);
             logInfo(print_message);
             scanf("%d", &cantidad);
-
-            if (atoi(cantidad) <= 0) 
-            {
-                logWarn("Cantidad invalida.");
-                id_producto = -1;
-                continue;
-            }
 
             compras[id_producto - 1].cantidad += cantidad;
         }
