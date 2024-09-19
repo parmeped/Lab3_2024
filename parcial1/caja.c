@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         logInfo(print_message);
 
         // esto deberia ser AMOUNT_PROCESS pero por algun motivo no me lo toma correctamente y entra en el otro.
-        if (caj_id == CAJ_ID) 
+        if (total >= 20000 && caj_id == CAJ_ID) 
         {
             logErr("Procesando compra...");
             sprintf(print_message, "Leido total %d por %d", total, caj_id);
