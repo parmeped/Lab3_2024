@@ -1,7 +1,7 @@
 # Pasos ejecucion
 
 1. sobre ./parcial1 ejecutar el comando: make all
-2. abrir terminal, ejecutar ./derivador
+2. abrir terminal, ejecutar ./derivador -- este inicializa el semaforo
 3. abrir terminal, ejecutar ./caja 1
 4. abrir terminal, ejecutar ./caja 2
 5. en terminal "derivador", ingresar los productos deseados.
