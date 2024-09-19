@@ -1,8 +1,15 @@
 #include "../../shared/framework.h"
 #include "def.h"
 
-int main(int caj_id)
+int main(int argc, char *argv[])
 {
+    int caj_id = atoi(argv[1]);
+    if (caj_id == NULL || caj_id < 1) 
+    {
+        logInfo("Valor invalido de id para cajero");
+        return 1;
+    }
+
     FILE *fp;
     int id_semaforo;
     char print_message[LARGO_MENSAJE];
