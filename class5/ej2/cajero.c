@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
     sprintf(nombre_archivo, NOMBRE_ARCHIVO_CAJ, caj_id);
 
     id_semaforo = creo_semaforo(SEM_AMOUNT);
-    inicio_semaforo(id_semaforo, 0, SEM_VERDE);
 
     while(1) 
     {
@@ -53,8 +52,7 @@ int main(int argc, char *argv[])
         }
         fclose(fp);
         tiempo_espera = randomNumber(CAJERO_MIN_SLEEP_MS, CAJERO_MAX_SLEEP_MS);
-        libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, tiempo_espera);
-        break;
+        libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, tiempo_espera);        
     }
     return 0;
 }
