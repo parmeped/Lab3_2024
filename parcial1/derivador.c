@@ -22,7 +22,7 @@ int main()
 
     for (int i = 0; i < sizeof(productos); i++)
     {
-        compras[i] = struct Compra = { .id = productos[i].id, .cantidad = 0};
+        compras[i] = { .id = productos[i].id, .cantidad = 0};
     }
 
     int id_semaforo;
@@ -78,7 +78,7 @@ int main()
             logInfo(print_message);
             scanf("%d", &cantidad);
 
-            if (atoi(&cantidad) <= 0) 
+            if (atoi(cantidad) <= 0) 
             {
                 logWarn("Cantidad invalida.");
                 id_producto = -1;
