@@ -58,7 +58,7 @@ int main()
             exit(1);
         }
         
-        while(id_producto != DERIVADOR_EXIT) 
+        while(id_producto != DERIVADOR_EXIT)
         {
             printSep();
             logInfo("Productos disponibles:");
@@ -97,6 +97,8 @@ int main()
         logInfo("Productos adquiridos:");
         for (int i = 0; i < array_size_compras; i++)
         {
+            sprintf(print_message, "i: %d", i);
+            logInfo(print_message);
             sprintf(print_message, "Producto: %s, Cantidad: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad);    
             logInfo(print_message);
             total += compras[i].cantidad * productos[i].importe;
