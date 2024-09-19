@@ -4,7 +4,7 @@
 int main(int argc, char *argv[])
 {
     int caj_id = atoi(argv[1]);
-    if (caj_id == NULL || caj_id < 1) 
+    if (caj_id < 1) 
     {
         logInfo("Valor invalido de id para cajero");
         return 1;
