@@ -84,3 +84,9 @@ void mSpinner(int duration_mseconds) {
     printf("\r ");
     fflush(stdout);
 }
+
+void usleepMs(int ms)
+{
+    usleep(ms * 1000);
+    return;
+}

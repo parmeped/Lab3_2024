@@ -36,7 +36,7 @@ void libero_semaforo(int, int);
 /// @param  Cual Que semaforo del array liberar
 /// @param  SegundosSpinner los segundos que durará el spinner
 void libero_semaforo_spinner(int, int, int);
-/// @brief Libera semaforo y muestra un spinner que dura SegundosSpinner
+/// @brief Libera semaforo y muestra un spinner que dura MiliSegundosSpinner
 /// @param  Id El id del array de semaforos
 /// @param  Cual Que semaforo del array liberar
 /// @param  USegundosSpinner los milisegundos que durará el spinner
@@ -46,7 +46,9 @@ int creo_id_cola_mensajes(int);
 int borrar_mensajes(int);
 int recibir_mensajes(int, long, mensaje*);
 int enviar_mensaje(int, long, int, int, char*);
-
+int randomNumber(int min, int max);
+int randomNumberPrevSeed(int min, int max, int prevRandSeed);
+void substring(const char *string, int position, int length, char *result);
 
 #endif
 

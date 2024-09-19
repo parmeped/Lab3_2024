@@ -29,5 +29,11 @@ void spinner(int);
 /// @brief Prints a spinner on the console.
 /// @param duration The amount the spinner has to display, expressed in mili seconds. 
 void mSpinner(int);
+/**
+ * @brief Suspende la ejecución del programa durante un número específico de milisegundos.
+ *
+ * @param ms El número de milisegundos durante los cuales el programa debe suspenderse.
+ */
+void usleepMs(int);
 
 #endif

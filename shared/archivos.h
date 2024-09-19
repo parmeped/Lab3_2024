@@ -54,4 +54,3 @@ int renombrar_archivo(char *viejo_nombre, char *nuevo_nombre)
 }
 
 // Leer archivo completo
-// append al archivo

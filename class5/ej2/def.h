@@ -1,0 +1,20 @@
+#define MIN_LOTE_CAJERO 10
+#define MAX_LOTE_CAJERO 20
+
+#define MIN_IMPORTE_CAJERO 100
+#define MAX_IMPORTE_CAJERO 500
+
+#define CAJERO_MIN_SLEEP_MS 1000
+#define CAJERO_MAX_SLEEP_MS 2500
+
+#define TESORERO_SLEEP_MS 300
+
+#define VAL_CHEQUE 0
+#define VAL_EFECTIVO 1
+
+#define SEM_AMOUNT 1
+#define SEM_NUMBER 0
+
+#define NOMBRE_ARCHIVO_CAJ "cajero%d.dat"
+
+#define STRING_FILE "IMPORTE:%d;TIPO:%d\n"

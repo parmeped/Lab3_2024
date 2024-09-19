@@ -27,7 +27,7 @@ void *creo_memoria(int size, int *r_id_memoria, int clave_base)
     }
 
     ptr_memoria = (void *)shmat(id_memoria, (char *)0, 0);
-    if (ptr_memoria == NULL)
+    if (ptr_memoria == (void *)-1)
     {
         logErr("No se puede conseguir memoria compartida.");
         exit(0);
@@ -101,7 +101,8 @@ int enviar_mensaje(int id_cola, long dest, int rte, int evento, char *message)
     msg.long_dest = dest;
     msg.int_rte = rte;
     msg.int_evento = evento;
-    strcpy(msg.char_mensaje, message);
+    strncpy(msg.char_mensaje, message, sizeof(msg.char_mensaje) - 1);
+    msg.char_mensaje[sizeof(msg.char_mensaje) - 1] = '\0';
     return msgsnd(id_cola, (struct msgbuf *)&msg, sizeof(msg.int_rte) + sizeof(msg.int_evento) + sizeof(msg.char_mensaje), IPC_NOWAIT);
 }
 
@@ -111,10 +112,14 @@ int recibir_mensajes(int id_cola, long dest, mensaje *message)
     int res;
     res = msgrcv(id_cola, (struct msgbuf *)&msg, sizeof(msg.int_rte) + sizeof(msg.int_evento) + sizeof(msg.char_mensaje), dest, 0);
 
-    message->long_dest = msg.long_dest;
-    message->int_rte = msg.int_rte;
-    message->int_evento = msg.int_evento;
-    strcpy(message->char_mensaje, msg.char_mensaje);
+    if (res != -1)
+    {
+        message->long_dest = msg.long_dest;
+        message->int_rte = msg.int_rte;
+        message->int_evento = msg.int_evento;
+        strncpy(message->char_mensaje, msg.char_mensaje, sizeof(message->char_mensaje) - 1);
+        message->char_mensaje[sizeof(message->char_mensaje) - 1] = '\0';
+    }
 
     return res;
 }
@@ -128,4 +133,26 @@ int borrar_mensajes(int id_cola)
         res = msgrcv(id_cola, (struct msgbuf *)&msg, sizeof(msg.int_rte) + sizeof(msg.int_evento) + sizeof(msg.char_mensaje), 0, IPC_NOWAIT);
     } while (res > 0);
     return res;
+}
+
+int randomNumber(int min, int max)
+{
+    srand(time(NULL));
+    return (rand() % (max - min + 1)) + min;
+}
+
+int randomNumberPrevSeed(int min, int max, int prevRandSeed)
+{
+    srand(time(NULL) + prevRandSeed);
+    return (rand() % (max - min + 1)) + min;
+}
+
+void substring(const char *string, int position, int length, char *result)
+{
+    int c;
+    for (c = 0; c < length && string[position + c] != '\0'; c++)
+    {
+        result[c] = string[position + c];
+    }
+    result[c] = '\0';
 }
