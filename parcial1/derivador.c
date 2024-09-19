@@ -62,7 +62,7 @@ int main()
         {
             printSep();
             logInfo("Productos disponibles:");
-            for (int i = 0; i < sizeof(productos); i++)
+            for (int i = 0; i < array_size_productos; i++)
             {
                 sprintf(print_message, "Producto: %s, Id: %d", productos[i].descripcion, productos[i].id);
                 logInfo(print_message);
