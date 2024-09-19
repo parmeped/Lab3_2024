@@ -22,7 +22,7 @@ int main()
 
     for (int i = 0; i < sizeof(productos); i++)
     {
-        compras[i] = {productos[i].id, 0};
+        compras[i] = struct Compra = { .id = productos[i].id, .cantidad = 0};
     }
 
     int id_semaforo;
