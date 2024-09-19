@@ -11,7 +11,7 @@ int main(int caj_id)
     int tipo;
     int tiempo_espera;
 
-    sprintf(print_message, "Comenzando cajero con Id: %s", caj_id);
+    sprintf(print_message, "Comenzando cajero con Id: %d", caj_id);
     logInfo(print_message);
     
     sprintf(nombre_archivo, NOMBRE_ARCHIVO_CAJ, caj_id);
