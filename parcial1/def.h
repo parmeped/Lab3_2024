@@ -7,6 +7,7 @@
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 #define NOMBRE_ARCHIVO "compras.dat"
+#define ARCHIVO_LINE "Total:%d\n"
 
 #define DERIVADOR_EXIT 0
 

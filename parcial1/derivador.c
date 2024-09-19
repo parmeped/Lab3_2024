@@ -92,12 +92,15 @@ int main()
             sprintf(print_message, "Producto: %s, Cantidad: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad);    
             logInfo(print_message);
             total += compras[i].cantidad * productos[i].importe;
+            
+            // reset
+            compras[i].cantidad = 0;
         }
 
         sprintf(print_message, "Total productos: %d", total);
         logInfo(print_message);
 
-        fprintf(fp, "Total: %d\n", total);
+        fprintf(fp, ARCHIVO_LINE, total);
         cerrar_archivo(fp);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_DERIVADOR_MS);
     }
