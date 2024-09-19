@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
             fp = append_archivo(nombre_archivo);
         }
 
-        cant_depositos = randomNumberPrevSeed(MIN_LOTE_CAJERO, MAX_LOTE_CAJERO);
+        cant_depositos = randomNumber(MIN_LOTE_CAJERO, MAX_LOTE_CAJERO);
         sprintf(print_message, "Cargando %d depositos", cant_depositos);
         logInfo(print_message);
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
             fprintf(fp, STRING_FILE, importe, tipo);
         }
         fclose(fp);
-        tiempo_espera = randomNumberPrevSeed(CAJERO_MIN_SLEEP_MS, CAJERO_MAX_SLEEP_MS);
+        tiempo_espera = randomNumber(CAJERO_MIN_SLEEP_MS, CAJERO_MAX_SLEEP_MS);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, tiempo_espera);
         break;
     }
