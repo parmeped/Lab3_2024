@@ -31,19 +31,11 @@ int main()
     int array_size_productos = ARRAY_SIZE(productos);
     int array_size_compras = ARRAY_SIZE(compras);
 
-    sprintf(print_message, "Array size productos: %d", ARRAY_SIZE(productos));
-    logInfo(print_message);
-    
     for (int i = 0; i < array_size_productos; i++)
     {
-        sprintf(print_message, "i: %d", i);
-        logInfo(print_message);
         compras[i].id = productos[i].id;
         compras[i].cantidad = 0;
     }
-
-    sprintf(print_message, "Array size compras: %d", ARRAY_SIZE(compras));
-    logInfo(print_message);
 
     id_semaforo = creo_semaforo(SEM_AMOUNT);
     inicio_semaforo(id_semaforo, 0, SEM_VERDE);
@@ -80,7 +72,7 @@ int main()
             }
 
             // asumimos los prods estan ordenados, sino habria q buscar el min y max...
-            if (id_producto < productos[0].id || id_producto > productos[sizeof(productos) - 1].id) 
+            if (id_producto < productos[0].id || id_producto > productos[array_size_productos - 1].id) 
             {
                 logWarn("Producto no encontrado");
                 id_producto = -1;
@@ -97,8 +89,6 @@ int main()
         logInfo("Productos adquiridos:");
         for (int i = 0; i < array_size_compras; i++)
         {
-            sprintf(print_message, "i: %d", i);
-            logInfo(print_message);
             sprintf(print_message, "Producto: %s, Cantidad: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad);    
             logInfo(print_message);
             total += compras[i].cantidad * productos[i].importe;
