@@ -1,17 +1,6 @@
 #include "../shared/framework.h"
 #include "def.h"
 
-// hago print de productos
-// espero semaforo
-// ingreso por teclado productos
-// al finalizar ingreso, guardo en archivo
-// guardo en file solo el total.
-// levanto semaforo
-// caja 1 o 2 procesan acorde, borran archivo una vez procesado
-
-// Step1: solo guardar el importe total de la compra en el archivo. Procesarlo en derivador
-// Step2: guardar la compra entera en el archivo, levantar en las cajas y procesar ahi.
-
 int main()
 {
 
