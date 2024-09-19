@@ -19,7 +19,6 @@ int main()
 
     Compra compras[10];
     FILE *fp;
-    
 
     int id_semaforo;
     char print_message[LARGO_MENSAJE];
@@ -50,9 +49,12 @@ int main()
             exit(1);
         }
         
+        id_producto = -1;
+        total = 0;
         while(id_producto != DERIVADOR_EXIT)
         {
             printSep();
+
             logInfo("Productos disponibles:");
             for (int i = 0; i < array_size_productos; i++)
             {
@@ -67,7 +69,6 @@ int main()
             if (id_producto == DERIVADOR_EXIT) 
             {
                 logInfo("Finalizando ingreso productos");
-                id_producto = -1;
                 break;
             }
 
@@ -75,13 +76,18 @@ int main()
             if (id_producto < productos[0].id || id_producto > productos[array_size_productos - 1].id) 
             {
                 logWarn("Producto no encontrado");
-                id_producto = -1;
                 continue;
             }
 
             sprintf(print_message, "Ingresar cantidad del producto elegido: %s", productos[id_producto - 1].descripcion);
             logInfo(print_message);
             scanf("%d", &cantidad);
+
+            if (cantidad <= 0) 
+            {
+                logWarn("Cantidad invalida, ingresar mayor a 0");
+                continue;
+            }
 
             compras[id_producto - 1].cantidad += cantidad;
         }
@@ -100,8 +106,9 @@ int main()
         sprintf(print_message, "Total productos: %d", total);
         logInfo(print_message);
 
-        fprintf(fp, ARCHIVO_LINE, total);
+        fprintf(fp, ARCHIVO_LINE, total);        
         cerrar_archivo(fp);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_DERIVADOR_MS);
     }
+    return 0;
 }

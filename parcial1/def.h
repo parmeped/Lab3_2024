@@ -4,6 +4,11 @@
 #define SEM_AMOUNT 1
 #define SEM_NUMBER 0
 
+#define CAJ_ID 1
+#define CAJ_ID2 2
+
+#define AMOUNT_PROCESS 20000
+
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 #define NOMBRE_ARCHIVO "compras.dat"
