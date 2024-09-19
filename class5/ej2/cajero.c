@@ -34,16 +34,16 @@ int main(int caj_id)
         }
 
         logInfo("Cargando depositos...");
-        for(int i = 0; i < randomNumber(MIN_LOTE_CAJERO, MAX_LOTE_CAJERO); i++) 
+        for(int i = 0; i < randomNumberPrevSeed(MIN_LOTE_CAJERO, MAX_LOTE_CAJERO, MIN_LOTE_CAJERO); i++) 
         {
-            importe = randomNumber(MIN_IMPORTE_CAJERO, MAX_IMPORTE_CAJERO);
-            tipo = randomNumber(VAL_CHEQUE, VAL_EFECTIVO);
+            importe = randomNumberPrevSeed(MIN_IMPORTE_CAJERO, MAX_IMPORTE_CAJERO, importe);
+            tipo = randomNumberPrevSeed(VAL_CHEQUE, VAL_EFECTIVO, tipo);
             fprintf(fp, STRING_FILE, importe, tipo);
         }
         fclose(fp);
-        tiempo_espera = randomNumber(CAJERO_MIN_SLEEP_MS, CAJERO_MAX_SLEEP_MS);
+        tiempo_espera = randomNumberPrevSeed(CAJERO_MIN_SLEEP_MS, CAJERO_MAX_SLEEP_MS, CAJERO_MIN_SLEEP_MS);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, tiempo_espera);
         break;
     }
-    exit(0);
+    return 0;
 }
