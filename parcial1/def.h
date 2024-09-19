@@ -4,6 +4,8 @@
 #define SEM_AMOUNT 1
 #define SEM_NUMBER 0
 
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+
 #define NOMBRE_ARCHIVO "compras.dat"
 
 #define DERIVADOR_EXIT 0

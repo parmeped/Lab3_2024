@@ -19,12 +19,7 @@ int main()
 
     Compra compras[10];
     FILE *fp;
-
-    for (int i = 0; i < (int)sizeof(productos); i++)
-    {
-        compras[i].id = productos[i].id;
-        compras[i].cantidad = 0;
-    }
+    
 
     int id_semaforo;
     char print_message[LARGO_MENSAJE];
@@ -32,6 +27,18 @@ int main()
     int total = 0;
     int id_producto = -1;
     int cantidad;
+    
+    sprintf(print_message, "Array size productos: %d", ARRAY_SIZE(productos));
+    logInfo(print_message);
+    
+    for (int i = 0; i < ARRAY_SIZE(productos); i++)
+    {
+        compras[i].id = productos[i].id;
+        compras[i].cantidad = 0;
+    }
+
+    sprintf(print_message, "Array size compras: %d", ARRAY_SIZE(compras));
+    logInfo(print_message);
 
     id_semaforo = creo_semaforo(SEM_AMOUNT);
     inicio_semaforo(id_semaforo, 0, SEM_VERDE);
@@ -83,7 +90,7 @@ int main()
         }
 
         logInfo("Productos adquiridos:");
-        for (int i = 0; i < (int)sizeof(compras); i++)
+        for (int i = 0; i < ARRAY_SIZE(compras); i++)
         {
             sprintf(print_message, "Producto: %s, Cantidad: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad);    
             logInfo(print_message);
