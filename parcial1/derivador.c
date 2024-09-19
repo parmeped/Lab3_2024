@@ -34,7 +34,7 @@ int main()
     for (int i = 0; i < ARRAY_SIZE(productos); i++)
     {
         sprintf(print_message, "i: %d", i);
-        logInfo(print_message)
+        logInfo(print_message);
         compras[i].id = productos[i].id;
         compras[i].cantidad = 0;
     }
