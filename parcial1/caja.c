@@ -13,8 +13,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int processHigher20000 = caj_id == CAJ_ID ? 1 : 0;
-    if (processHigher20000 == 1) 
+    if (caj_id == CAJ_ID) 
     {
         logInfo("Proceso compras mayores a 20000");
     }
@@ -48,7 +47,7 @@ int main(int argc, char *argv[])
         
         logInfo(print_message);
 
-        if (total > AMOUNT_PROCESS && processHigher20000) 
+        if (total >= AMOUNT_PROCESS) 
         {
             logErr("Procesando compra...");
             sprintf(print_message, "Leido total %d por %d", total, caj_id);
