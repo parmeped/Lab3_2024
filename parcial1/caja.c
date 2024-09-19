@@ -48,12 +48,15 @@ int main(int argc, char *argv[])
             libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
             continue;
         }
-    
-        logErr("Procesando compra...");
-        sprintf(print_message, "Leido total %d por %d", total, CAJ_ID2);
-        logInfo(print_message);
-        borrar_archivo(NOMBRE_ARCHIVO);
-        libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
+        else 
+        {
+            logErr("Procesando compra...");
+            sprintf(print_message, "Leido total %d por %d", total, CAJ_ID2);
+            logInfo(print_message);
+            borrar_archivo(NOMBRE_ARCHIVO);
+            libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
+            continue;
+        }
     }
     return 0;
 }
