@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     int importe;
     int tipo;
     int tiempo_espera;
+    int cant_depositos;
 
     sprintf(print_message, "Comenzando cajero con Id: %d", caj_id);
     logInfo(print_message);
@@ -40,8 +41,11 @@ int main(int argc, char *argv[])
             fp = append_archivo(nombre_archivo);
         }
 
-        logInfo("Cargando depositos...");
-        for(int i = 0; i < randomNumberPrevSeed(MIN_LOTE_CAJERO, MAX_LOTE_CAJERO, MIN_LOTE_CAJERO); i++) 
+        cant_depositos = (MIN_LOTE_CAJERO, MAX_LOTE_CAJERO, MIN_LOTE_CAJERO);
+        sprintf(print_message, "Cargando %d depositos", cant_depositos);
+        logInfo(print_message);
+        
+        for(int i = 0; i < cant_depositos; i++) 
         {
             importe = randomNumberPrevSeed(MIN_IMPORTE_CAJERO, MAX_IMPORTE_CAJERO, importe);
             tipo = randomNumberPrevSeed(VAL_CHEQUE, VAL_EFECTIVO, tipo);
