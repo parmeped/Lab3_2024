@@ -62,7 +62,7 @@ int main()
                 logInfo(print_message);
             }
             sprintf(print_message, "Total en productos: %d", total);
-            logInfo(print_message);
+            logWarn(print_message);
             
             sprintf(print_message, "Ingrese Id producto, %d para salir", DERIVADOR_EXIT);
             logInfo(print_message);

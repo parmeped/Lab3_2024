@@ -14,6 +14,14 @@ int main(int argc, char *argv[])
     }
 
     int processHigher20000 = caj_id == CAJ_ID ? 1 : 0;
+    if (processHigher20000 == 1) 
+    {
+        logInfo("Proceso compras mayores a 20000");
+    }
+    else 
+    {
+        logInfo("No proceso compras mayores a 20000");
+    }
 
     FILE *fp;
 
@@ -43,7 +51,7 @@ int main(int argc, char *argv[])
         if (total > AMOUNT_PROCESS && processHigher20000) 
         {
             logErr("Procesando compra...");
-            sprintf(print_message, "Leido total %d por %d", total, CAJ_ID);
+            sprintf(print_message, "Leido total %d por %d", total, caj_id);
             logInfo(print_message);
             borrar_archivo(NOMBRE_ARCHIVO);
             libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
@@ -52,7 +60,7 @@ int main(int argc, char *argv[])
         else 
         {
             logErr("Procesando compra...");
-            sprintf(print_message, "Leido total %d por %d", total, CAJ_ID2);
+            sprintf(print_message, "Leido total %d por %d", total, caj_id);
             logInfo(print_message);
             borrar_archivo(NOMBRE_ARCHIVO);
             libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
