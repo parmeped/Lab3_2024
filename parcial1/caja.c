@@ -57,7 +57,8 @@ int main(int argc, char *argv[])
             libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
             continue;
         }
-        else 
+        
+        if (total < 20000 && caj_id == CAJ_ID2)
         {
             logErr("Procesando compra...");
             sprintf(print_message, "Leido total %d por %d", total, caj_id);
