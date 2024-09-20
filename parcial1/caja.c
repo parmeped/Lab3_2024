@@ -24,9 +24,12 @@ int main(int argc, char *argv[])
 
     FILE *fp;
     int array_size_productos = ARRAY_SIZE(productos);
-    Compra compras[array_size_productos];
-    Compras comprasTotal = {0, compras};
     int array_size_compras = array_size_productos;
+
+    Compra compras[array_size_productos];
+    Compras comprasTotal;
+    
+    memcpy(comprasTotal.compras, compras, sizeof compras);
 
     for (int i = 0; i < array_size_productos; i++)
     {
