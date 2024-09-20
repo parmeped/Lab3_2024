@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     FILE *fp;
     int array_size_productos = ARRAY_SIZE(productos);
     Compra compras[array_size_productos];
+    Compras comprasTotal = {0, compras};
     int array_size_compras = array_size_productos;
 
     for (int i = 0; i < array_size_productos; i++)
@@ -52,44 +53,41 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        fread(compras, sizeof(Compra), array_size_compras, fp);
+        fread(comprasTotal, sizeof(Compras), 1, fp);
         
         logInfo(print_message);
+        compras = comprasTotal.compras;
 
-        // esto deberia ser AMOUNT_PROCESS pero por algun motivo no me lo toma correctamente y entra en el otro.
-        if (total >= 20000 && caj_id == CAJ_ID) 
+        if (comprasTotal.total >= AMOUNT_PROCESS && caj_id == CAJ_ID) 
         {
             logWarn("Procesando compra...");
             for (int i = 0; i < array_size_compras; i++)
             {
                 sprintf(print_message, "Producto: %s, Cantidad: %d, Importe: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad, compras[i].cantidad * productos[compras[i].id - 1].importe);
                 logInfo(print_message);
-                total += compras[i].cantidad * productos[compras[i].id - 1].importe;
                 // reset
                 compras[i].cantidad = 0;
             }
 
-            sprintf(print_message, "Leido total %d por %d", total, caj_id);
+            sprintf(print_message, "Leido total %d por %d", comprasTotal.total, caj_id);
             logInfo(print_message);
             borrar_archivo(NOMBRE_ARCHIVO);
             libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);
             continue;
         }
         
-        if (total < 20000 && caj_id == CAJ_ID2)
+        if (comprasTotal.total < AMOUNT_PROCESS && caj_id == CAJ_ID2)
         {
-            logWarn("Procesando compra...");
             logWarn("Procesando compra...");
             for (int i = 0; i < array_size_compras; i++)
             {
                 sprintf(print_message, "Producto: %s, Cantidad: %d, Importe: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad, compras[i].cantidad * productos[compras[i].id - 1].importe);
                 logInfo(print_message);
-                total += compras[i].cantidad * productos[compras[i].id - 1].importe;
                 // reset
                 compras[i].cantidad = 0;
             }
 
-            sprintf(print_message, "Leido total %d por %d", total, caj_id);
+            sprintf(print_message, "Leido total %d por %d", comprasTotal.total, caj_id);
             logInfo(print_message);
             borrar_archivo(NOMBRE_ARCHIVO);
             libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_CAJA_MS);

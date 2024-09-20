@@ -18,6 +18,7 @@ int main()
     
     int array_size_productos = ARRAY_SIZE(productos);
     Compra compras[array_size_productos];
+    Compras comprasTotal = {0, compras};
     int array_size_compras = array_size_productos;
 
     for (int i = 0; i < array_size_productos; i++)
@@ -85,10 +86,9 @@ int main()
             total += compras[id_producto - 1].cantidad * productos[id_producto - 1].importe;
         }
 
-        logInfo("Productos adquiridos:");
+        comprasTotal.total = total;
         
-
-        fwrite(compras, sizeof(Compra), array_size_compras, fp);
+        fwrite(&comprasTotal, sizeof(Compras), 1, fp);        
         cerrar_archivo(fp);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_DERIVADOR_MS);
     }

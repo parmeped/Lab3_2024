@@ -38,3 +38,8 @@ typedef struct {
     int id;
     int cantidad;
 } Compra;
+
+typedef struct {
+    int total;
+    Compra compras[];
+} Compras;
