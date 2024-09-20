@@ -23,7 +23,13 @@ int main()
         exit(1);
     }
     Compras comprasTotal;
-    comprasTotal.compras = &compras;
+    comprasTotal.compras = (Compra *)malloc(array_size_productos * sizeof(Compra));
+    if (comprasTotal.compras == NULL) {
+        logErr("Error al asignar memoria para comprasTotal.compras");
+        free(compras);
+        exit(1);
+    }
+    memcpy(comprasTotal.compras, compras, array_size_productos * sizeof(Compra));
 
     int array_size_compras = array_size_productos;
 
