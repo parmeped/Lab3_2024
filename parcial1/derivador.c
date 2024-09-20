@@ -20,7 +20,7 @@ int main()
     Compra compras[array_size_productos];
     Compras comprasTotal;
     
-    memccpy(comprasTotal.compras, compras, sizeof compras);
+    memcpy(comprasTotal.compras, compras, sizeof compras);
 
     int array_size_compras = array_size_productos;
 
