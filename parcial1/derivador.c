@@ -23,7 +23,8 @@ int main()
         exit(1);
     }
     Compras comprasTotal;
-    comprasTotal.compras = compras;
+    comprasTotal.compras = &compras;
+
     int array_size_compras = array_size_productos;
 
     for (int i = 0; i < array_size_productos; i++)
@@ -97,7 +98,5 @@ int main()
         cerrar_archivo(fp);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_DERIVADOR_MS);
     }
-    free(compras);
-    free(comprasTotal);
     return 0;
 }
