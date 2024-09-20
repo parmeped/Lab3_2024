@@ -22,8 +22,9 @@ int main()
         logErr("Error al asignar memoria para compras");
         exit(1);
     }
-    Compras comprasTotal;
-    comprasTotal.compras = (Compra *)malloc(array_size_productos * sizeof(Compra));
+
+    Compras *comprasTotal = (Compras *)malloc(array_size_productos * sizeof(Compras));
+    comprasTotal.compras = compras;
     if (comprasTotal.compras == NULL) {
         logErr("Error al asignar memoria para comprasTotal.compras");
         free(compras);
