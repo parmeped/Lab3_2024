@@ -19,8 +19,8 @@ int main()
     int array_size_productos = ARRAY_SIZE(productos);
     Compra compras[array_size_productos];
     Compras comprasTotal;
-    comprasTotal.compras = &compras;
-
+    
+    memccpy(comprasTotal.compras, compras, sizeof compras);
 
     int array_size_compras = array_size_productos;
 
