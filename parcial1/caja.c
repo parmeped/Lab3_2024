@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
         fread(comprasTotal, sizeof(Compras), 1, fp);
         
         logInfo(print_message);
-        compras = comprasTotal.compras;
+        memcpy(comprasTotal.compras, compras, sizeof compras);
 
         if (comprasTotal.total >= AMOUNT_PROCESS && caj_id == CAJ_ID) 
         {
@@ -97,7 +97,5 @@ int main(int argc, char *argv[])
             continue;
         }
     }
-    free(compras);
-    free(comprasTotal);
     return 0;
 }
