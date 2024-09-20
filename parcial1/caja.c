@@ -23,6 +23,15 @@ int main(int argc, char *argv[])
     }
 
     FILE *fp;
+    int array_size_productos = ARRAY_SIZE(productos);
+    Compra compras[array_size_productos];
+    int array_size_compras = array_size_productos;
+
+    for (int i = 0; i < array_size_productos; i++)
+    {
+        compras[i].id = productos[i].id;
+        compras[i].cantidad = 0;
+    }
 
     int id_semaforo = creo_semaforo(SEM_AMOUNT);
     char nombre_archivo[100];
@@ -43,14 +52,23 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        fscanf(fp, ARCHIVO_LINE, &total);
+        fread(compras, sizeof(Compra), array_size_compras, fp);
         
         logInfo(print_message);
 
         // esto deberia ser AMOUNT_PROCESS pero por algun motivo no me lo toma correctamente y entra en el otro.
         if (total >= 20000 && caj_id == CAJ_ID) 
         {
-            logErr("Procesando compra...");
+            logWarn("Procesando compra...");
+            for (int i = 0; i < array_size_compras; i++)
+            {
+                sprintf(print_message, "Producto: %s, Cantidad: %d, Importe: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad, compras[i].cantidad * productos[compras[i].id - 1].importe);
+                logInfo(print_message);
+                total += compras[i].cantidad * productos[compras[i].id - 1].importe;
+                // reset
+                compras[i].cantidad = 0;
+            }
+
             sprintf(print_message, "Leido total %d por %d", total, caj_id);
             logInfo(print_message);
             borrar_archivo(NOMBRE_ARCHIVO);
@@ -60,7 +78,17 @@ int main(int argc, char *argv[])
         
         if (total < 20000 && caj_id == CAJ_ID2)
         {
-            logErr("Procesando compra...");
+            logWarn("Procesando compra...");
+            logWarn("Procesando compra...");
+            for (int i = 0; i < array_size_compras; i++)
+            {
+                sprintf(print_message, "Producto: %s, Cantidad: %d, Importe: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad, compras[i].cantidad * productos[compras[i].id - 1].importe);
+                logInfo(print_message);
+                total += compras[i].cantidad * productos[compras[i].id - 1].importe;
+                // reset
+                compras[i].cantidad = 0;
+            }
+
             sprintf(print_message, "Leido total %d por %d", total, caj_id);
             logInfo(print_message);
             borrar_archivo(NOMBRE_ARCHIVO);

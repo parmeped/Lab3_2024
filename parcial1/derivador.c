@@ -6,7 +6,7 @@ int main()
 
     logInfo("Iniciando programa derivador");
 
-    Compra compras[10];
+    
     FILE *fp;
 
     int id_semaforo;
@@ -17,7 +17,8 @@ int main()
     int cantidad;
     
     int array_size_productos = ARRAY_SIZE(productos);
-    int array_size_compras = ARRAY_SIZE(compras);
+    Compra compras[array_size_productos];
+    int array_size_compras = array_size_productos;
 
     for (int i = 0; i < array_size_productos; i++)
     {
@@ -85,16 +86,7 @@ int main()
         }
 
         logInfo("Productos adquiridos:");
-        for (int i = 0; i < array_size_compras; i++)
-        {
-            sprintf(print_message, "Producto: %s, Cantidad: %d", productos[compras[i].id - 1].descripcion, compras[i].cantidad);    
-            logInfo(print_message);
-            // reset
-            compras[i].cantidad = 0;
-        }
-
-        sprintf(print_message, "Total productos: %d", total);
-        logInfo(print_message);
+        
 
         fwrite(compras, sizeof(Compra), array_size_compras, fp);
         cerrar_archivo(fp);
