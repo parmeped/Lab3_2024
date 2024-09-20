@@ -96,7 +96,7 @@ int main()
         sprintf(print_message, "Total productos: %d", total);
         logInfo(print_message);
 
-        fwrite(&compras, sizeof(compras[]), 1, fp);
+        fwrite(compras, sizeof(Compra), array_size_compras, fp);
         cerrar_archivo(fp);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_DERIVADOR_MS);
     }
