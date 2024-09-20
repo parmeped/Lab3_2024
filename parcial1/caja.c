@@ -94,5 +94,7 @@ int main(int argc, char *argv[])
             continue;
         }
     }
+    free(compras);
+    free(comprasTotal);
     return 0;
 }

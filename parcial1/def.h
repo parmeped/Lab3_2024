@@ -41,5 +41,5 @@ typedef struct {
 
 typedef struct {
     int total;
-    Compra compras[];
+    Compra *compras[];
 } Compras;

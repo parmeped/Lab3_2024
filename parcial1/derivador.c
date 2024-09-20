@@ -17,7 +17,11 @@ int main()
     int cantidad;
     
     int array_size_productos = ARRAY_SIZE(productos);
-    Compra compras[array_size_productos];
+    Compra *compras = (Compra *)malloc(array_size_productos * sizeof(Compra));
+    if (compras == NULL) {
+        logErr("Error al asignar memoria para compras");
+        exit(1);
+    }
     Compras comprasTotal;
     comprasTotal.compras = compras;
     int array_size_compras = array_size_productos;
@@ -89,9 +93,11 @@ int main()
 
         comprasTotal.total = total;
 
-        fwrite(&comprasTotal, sizeof(Compras), 1, fp);        
+        fwrite(&comprasTotal, sizeof(Compras), 1, fp);
         cerrar_archivo(fp);
         libero_semaforo_mspinner(id_semaforo, SEM_NUMBER, SLEEP_DERIVADOR_MS);
     }
+    free(compras);
+    free(comprasTotal);
     return 0;
 }
