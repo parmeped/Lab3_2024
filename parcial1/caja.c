@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        fread(comprasTotal, sizeof(Compras), 1, fp);
+        fread(&comprasTotal, sizeof(Compras), 1, fp);
         
         logInfo(print_message);
         memcpy(comprasTotal.compras, compras, sizeof compras);
