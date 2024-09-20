@@ -17,20 +17,10 @@ int main()
     int cantidad;
     
     int array_size_productos = ARRAY_SIZE(productos);
-    Compra *compras = (Compra *)malloc(array_size_productos * sizeof(Compra));
-    if (compras == NULL) {
-        logErr("Error al asignar memoria para compras");
-        exit(1);
-    }
+    Compra compras[array_size_productos];
+    Compras comprasTotal;
+    comprasTotal.compras = &compras;
 
-    Compras *comprasTotal = (Compras *)malloc(array_size_productos * sizeof(Compras));
-    comprasTotal.compras = compras;
-    if (comprasTotal.compras == NULL) {
-        logErr("Error al asignar memoria para comprasTotal.compras");
-        free(compras);
-        exit(1);
-    }
-    memcpy(comprasTotal.compras, compras, array_size_productos * sizeof(Compra));
 
     int array_size_compras = array_size_productos;
 
