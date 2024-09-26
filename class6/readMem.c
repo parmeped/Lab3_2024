@@ -3,7 +3,8 @@
 
 int main()
 {
-    logInfo("Iniciando programa lectura memoria");
+
+    logInfo("Iniciando programa escritura memoria");
 
     int id_memoria, id_semaforo;
     dato *memoria = NULL;
@@ -18,16 +19,12 @@ int main()
     while(1) 
     {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
-        for (i = 0; i < 10; i++)
+        for (i = 0; i < CANTIDAD; i++)
         {
-            aleatorio = randomNumber(1, 100);
-            memoria[i].numero = aleatorio;
-            memoria[i].letra = (char)aleatorio;
-            printf("Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
+            printf("Leido desde memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
         
-        sleep(1);
-        logInfo("Memoria escrita");
+        logInfo("Memoria leida");
         libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, 1);
     }
     shmdt((char *)memoria);
