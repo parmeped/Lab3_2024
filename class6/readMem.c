@@ -26,17 +26,19 @@ int main() {
 
     while(!stop) {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
+        logInfo("Leyendo memoria");
+        
         for (i = 0; i < CANTIDAD; i++) {
             printf("Leido desde memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
         
-        logInfo("Memoria leida");
+        printSep();        
         libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, TIEMPO_SLEEP);
     }
 
     logInfo("Liberando memoria");
     shmdt((char *)memoria);
-    shmctl(id_memoria, IPC_RMID, (struct shmid_ds *)NULL);
+    libero_memoria(id_memoria);
     logInfo("Programa terminado y memoria liberada");
 
     return 0;

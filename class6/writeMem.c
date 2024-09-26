@@ -29,21 +29,22 @@ int main()
     while(!stop) 
     {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
-        memoria[0].numero = lote++;
-        for (i = 1; i < CANTIDAD + 1; i++)
+        logInfo("Escribiendo memoria");
+
+        for (i = 0; i < CANTIDAD; i++)
         {
             aleatorio = randomNumberPrevSeed(1, 100, aleatorio);
             memoria[i].numero = aleatorio;
             memoria[i].letra = (char)aleatorio;
             printf("Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
-        
-        logInfo("Memoria escrita");
+
+        printSep();
         libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, TIEMPO_SLEEP);
     }
 
     logInfo("Liberando memoria");
     shmdt((char *)memoria);
-    shmctl(id_memoria, IPC_RMID, (struct shmid_ds *)NULL);
+    libero_memoria(id_memoria);
     return 0;
 }
