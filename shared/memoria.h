@@ -21,3 +21,8 @@ void *creo_memoria(int size, int *r_id_memoria, int clave_base)
     *r_id_memoria = id_memoria;
     return ptr_memoria;
 }
+
+void libero_memoria(int id)
+{
+    shmctl(id, IPC_RMID, (struct shmid_ds *)NULL);
+}

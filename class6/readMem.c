@@ -1,8 +1,16 @@
 #include "../shared/framework.h"
 #include "def.h"
 
-int main()
-{
+#include <signal.h>
+
+volatile sig_atomic_t stop;
+
+void handle_sigint(int sig) {
+    stop = 1;
+}
+
+int main() {
+    signal(SIGINT, handle_sigint);
 
     logInfo("Iniciando programa escritura memoria");
 
@@ -14,21 +22,26 @@ int main()
     id_semaforo = creo_semaforo(CANT_SEMAFORO);
     inicio_semaforo(id_semaforo, 0, SEM_VERDE);
 
+
     srand(time(NULL));
 
-    while(1) 
-    {
+    while(!stop) {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
-        printf("Lote desde memoria: Numero: %d\n", memoria[i].numero);
-        for (i = 1; i < CANTIDAD + 1; i++)
-        {
-            printf("Leido desde memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
+        for (i = 0; i < CANTIDAD; i++) {
+            aleatorio = rand() % 100;
+            memoria[i].numero = aleatorio;
+            memoria[i].letra = 'A' + (aleatorio % 26);
+            printf("Escrito en memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
         
-        logInfo("Memoria leida");
+        logInfo("Memoria escrita");
         libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, 1);
     }
+
+    logInfo("Liberando memoria");
     shmdt((char *)memoria);
     shmctl(id_memoria, IPC_RMID, (struct shmid_ds *)NULL);
+    logInfo("Programa terminado y memoria liberada");
+
     return 0;
 }
