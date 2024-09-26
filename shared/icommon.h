@@ -7,7 +7,7 @@
 
 #define CUAL_SEMAFORO 0
 #define CANT_SEMAFORO 1
-#define TIEMPO_SLEEP 1
+#define TIEMPO_SLEEP 5
 
 #include <stdio.h>
 #include <time.h>
