@@ -2,3 +2,4 @@
 #include "archivos.h"
 #include "funciones.h"
 #include "definiciones.h"
+#include "memoria.h"

@@ -11,7 +11,7 @@
 #include <time.h>
 #include <string.h>
 
-#define CLAVE_BASE 33
+
 #define SEMAFORO0 0
 
 
@@ -27,7 +27,7 @@ struct tipo_mensajes
 };
 
 key_t creo_clave(int);
-void* creo_memoria(int, int*, int);
+
 int creo_semaforo(int);
 void inicio_semaforo(int, int, int);
 void libero_semaforo(int, int);

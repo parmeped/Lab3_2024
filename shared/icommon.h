@@ -3,6 +3,11 @@
 
 #define LOG_LEVEL DEBUG
 
+#define CLAVE_BASE 33
+
+#define CUAL_SEMAFORO 0
+#define CANT_SEMAFORO 1
+
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
