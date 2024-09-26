@@ -22,20 +22,16 @@ int main() {
     id_semaforo = creo_semaforo(CANT_SEMAFORO);
     inicio_semaforo(id_semaforo, 0, SEM_VERDE);
 
-
     srand(time(NULL));
 
     while(!stop) {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
         for (i = 0; i < CANTIDAD; i++) {
-            aleatorio = rand() % 100;
-            memoria[i].numero = aleatorio;
-            memoria[i].letra = 'A' + (aleatorio % 26);
-            printf("Escrito en memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
+            printf("Leido desde memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
         
-        logInfo("Memoria escrita");
-        libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, 1);
+        logInfo("Memoria leida");
+        libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, TIEMPO_SLEEP);
     }
 
     logInfo("Liberando memoria");

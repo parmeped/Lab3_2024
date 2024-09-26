@@ -38,9 +38,8 @@ int main()
             printf("Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
         
-        sleep(1);
         logInfo("Memoria escrita");
-        libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, 1);
+        libero_semaforo_spinner(id_semaforo, CUAL_SEMAFORO, TIEMPO_SLEEP);
     }
 
     logInfo("Liberando memoria");
