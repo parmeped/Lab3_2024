@@ -1,6 +1,6 @@
 
 #define SEM_AMOUNT 1
-#define CANTIDAD 10
+#define CANTIDAD 11
 
 typedef struct tipo_dato dato;
 

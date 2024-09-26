@@ -7,7 +7,8 @@ int main()
 
     int id_memoria, id_semaforo;
     dato *memoria = NULL;
-    int i, aleatorio;
+    int lote = 0;
+    int i, aleatorio = 0;
 
     memoria = (dato*)creo_memoria(sizeof(dato) * CANTIDAD, &id_memoria, CLAVE_BASE);
     id_semaforo = creo_semaforo(CANT_SEMAFORO);
@@ -18,9 +19,10 @@ int main()
     while(1) 
     {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
-        for (i = 0; i < 10; i++)
+        memoria[0].numero = lote++;
+        for (i = 1; i < CANTIDAD + 1; i++)
         {
-            aleatorio = randomNumber(1, 100);
+            aleatorio = randomNumberPrevSeed(1, 100, aleatorio);
             memoria[i].numero = aleatorio;
             memoria[i].letra = (char)aleatorio;
             printf("Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);

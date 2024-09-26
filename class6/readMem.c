@@ -19,7 +19,8 @@ int main()
     while(1) 
     {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
-        for (i = 0; i < CANTIDAD; i++)
+        printf("Lote desde memoria: Numero: %d\n", memoria[i].numero);
+        for (i = 1; i < CANTIDAD + 1; i++)
         {
             printf("Leido desde memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
