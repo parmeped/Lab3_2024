@@ -1,15 +1,15 @@
 CC = g++
-all : read write
+all : readMem writeMem
 reload : clean pull all
 
-read : read.c ../shared/framework.h ../shared/definiciones.h 
-	cc -o read read.c
+readMem : readMem.c ../shared/framework.h ../shared/definiciones.h 
+	cc -o readMem readMem.c
 
-write : write.c ../shared/framework.h ../shared/definiciones.h 
-	cc -o write write.c
+writeMem : writeMem.c ../shared/framework.h ../shared/definiciones.h 
+	cc -o writeMem writeMem.c
 
 clean : 
-	rm -rf *o *dat read write
+	rm -rf *o *dat readMem writeMem
 
 pull : 
 	git pull
