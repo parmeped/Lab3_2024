@@ -9,7 +9,7 @@ void handle_sigint(int sig) {
     stop = 1;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
     signal(SIGINT, handle_sigint);
 

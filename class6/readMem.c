@@ -9,7 +9,8 @@ void handle_sigint(int sig) {
     stop = 1;
 }
 
-int main() {
+int main(int argc, char *argv[])
+{
     signal(SIGINT, handle_sigint);
 
     logInfo("Iniciando programa escritura memoria");
@@ -27,7 +28,7 @@ int main() {
     while(!stop) {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
         logInfo("Leyendo memoria");
-        
+
         for (i = 0; i < CANTIDAD; i++) {
             printf("Leido desde memoria: Numero: %d, Letra: %c\n", memoria[i].numero, memoria[i].letra);
         }
