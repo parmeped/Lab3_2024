@@ -2,10 +2,10 @@ CC 		= g++
 
 all : jugador pienso
 
-jugador : jugador.c funciones.h definiciones.h funciones.o
+jugador : jugador.c funciones.h funciones.o
 	cc -o jugador jugador.c funciones.o -pthread
 
-pienso : pienso.c funciones.h definiciones.h funciones.o
+pienso : pienso.c funciones.h funciones.o
 	cc -o pienso pienso.c funciones.o 
 
 funciones.o : funciones.c funciones.h
