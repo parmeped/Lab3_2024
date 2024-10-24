@@ -12,7 +12,7 @@ void generar_evento(Destinos destino)
     mensaje msg;
     msg.long_dest = destino;
     msg.int_rte = 0;
-    msg.int_evento = Eventos[randomNumber(0, 2)];
+    msg.int_evento = Eventos[randomNumber(0, sizeof(Eventos)/sizeof(Eventos[0]) - 1)];
     enviar_mensaje(id_cola_mensajes, MSG_TABLERO, destino, msg.int_evento, "");
 }
 
