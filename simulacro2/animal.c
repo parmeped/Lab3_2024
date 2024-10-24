@@ -62,7 +62,7 @@ void *funcionGato(void *parametro)
 		pthread_mutex_lock (&mutex);
                 pasos += randomNumber(min_gato, max_gato);
                 cantidad_pasos++;
-				generar_evento(MSG_GATO);
+				generar_evento(MSG_GATO, cantidad_pasos, pasos);
                 if (pasos >= max_pasos)
                 {
                     break;
@@ -83,9 +83,9 @@ void *funcionConejo(void *parametro)
 	{
         printf("Conejo\n");
 		pthread_mutex_lock (&mutex);
-                pasos += randomNumber(min_gato, max_gato);
+                pasos += randomNumber(min_conejo, max_conejo);
                 cantidad_pasos++;
-                generar_evento(MSG_CONEJO);
+                generar_evento(MSG_CONEJO, cantidad_pasos, pasos);
                 if (pasos >= max_pasos)
                 {
                     break;
