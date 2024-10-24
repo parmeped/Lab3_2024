@@ -20,7 +20,7 @@ void procesar_evento(int id_cola_mensajes, mensaje msg)
 			printf("Alguien corriendo\n");
 		break;	
 		case EVT_FIN:
-			printf("Finalizado!\n");
+			logInfo("Finalizado!\n");
 		break;
 		case EVT_NINGUNO:
 			printf("Ninguno?\n");

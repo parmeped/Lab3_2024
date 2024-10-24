@@ -24,7 +24,7 @@ void generar_evento(Destinos remitente, int cantidad_pasos, int pasos)
     printf("Cantidad de pasos %d\n", cantidad_pasos);
     printf("Pasos %d\n", pasos);
     enviar_mensaje(id_cola_mensajes, MSG_TABLERO, remitente, msg.int_evento, "");
-    spinner(2);
+    spinner(1);
 }
 
 void *funcionPerro(void *parametro)
