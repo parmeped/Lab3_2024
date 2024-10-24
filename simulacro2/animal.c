@@ -15,7 +15,8 @@ void *funcionPerro(void *parametro)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR1, &msg);
 		pthread_mutex_lock (&mutex);
-				procesar_evento(msg);
+				//procesar_evento(msg);
+                printf("Perro\n");
 		pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
@@ -30,7 +31,8 @@ void *funcionGato(void *parametro)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR2, &msg);
 		pthread_mutex_lock (&mutex);
-				procesar_evento(msg);
+				//procesar_evento(msg);
+                printf("Gato\n");
 		pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
@@ -45,7 +47,8 @@ void *funcionConejo(void *parametro)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR3, &msg);
 		pthread_mutex_lock (&mutex);
-				procesar_evento(msg);
+				//procesar_evento(msg);
+                printf("Conejo\n");
 		pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
