@@ -47,8 +47,8 @@ int main()
 
 	while(1)
 	{
-		recibir_mensaje(id_cola_mensajes, MSG_JUGADOR1, &msg);
-		procesar_evento(id_cola_mensajes, msg, saldos);
+		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR1, &msg);
+		//procesar_evento(id_cola_mensajes, msg, saldos);
 	};
 	
 	return 0;
