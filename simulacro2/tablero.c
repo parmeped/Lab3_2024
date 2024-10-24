@@ -47,12 +47,8 @@ int main()
 
 	while(1)
 	{
-		recibir_mensajes(id_cola_mensajes, MSG_CONEJO, &msg);
+		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
 		procesar_evento(id_cola_mensajes, msg);
-        recibir_mensajes(id_cola_mensajes, MSG_GATO, &msg);
-        procesar_evento(id_cola_mensajes, msg);
-        recibir_mensajes(id_cola_mensajes, MSG_PERRO, &msg);
-        procesar_evento(id_cola_mensajes, msg);
 	};
 	
 	return 0;

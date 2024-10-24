@@ -7,13 +7,30 @@ pthread_mutex_t mutex;
 
 #define SALIR			0
 
-void generar_evento(Destinos destino) 
+void generar_evento(Destinos remitente) 
 {
     mensaje msg;
-    msg.long_dest = destino;
+    msg.long_dest = remitente;
     msg.int_rte = 0;
-    msg.int_evento = (Eventos)(randomNumber(0, 2));    
-    enviar_mensaje(id_cola_mensajes, MSG_TABLERO, destino, msg.int_evento, "");
+    msg.int_evento = (Eventos)(randomNumber(0, 2));
+    printf("Generando evento %d\n", msg.int_evento);    
+    // print remitente
+    switch (remitente) {
+        case MSG_PERRO:
+            printf("Remitente: Perro\n");
+            break;
+        case MSG_GATO:
+            printf("Remitente: Gato\n");
+            break;
+        case MSG_CONEJO:
+            printf("Remitente: Conejo\n");
+            break;
+        default:
+            printf("Remitente: Desconocido\n");
+            break;
+    }
+    enviar_mensaje(id_cola_mensajes, MSG_TABLERO, remitente, msg.int_evento, "");
+    spinner(2);
 }
 
 void *funcionPerro(void *parametro)
