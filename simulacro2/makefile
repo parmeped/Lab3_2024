@@ -1,15 +1,15 @@
 CC = g++
-all : tablero perro
+all : tablero animal
 reload : clean pull all
 
 tablero : tablero.c ../shared/framework.h ../shared/definiciones.h 
 	cc -o tablero tablero.c
 
-perro: perro.c ../shared/framework.h ../shared/definiciones.h
-	cc -o perro perro.c
+animal: animal.c ../shared/framework.h ../shared/definiciones.h
+	cc -o animal animal.c
 
 clean : 
-	rm -rf *o *dat tablero perro
+	rm -rf *o *dat tablero animal
 
 pull : 
 	git pull
