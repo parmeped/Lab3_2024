@@ -1,6 +1,14 @@
 #ifndef _DEFINICIONES_H
 #define _DEFINICIONES_H
 
+#define min_conejo 4
+#define max_conejo 9
+#define min_gato 1
+#define max_gato 10
+#define min_perro 3
+#define max_perro 8
+
+#define max_pasos 117
 
 typedef enum {
 MSG_NADIE, //0

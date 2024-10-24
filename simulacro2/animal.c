@@ -7,28 +7,22 @@ pthread_mutex_t mutex;
 
 #define SALIR			0
 
-void generar_evento(Destinos remitente) 
+void generar_evento(Destinos remitente, int cantidad_pasos, int pasos) 
 {
     mensaje msg;
     msg.long_dest = remitente;
     msg.int_rte = 0;
-    msg.int_evento = (Eventos)(randomNumber(0, 2));
-    printf("Generando evento %d\n", msg.int_evento);    
-    // print remitente
-    switch (remitente) {
-        case MSG_PERRO:
-            printf("Remitente: Perro\n");
-            break;
-        case MSG_GATO:
-            printf("Remitente: Gato\n");
-            break;
-        case MSG_CONEJO:
-            printf("Remitente: Conejo\n");
-            break;
-        default:
-            printf("Remitente: Desconocido\n");
-            break;
+    if (pasos >= max_pasos)
+    {
+        msg.int_evento = EVT_FIN;
     }
+    else
+    {
+        msg.int_evento = EVT_CORRO;
+    }
+    printf("Generando evento %d\n", msg.int_evento);    
+    printf("Cantidad de pasos %d\n", cantidad_pasos);
+    printf("Pasos %d\n", pasos);
     enviar_mensaje(id_cola_mensajes, MSG_TABLERO, remitente, msg.int_evento, "");
     spinner(2);
 }
@@ -36,12 +30,20 @@ void generar_evento(Destinos remitente)
 void *funcionPerro(void *parametro)
 {
 	mensaje	msg;
+    int cantidad_pasos = 0;
+    int pasos = 0;
 	printf ("ThreadPerro\n");
 	while(1)
 	{
+        printf("Perro\n");
 		pthread_mutex_lock (&mutex);
-                generar_evento(MSG_PERRO);
-                printf("Perro\n");
+                pasos += randomNumber(min_perro, max_perro);
+                cantidad_pasos++;
+                generar_evento(MSG_PERRO, cantidad_pasos, pasos);
+                if (pasos >= max_pasos)
+                {
+                    break;
+                }
 		pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
@@ -51,12 +53,20 @@ void *funcionPerro(void *parametro)
 void *funcionGato(void *parametro)
 {
 	mensaje	msg;
+    int cantidad_pasos = 0;
+    int pasos = 0;
 	printf ("ThreadGato\n");
 	while(1)
 	{
+        printf("Gato\n");
 		pthread_mutex_lock (&mutex);
+                pasos += randomNumber(min_gato, max_gato);
+                cantidad_pasos++;
 				generar_evento(MSG_GATO);
-                printf("Gato\n");
+                if (pasos >= max_pasos)
+                {
+                    break;
+                }
 		pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
@@ -66,12 +76,20 @@ void *funcionGato(void *parametro)
 void *funcionConejo(void *parametro)
 {
 	mensaje	msg;
+    int cantidad_pasos = 0;
+    int pasos = 0;
 	printf ("ThreadConejo\n");
 	while(1)
 	{
+        printf("Conejo\n");
 		pthread_mutex_lock (&mutex);
+                pasos += randomNumber(min_gato, max_gato);
+                cantidad_pasos++;
                 generar_evento(MSG_CONEJO);
-                printf("Conejo\n");
+                if (pasos >= max_pasos)
+                {
+                    break;
+                }
 		pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
