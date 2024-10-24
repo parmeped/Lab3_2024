@@ -13,7 +13,7 @@ void *funcionPerro(void *parametro)
 	printf ("ThreadPerro\n");
 	while(1)
 	{
-		recibir_mensaje(id_cola_mensajes, MSG_CAJERO, &msg);
+		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR1, &msg);
 		pthread_mutex_lock (&mutex);
 				procesar_evento(msg);
 		pthread_mutex_unlock (&mutex);	
@@ -28,7 +28,7 @@ void *funcionGato(void *parametro)
 	printf ("ThreadGato\n");
 	while(1)
 	{
-		recibir_mensaje(id_cola_mensajes, MSG_CAJERO, &msg);
+		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR2, &msg);
 		pthread_mutex_lock (&mutex);
 				procesar_evento(msg);
 		pthread_mutex_unlock (&mutex);	
@@ -43,7 +43,7 @@ void *funcionConejo(void *parametro)
 	printf ("ThreadConejo\n");
 	while(1)
 	{
-		recibir_mensaje(id_cola_mensajes, MSG_CAJERO, &msg);
+		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR3, &msg);
 		pthread_mutex_lock (&mutex);
 				procesar_evento(msg);
 		pthread_mutex_unlock (&mutex);	
