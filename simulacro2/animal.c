@@ -1,4 +1,5 @@
 #include "def.h"
+#include <pthread.h>
 #include "../shared/framework.h"
 
 int id_cola_mensajes;
