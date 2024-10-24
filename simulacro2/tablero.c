@@ -1,7 +1,7 @@
 #include "def.h"
 #include "../shared/framework.h"
 
-void procesar_evento(int id_cola_mensajes, mensaje msg, int *saldos)
+void procesar_evento(int id_cola_mensajes, mensaje msg)
 {
 	char 	cadena[LARGO_TMENSAJE];
 	int 	count = 0;
@@ -47,8 +47,12 @@ int main()
 
 	while(1)
 	{
-		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR1, &msg);
-		//procesar_evento(id_cola_mensajes, msg, saldos);
+		recibir_mensajes(id_cola_mensajes, MSG_CONEJO, &msg);
+		procesar_evento(id_cola_mensajes, msg);
+        recibir_mensajes(id_cola_mensajes, MSG_GATO, &msg);
+        procesar_evento(id_cola_mensajes, msg);
+        recibir_mensajes(id_cola_mensajes, MSG_PERRO, &msg);
+        procesar_evento(id_cola_mensajes, msg);
 	};
 	
 	return 0;

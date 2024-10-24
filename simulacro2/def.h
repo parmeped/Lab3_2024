@@ -4,10 +4,10 @@
 
 typedef enum {
 MSG_NADIE, //0
-MSG_PISTA, //1
-MSG_JUGADOR1, // 2
-MSG_JUGADOR2, // 3
-MSG_JUGADOR3, // 4
+MSG_TABLERO, //1
+MSG_PERRO, // 2
+MSG_GATO, // 3
+MSG_CONEJO, // 4
 } Destinos;
 
 typedef enum {

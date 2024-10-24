@@ -7,15 +7,23 @@ pthread_mutex_t mutex;
 
 #define SALIR			0
 
+void generar_evento(Destinos destino) 
+{
+    mensaje msg;
+    msg.long_dest = destino;
+    msg.int_rte = 0;
+    msg.int_evento = Eventos[randomNumber(0, 2)];
+    enviar_mensaje(id_cola_mensajes, MSG_TABLERO, destino, msg.int_evento, "");
+}
+
 void *funcionPerro(void *parametro)
 {
 	mensaje	msg;
 	printf ("ThreadPerro\n");
 	while(1)
 	{
-		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR1, &msg);
 		pthread_mutex_lock (&mutex);
-				//procesar_evento(msg);
+                generar_evento(MSG_PERRO);
                 printf("Perro\n");
 		pthread_mutex_unlock (&mutex);	
 	};
@@ -29,9 +37,8 @@ void *funcionGato(void *parametro)
 	printf ("ThreadGato\n");
 	while(1)
 	{
-		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR2, &msg);
 		pthread_mutex_lock (&mutex);
-				//procesar_evento(msg);
+				generar_evento(MSG_GATO);
                 printf("Gato\n");
 		pthread_mutex_unlock (&mutex);	
 	};
@@ -45,17 +52,14 @@ void *funcionConejo(void *parametro)
 	printf ("ThreadConejo\n");
 	while(1)
 	{
-		recibir_mensajes(id_cola_mensajes, MSG_JUGADOR3, &msg);
 		pthread_mutex_lock (&mutex);
-				//procesar_evento(msg);
+                generar_evento(MSG_CONEJO);
                 printf("Conejo\n");
 		pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
 	pthread_exit ((void *)"Listo");
 }
-
-
 
 int menu(void)
 {
