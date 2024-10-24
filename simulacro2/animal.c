@@ -96,17 +96,17 @@ int main()
 		exit (-1);
 	}
 
-    // if (pthread_create (&idHilo, &atributos, funcionGato, NULL)!= 0)
-	// {
-	// 	perror ("No puedo crear thread Gato");
-	// 	exit (-1);
-	// }
+    if (pthread_create (&idHilo, &atributos, funcionGato, NULL)!= 0)
+	{
+		perror ("No puedo crear thread Gato");
+		exit (-1);
+	}
 
-    // if (pthread_create (&idHilo, &atributos, funcionConejo, NULL)!= 0)
-	// {
-	// 	perror ("No puedo crear thread Conejo");
-	// 	exit (-1);
-	// }
+    if (pthread_create (&idHilo, &atributos, funcionConejo, NULL)!= 0)
+	{
+		perror ("No puedo crear thread Conejo");
+		exit (-1);
+	}
 
 	id_cola_mensajes 	= creo_id_cola_mensajes(CLAVE_BASE);
 	
