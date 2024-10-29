@@ -50,7 +50,7 @@ void *funcionPerro(void *parametro)
 	pthread_exit ((void *)"Listo");
 }
 
-void *funcionGato(void *parametro)
+void *funcionGato(int min_gato1, int max_gato1)
 {
 	mensaje	msg;
     int cantidad_pasos = 0;
@@ -60,7 +60,7 @@ void *funcionGato(void *parametro)
 	{
         printf("Gato\n");
 		pthread_mutex_lock (&mutex);
-                pasos += randomNumber(min_gato, max_gato);
+                pasos += randomNumber(min_gato1, max_gato1);
                 cantidad_pasos++;
 				generar_evento(MSG_GATO, cantidad_pasos, pasos);
                 if (pasos >= max_pasos)
@@ -135,7 +135,7 @@ int main()
 		exit (-1);
 	}
 
-    if (pthread_create (&idHilo, &atributos, funcionGato, NULL)!= 0)
+    if (pthread_create (&idHilo, &atributos, funcionGato, min_gato, max_gato)!= 0)
 	{
 		perror ("No puedo crear thread Gato");
 		exit (-1);
