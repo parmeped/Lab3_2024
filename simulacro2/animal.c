@@ -93,19 +93,19 @@ int main()
 	pthread_t 		idHilo;
 	pthread_attr_t 	atributos;
 
-	struct animal_config gato_config = {
+	struct *animal_config gato_config = {
     .min_speed = min_gato,
     .max_speed = max_gato,
     .destino = MSG_GATO
     };
 
-    struct animal_config perro_config = {
+    struct *animal_config perro_config = {
         .min_speed = min_perro,
         .max_speed = max_perro,
         .destino = MSG_PERRO
     };
 
-    struct animal_config conejo_config = {
+    struct *animal_config conejo_config = {
         .min_speed = min_conejo,
         .max_speed = max_conejo,
         .destino = MSG_CONEJO
@@ -113,7 +113,7 @@ int main()
 
 	pthread_attr_init (&atributos);
 	pthread_attr_setdetachstate (&atributos, PTHREAD_CREATE_JOINABLE);
-	if (pthread_create (&idHilo, &atributos, funcionAnimal, NULL != 0)
+	if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *)perro_config) != 0)
 	{
 		perror ("No puedo crear thread Perro");
 		exit (-1);
