@@ -7,6 +7,20 @@ pthread_mutex_t mutex;
 
 #define SALIR			0
 
+
+const char* destinoToString(Destinos destino) {
+    switch (destino) {
+        case MSG_PERRO:
+            return "Perro";
+        case MSG_GATO:
+            return "Gato";
+        case MSG_CONEJO:
+            return "Conejo";
+        default:
+            return "Desconocido";
+    }
+}
+
 void generar_evento(Destinos remitente, int cantidad_pasos, int pasos) 
 {
     mensaje msg;
@@ -27,65 +41,18 @@ void generar_evento(Destinos remitente, int cantidad_pasos, int pasos)
     spinner(1);
 }
 
-void *funcionPerro(void *parametro)
+void *funcionAnimal(void *input)
 {
 	mensaje	msg;
     int cantidad_pasos = 0;
     int pasos = 0;
-	printf ("ThreadPerro\n");
 	while(1)
 	{
-        printf("Perro\n");
+    	printf ("Thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
 		pthread_mutex_lock (&mutex);
-                pasos += randomNumber(min_perro, max_perro);
+                pasos += randomNumber(((struct animal_config*)input)->min, ((struct animal_config*)input)->max);
                 cantidad_pasos++;
-                generar_evento(MSG_PERRO, cantidad_pasos, pasos);
-                if (pasos >= max_pasos)
-                {
-                    break;
-                }
-		pthread_mutex_unlock (&mutex);	
-	};
-	printf ("Hijo  : Termino\n");
-	pthread_exit ((void *)"Listo");
-}
-
-void *funcionGato(int min_gato1, int max_gato1)
-{
-	mensaje	msg;
-    int cantidad_pasos = 0;
-    int pasos = 0;
-	printf ("ThreadGato\n");
-	while(1)
-	{
-        printf("Gato\n");
-		pthread_mutex_lock (&mutex);
-                pasos += randomNumber(min_gato1, max_gato1);
-                cantidad_pasos++;
-				generar_evento(MSG_GATO, cantidad_pasos, pasos);
-                if (pasos >= max_pasos)
-                {
-                    break;
-                }
-		pthread_mutex_unlock (&mutex);	
-	};
-	printf ("Hijo  : Termino\n");
-	pthread_exit ((void *)"Listo");
-}
-
-void *funcionConejo(void *parametro)
-{
-	mensaje	msg;
-    int cantidad_pasos = 0;
-    int pasos = 0;
-	printf ("ThreadConejo\n");
-	while(1)
-	{
-        printf("Conejo\n");
-		pthread_mutex_lock (&mutex);
-                pasos += randomNumber(min_conejo, max_conejo);
-                cantidad_pasos++;
-                generar_evento(MSG_CONEJO, cantidad_pasos, pasos);
+                generar_evento(((struct animal_config*)input)->destino, cantidad_pasos, pasos);
                 if (pasos >= max_pasos)
                 {
                     break;
@@ -129,25 +96,25 @@ int main()
 	
 	pthread_attr_init (&atributos);
 	pthread_attr_setdetachstate (&atributos, PTHREAD_CREATE_JOINABLE);
-	if (pthread_create (&idHilo, &atributos, funcionPerro, NULL)!= 0)
+	if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *)perro_config)!= 0)
 	{
 		perror ("No puedo crear thread Perro");
 		exit (-1);
 	}
 
-    if (pthread_create (&idHilo, &atributos, funcionGato, min_gato, max_gato)!= 0)
+    if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *)gato_config)!= 0)
 	{
 		perror ("No puedo crear thread Gato");
 		exit (-1);
 	}
 
-    if (pthread_create (&idHilo, &atributos, funcionConejo, NULL)!= 0)
+    if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *) conejo_config)!= 0)
 	{
 		perror ("No puedo crear thread Conejo");
 		exit (-1);
 	}
 
-	id_cola_mensajes 	= creo_id_cola_mensajes(CLAVE_BASE);
+	id_cola_mensajes = creo_id_cola_mensajes(CLAVE_BASE);
 	
 	pthread_mutex_init (&mutex, NULL);
 	
