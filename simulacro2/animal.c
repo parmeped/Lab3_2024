@@ -113,19 +113,19 @@ int main()
 
 	pthread_attr_init (&atributos);
 	pthread_attr_setdetachstate (&atributos, PTHREAD_CREATE_JOINABLE);
-	if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *)perro_config)!= 0)
+	if (pthread_create (&idHilo, &atributos, funcionAnimal, NULL != 0)
 	{
 		perror ("No puedo crear thread Perro");
 		exit (-1);
 	}
 
-    if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *)gato_config)!= 0)
+    if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *)gato_config) != 0)
 	{
 		perror ("No puedo crear thread Gato");
 		exit (-1);
 	}
 
-    if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *) conejo_config)!= 0)
+    if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *) conejo_config) != 0)
 	{
 		perror ("No puedo crear thread Conejo");
 		exit (-1);
