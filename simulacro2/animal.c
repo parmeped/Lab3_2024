@@ -50,7 +50,7 @@ void *funcionAnimal(void *input)
 	{
     	printf ("Thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
 		pthread_mutex_lock (&mutex);
-                pasos += randomNumber(((struct animal_config*)input)->min, ((struct animal_config*)input)->max);
+                pasos += randomNumber(((struct animal_config*)input)->min_speed, ((struct animal_config*)input)->max_speed);
                 cantidad_pasos++;
                 generar_evento(((struct animal_config*)input)->destino, cantidad_pasos, pasos);
                 if (pasos >= max_pasos)
@@ -93,7 +93,24 @@ int main()
 	pthread_t 		idHilo;
 	pthread_attr_t 	atributos;
 
-	
+	struct animal_config gato_config = {
+    .min_speed = min_gato,
+    .max_speed = max_gato,
+    .destino = MSG_GATO
+    };
+
+    struct animal_config perro_config = {
+        .min_speed = min_perro,
+        .max_speed = max_perro,
+        .destino = MSG_PERRO
+    };
+
+    struct animal_config conejo_config = {
+        .min_speed = min_conejo,
+        .max_speed = max_conejo,
+        .destino = MSG_CONEJO
+    };
+
 	pthread_attr_init (&atributos);
 	pthread_attr_setdetachstate (&atributos, PTHREAD_CREATE_JOINABLE);
 	if (pthread_create (&idHilo, &atributos, funcionAnimal, (void *)perro_config)!= 0)
