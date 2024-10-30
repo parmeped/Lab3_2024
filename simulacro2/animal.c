@@ -93,19 +93,19 @@ int main()
 	pthread_t 		idHilo;
 	pthread_attr_t 	atributos;
 
-	struct *animal_config gato_config = {
+	struct animal_config *gato_config = {
     .min_speed = min_gato,
     .max_speed = max_gato,
     .destino = MSG_GATO
     };
 
-    struct *animal_config perro_config = {
+    struct animal_config *perro_config = {
         .min_speed = min_perro,
         .max_speed = max_perro,
         .destino = MSG_PERRO
     };
 
-    struct *animal_config conejo_config = {
+    struct animal_config *conejo_config = {
         .min_speed = min_conejo,
         .max_speed = max_conejo,
         .destino = MSG_CONEJO
