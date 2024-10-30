@@ -48,7 +48,8 @@ void *funcionAnimal(void *input)
     int pasos = 0;
 	while(1)
 	{
-    	printf ("Thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
+    	printf("Thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
+        printf("MinSpeed: %d, MaxSpeed: %d\n", ((struct animal_config*)input)->min_speed, ((struct animal_config*)input)->max_speed);
 		pthread_mutex_lock (&mutex);
                 pasos += randomNumber(((struct animal_config*)input)->min_speed, ((struct animal_config*)input)->max_speed);
                 cantidad_pasos++;
