@@ -93,23 +93,21 @@ int main()
 	pthread_t 		idHilo;
 	pthread_attr_t 	atributos;
 
-	struct animal_config *gato_config = {
-    .min_speed = min_gato,
-    .max_speed = max_gato,
-    .destino = MSG_GATO
-    };
+	struct animal_config *gato_config = (struct animal_config *)malloc(sizeof(struct animal_config));
+    struct animal_config *perro_config = (struct animal_config *)malloc(sizeof(struct animal_config));
+    struct animal_config *conejo_config = (struct animal_config *)malloc(sizeof(struct animal_config));
 
-    struct animal_config *perro_config = {
-        .min_speed = min_perro,
-        .max_speed = max_perro,
-        .destino = MSG_PERRO
-    };
+    gato_config->min_speed = min_gato;
+    gato_config->max_speed = max_gato;
+    gato_config->destino = MSG_GATO;
 
-    struct animal_config *conejo_config = {
-        .min_speed = min_conejo,
-        .max_speed = max_conejo,
-        .destino = MSG_CONEJO
-    };
+    perro_config->min_speed = min_perro;
+    perro_config->max_speed = max_perro;
+    perro_config->destino = MSG_PERRO;
+
+    conejo_config->min_speed = min_conejo;
+    conejo_config->max_speed = max_conejo;
+    conejo_config->destino = MSG_CONEJO;
 
 	pthread_attr_init (&atributos);
 	pthread_attr_setdetachstate (&atributos, PTHREAD_CREATE_JOINABLE);
