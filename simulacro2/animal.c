@@ -79,7 +79,7 @@ void *funcionAnimal(void *input)
         recibir_mensajes(id_cola_mensajes, ((struct animal_config*)input)->destino, &msg);
         if (msg.int_evento == EVT_FIN)
         {
-            logInfo("Finalizado thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
+            logInfof("Finalizado thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
             break;
         }
     	printf("Thread: %s\n", destinoToString(((struct animal_config*)input)->destino));

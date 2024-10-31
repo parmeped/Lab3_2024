@@ -28,7 +28,7 @@ void printSep();
 void printLnf(char*);
 void logErr(char*);
 void logInfo(char*);
-void logInfo(const char *const _Format, ...);
+void logInfof(const char *const _Format, ...);
 void logWarn(char*);
 /// @brief Prints a spinner on the console.
 /// @param duration The amount the spinner has to display, expressed in seconds. 

@@ -23,7 +23,7 @@ void logInfo(char *message)
     printf("\033[32mInfo\033[0m: %s\n", message);
 }
 
-void logInfo(const char *const _Format, ...)
+void logInfof(const char *const _Format, ...)
 {
     if (LOG_LEVEL == NONE || LOG_LEVEL == WARN || LOG_LEVEL == ERR)
     {
@@ -32,7 +32,8 @@ void logInfo(const char *const _Format, ...)
     va_list args;
     va_start(args, _Format);
     vprintf(_Format, args);
-    va_end(args);
+    printf("\n");
+    va_end(args);                    
 }
 
 void logWarn(char *message)
