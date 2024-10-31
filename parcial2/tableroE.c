@@ -71,24 +71,28 @@ int main()
 
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO1].totalSteps)
 		{
+			printf("muerto");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO1, MSG_POINTER, EVT_FIN, "");
 			mosquitos--;
 		}
 
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO2].totalSteps)
 		{
+			printf("muerto");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO2, MSG_POINTER, EVT_FIN, "");
 			mosquitos--;
 		}
 
 		if (memoria[MSG_MOSQUITO1].totalSteps >= finish_line)
 		{			
+			printf("muerto");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO1, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
 		}
 
 		if (memoria[MSG_MOSQUITO2].totalSteps >= finish_line)
 		{			
+			printf("muerto");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO2, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
 		}
@@ -98,6 +102,7 @@ int main()
 		{
 			if (memoria[i].alive == 0)
 			{
+				printf("enviando a %s", memoria[i].runner);
 				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
 			}
 
