@@ -76,7 +76,7 @@ void *funcionAnimal(void *input)
     sprintStatus *memoriaStatus = NULL;
     memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 	
-    while(memoriaStatus[0]->run == 1)
+    while(memoriaStatus->run == 1)
 	{
         logInfof("Esperando mensaje para %s", destinoToString(((struct animal_config*)input)->destino));
         recibir_mensajes(id_cola_mensajes, ((struct animal_config*)input)->destino, &msg);
@@ -129,8 +129,8 @@ int main()
     
     status *memoria = NULL;
 	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
-    sprintStatus *tablero = NULL;
-    tablero = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+    sprintStatus *memoryStatus = NULL;
+    memoryStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
 	struct animal_config *gato_config = (struct animal_config *)malloc(sizeof(struct animal_config));
     struct animal_config *perro_config = (struct animal_config *)malloc(sizeof(struct animal_config));
@@ -182,8 +182,12 @@ int main()
 
 	while(opcion!= SALIR)   
 	{
-		opcion = menu(); 
-	}
+		opcion = menu();
+        if (opcion == 1)
+        {
+            memoryStatus->run = 1;
+        } 
+	} 
 
 	printf("Saliendo");
     shmdt((char *)memoria);

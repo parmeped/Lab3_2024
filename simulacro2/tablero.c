@@ -39,7 +39,7 @@ int main()
 
 	borrar_mensajes(id_cola_mensajes); //Borra todos los mensajes que haya en la cola.
 	logInfo("Esperando inicio carrera");
-	while(memoriaStatus[0]->run == 1)
+	while(memoriaStatus->run == 1)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
 		procesar_evento(id_cola_mensajes, msg);
