@@ -75,7 +75,7 @@ void *funcionAnimal(void *input)
     int pasos = 0;
 	while(1)
 	{
-        
+        logInfof("Esperando mensaje para %s", destinoToString(((struct animal_config*)input)->destino));
         recibir_mensajes(id_cola_mensajes, ((struct animal_config*)input)->destino, &msg);
         if (msg.int_evento == EVT_FIN)
         {
@@ -105,14 +105,14 @@ int menu(void)
 
     printf("Menu\n\n");
     printf("0.\tSalir\n\n");
-    printf("Elija opcion: ");
+    printf("Elija opcion: \n");
     fflush(stdin);  
     while((scanf(" %d", &opcion) != 1)
           || (opcion < 0))    
     {
       fflush(stdin);                 
       printf("No valido\n\n");
-      printf("Elija opcion: ");
+      printf("Elija opcion: \n");
     }
     return opcion;
 }                
@@ -171,13 +171,17 @@ int main()
 	id_cola_mensajes = creo_id_cola_mensajes(CLAVE_BASE);
 	
 	pthread_mutex_init (&mutex, NULL);
-	
+    
 	opcion = menu();  
 
 	while(opcion!= SALIR)   
 	{
 		opcion = menu(); 
 	}
+
 	printf("Saliendo");
+    shmdt((char *)memoria);
+    libero_memoria(memoryId);
+    logInfo("Programa terminado y memoria liberada");
 	return 0;
 }

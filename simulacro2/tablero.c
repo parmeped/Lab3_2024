@@ -41,6 +41,10 @@ int main()
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
 		procesar_evento(id_cola_mensajes, msg);
 	};
+
+	shmdt((char *)memoria);
+    libero_memoria(memoryId);
+    logInfo("Programa terminado y memoria liberada");
 	
 	return 0;
 }
