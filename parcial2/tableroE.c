@@ -36,7 +36,7 @@ int main()
 	int 	mosquitos = amount_mosquitos;
 
 	mensaje	msg;	
-	runnerStats *memoria = (runnerStats *)getAnimalStatusMemory();
+	runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
     sprintStatus *memoriaStatus = (sprintStatus*)getStatusMemory();
 
 	int cantidad = 0;
