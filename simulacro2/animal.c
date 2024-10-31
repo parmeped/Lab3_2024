@@ -98,13 +98,30 @@ void *funcionAnimal(void *input)
 	printf ("Hijo  : Termino\n");
 	pthread_exit ((void *)"Listo");
 }
-                
+
+int menu(void)
+{
+    int opcion;
+
+    printf("Menu\n\n");
+    printf("0.\tSalir\n\n");
+    printf("Elija opcion: ");
+    fflush(stdin);  
+    while((scanf(" %d", &opcion) != 1)
+          || (opcion < 0))    
+    {
+      fflush(stdin);                 
+      printf("No valido\n\n");
+      printf("Elija opcion: ");
+    }
+    return opcion;
+}                
 
 int main()
 {
 	pthread_t 		idHilo;
 	pthread_attr_t 	atributos;
-
+    int opcion;
     
     status *memoria = NULL;
 	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
