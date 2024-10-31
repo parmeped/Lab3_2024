@@ -191,6 +191,7 @@ int main()
 		opcion = menu();
         if (opcion == 1)
         {
+            logInfo("Iniciando carrera");
             memoryStatus->run = 1;
         } 
 	} 
