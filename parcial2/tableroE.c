@@ -49,6 +49,7 @@ int main()
 
 	if (opcion == 1) 
 	{
+		printf("opcion: %d\n", opcion);
 		memoriaStatus->run == 1;
 	}
 
