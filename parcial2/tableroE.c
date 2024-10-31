@@ -47,6 +47,11 @@ int main()
 
 	opcion = menu();  	
 
+	if (opcion == 1) 
+	{
+		memoriaStatus->run == 1;
+	}
+
 	while(memoriaStatus->run == 0)
 	{
 		logInfo("Esperando inicio carrera");
