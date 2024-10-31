@@ -18,6 +18,21 @@ const int destinoToInt(Destinos destino)
     }
 }
 
+const char* intToDestino(int destino) 
+{
+	switch (destino) 
+	{
+		case 0:
+			return "Perro";
+		case 1:
+			return "Gato";
+		case 2:
+			return "Conejo";
+		default:
+			return "Desconocido";
+	}
+}
+
 const char* destinoToString(Destinos destino) 
 {
     switch (destino) 
@@ -36,11 +51,13 @@ const char* destinoToString(Destinos destino)
 
 void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintStatus *memoriaStatus)
 {
-	printf("Remitente %d\n", msg.int_rte);
+	printf("Remitente %s esta corriendo!\n", intToDestino(msg.int_rte));
 	switch (msg.int_evento)
 	{
-		case EVT_CORRO:
-			printf("Alguien corriendo\n");
+		case EVT_CORRO:			
+			printf("Pasos: %d\n", memoria[destinoToInt(msg.long_dest)].totalSteps);
+			printf("Cantidad de pasos: %d\n", memoria[destinoToInt(msg.long_dest)].totalSteps);
+			
 			if (memoria[destinoToInt(msg.long_dest)].totalSteps >= max_pasos)
 			{
 				int winnerAmountOfSteps = memoria[destinoToInt(msg.long_dest)].amountOfSteps;
@@ -53,7 +70,8 @@ void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintS
 					}
 				}
 				memoriaStatus->run = 0;				
-			}			
+			}
+			break;			
 		case EVT_NINGUNO:
 		case EVT_FIN:
 		default:
