@@ -162,7 +162,7 @@ int main()
         spinner(1);
     }
 
-    while(memoriaStatus->run != 0)
+    while(1)
     {
         logInfo("Esperando fin carrera");
         spinner(1);
