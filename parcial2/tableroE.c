@@ -62,13 +62,6 @@ int main()
 	logInfo("Iniciando Carrera");
 	while(memoriaStatus->run == 1)
 	{
-		if (mosquitos <= 0) 
-		{
-			logWarn("Gano el humo!");
-			memoriaStatus->run = 0;
-			break;
-		}
-
 		logInfof("Iniciando turno %d", turno++);
 		for (i = 0; i < runners_amount; i++)
 		{
@@ -77,6 +70,13 @@ int main()
 				printf("enviando a %d", memoria[i].runner);
 				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
 			}
+		}
+
+		if (mosquitos <= 0) 
+		{
+			logWarn("Gano el humo!");
+			memoriaStatus->run = 0;
+			break;
 		}
 
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO1].totalSteps)
