@@ -9,7 +9,7 @@
 #define spinner_inicio 5
 
 #define finish_line 95
-#define turn_duration 300
+#define turn_duration 150
 
 #define amount_mosquitos 2
 #define runners_amount 3
