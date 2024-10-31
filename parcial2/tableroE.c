@@ -32,7 +32,7 @@ int menu(void)
 int main()
 {
 	int 	id_cola_mensajes;
-	int		opcion, turno = 1;	
+	int		i, opcion, turno = 1;	
 	int 	mosquitos = amount_mosquitos;
 
 	mensaje	msg;	
