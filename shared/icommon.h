@@ -3,8 +3,8 @@
 
 #define LOG_LEVEL DEBUG
 
-#define CLAVE_BASE 33
-#define CLAVE_BASE_2 34
+#define CLAVE_BASE 35
+#define CLAVE_BASE_2 36
 
 #define CUAL_SEMAFORO 0
 #define CANT_SEMAFORO 1
