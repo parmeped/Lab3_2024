@@ -1,7 +1,7 @@
 #include "def.h"
 #include "../shared/framework.h"
 
-int statusMemId;
+int memoryId, statusMemId;
 
 volatile sig_atomic_t stop;
 
@@ -54,11 +54,16 @@ const char* destinoToString(Destinos destino)
     }
 }
 
-void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintStatus *memoriaStatus)
+void procesar_evento(int id_cola_mensajes, mensaje msg)
 {
 	printf("Remitente %s esta corriendo!\n", intToDestino(msg.int_rte));
 	printf("RemitenteInt: %d\n", msg.int_rte);
 	
+	status *memoria = NULL;
+	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
+    sprintStatus *memoriaStatus = NULL;
+    memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+
 	switch (msg.int_evento)
 	{
 		case EVT_CORRO:			
@@ -90,7 +95,7 @@ void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintS
 		
 int main()
 {
-	int 	id_cola_mensajes, memoryId;
+	int 	id_cola_mensajes;
 	int		i;	
 
 	signal(SIGINT, handle_sigint);
@@ -116,7 +121,7 @@ int main()
 	while(memoriaStatus->run == 1 || !stop)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
-		procesar_evento(id_cola_mensajes, msg, &memoria, &memoriaStatus);
+		procesar_evento(id_cola_mensajes, msg);
 	};
 
 	shmdt((char *)memoria);
