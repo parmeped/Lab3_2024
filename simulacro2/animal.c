@@ -22,7 +22,7 @@ const char* destinoToString(Destinos destino)
     }
 }
 
-const int* destinoToInt(Destinos destino) 
+const int destinoToInt(Destinos destino) 
 {
     switch (destino) {
         case MSG_PERRO:
@@ -54,7 +54,7 @@ void generarEventoCorrer(Destinos remitente, int cantidad_pasos, int pasos)
     msg.long_dest = remitente;
     msg.int_rte = 0;
     msg.int_evento = EVT_CORRO;
-    printf("Generando evento %d\n", eventoToString(msg.int_evento));
+    printf("Generando evento %s\n", eventoToString(msg.int_evento));
     printf("Cantidad de pasos %d\n", cantidad_pasos);
     printf("Pasos %d\n", pasos);
     enviar_mensaje(id_cola_mensajes, MSG_TABLERO, remitente, msg.int_evento, "");
