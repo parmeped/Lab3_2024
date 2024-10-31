@@ -9,4 +9,4 @@ ipcs -m
 ipcrm -m <shmid>
 
 // Remove all shared memory segments by iterating over the IDs obtained from the ipcs -m command.
-for id in $(ipcs -m | awk 'NR>3 {print $2}'); do ipcrm -m $id; done
+for id in $(ipcs -m | awk 'NR>3 {print $2}'); do sudo ipcrm -m $id; done

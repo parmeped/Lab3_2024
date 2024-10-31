@@ -11,7 +11,7 @@ animal: animal.c ../shared/framework.h ../shared/definiciones.h
 
 clean : 
 	rm -rf *o *dat tablero animal
-	for id in $(ipcs -m | awk 'NR>3 {print $2}'); do ipcrm -m $id; done
+	for id in $(ipcs -m | awk 'NR>3 {print $2}'); do sudo ipcrm -m $id; done
 
 pull : 
 	git pull
