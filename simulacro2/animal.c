@@ -27,8 +27,8 @@ void sumoPasos(int pasos, int cantidadPasos, Destinos destino)
     memoria = (status *)getAnimalStatusMemory();
 
     printf("Sumando pasos - Pasos: %d, CantidadPasos: %d\n", pasos, cantidadPasos);
-    memoria[destinoToInt(destino)].totalSteps = pasos;
-    memoria[destinoToInt(destino)].amountOfSteps = cantidadPasos;    
+    memoria[destino].totalSteps = pasos;
+    memoria[destino].amountOfSteps = cantidadPasos;    
 }
 
 void *funcionAnimal(void *input)
@@ -52,8 +52,8 @@ void *funcionAnimal(void *input)
 		pthread_mutex_lock (&mutex);
             pasos += randomNumber(((struct animal_config*)input)->min_speed, ((struct animal_config*)input)->max_speed);
             cantidad_pasos++;
-            generarEventoCorrer(((struct animal_config*)input)->destino, cantidad_pasos, pasos);
             sumoPasos(pasos, cantidad_pasos, ((struct animal_config*)input)->destino);
+            generarEventoCorrer(((struct animal_config*)input)->destino, cantidad_pasos, pasos);
         pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
@@ -99,19 +99,19 @@ int main()
     gato_config->max_speed = max_gato;
     gato_config->destino = MSG_GATO;
 
-    memoria[destinoToInt(MSG_GATO)].runner = MSG_GATO;
+    memoria[MSG_GATO].runner = MSG_GATO;
 
     perro_config->min_speed = min_perro;
     perro_config->max_speed = max_perro;
     perro_config->destino = MSG_PERRO;
     
-    memoria[destinoToInt(MSG_PERRO)].runner = MSG_PERRO;
+    memoria[MSG_GATO].runner = MSG_PERRO;
 
     conejo_config->min_speed = min_conejo;
     conejo_config->max_speed = max_conejo;
     conejo_config->destino = MSG_CONEJO;
 
-    memoria[destinoToInt(MSG_CONEJO)].runner = MSG_CONEJO;
+    memoria[MSG_GATO].runner = MSG_CONEJO;
 
 	pthread_attr_init (&atributos);
 	pthread_attr_setdetachstate (&atributos, PTHREAD_CREATE_JOINABLE);

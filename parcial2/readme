@@ -1,0 +1,24 @@
+2 threads mosquitos => 3 y 6
+1 thread humo => 1 y 4
+meta == 95
+
+survivalCheck desp de cada turno
+    humo.distance > mosquito.distance == mosquito.alive = false
+        finalizar thread!
+
+nuevo turno cada 300ms
+    
+////
+jugadores arranca threads
+escucha evento
+    si corre:
+        corre
+    si fin:
+        finaliza
+
+panel
+    arranca turnos. envia mensaje a threads diciendo que ejecuten su turno (si estan alive)
+    llevar count de turnos!
+    si ambos mosquitos sobreviven, fin programa
+
+
