@@ -19,21 +19,21 @@ sprintStatus *getStatusMemory()
 
 void run(int steps, Destiny destiny) 
 {
-    runnerStats *memoria = (runnerStats *)getRunnerStatusMemory();
+    runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
     printf("Sumando pasos - Pasos: %d", steps);
-    memoria[destinyToInt(destiny)].totalSteps = steps;
+    memoria[destiny].totalSteps = steps;
 }
 
 void die(Destiny destiny)
 {
-    runnerStats *memoria = (runnerStats *)getRunnerStatusMemory();
-    logErr("Famosas ultimas palabras del pobre mosquito: Squaaaaaaaashhhhhhhh %s!!", destinoToString(destiny));
+    runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
+    logInfof("Famosas ultimas palabras del pobre mosquito: Squaaaaaaaashhhhhhhh %s!!", destinoToString(destiny));
     memoria[destiny].alive = -1;
 }
 
 void finish(Destiny destiny)
 {
-    runnerStats *memoria = (runnerStats *)getRunnerStatusMemory();
+    runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
     logInfof("Finalizado %s!!", destinoToString(destiny));
     memoria[destiny].finished = 1;
 }
@@ -42,7 +42,7 @@ void finish(Destiny destiny)
 // acuerdo a cada uno. o, con polimorfismo cada uno implementa sus funciones die(), run(), etc
 void processEvent(int id_cola_mensajes, mensaje msg, int pasos)
 {
-	printf("Remitente %s esta corriendo!\n", intToDestino(msg.int_rte));
+	printf("Remitente %s esta corriendo!\n", intToDestinoString(msg.int_rte));
 	
 	runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
     sprintStatus *memoriaStatus = (sprintStatus*)getStatusMemory();
@@ -103,7 +103,7 @@ int main()
 	pthread_attr_t 	atributos;
     int opcion;
     
-    runnerStats *memoria = (runnerStats *)getRunnerStatusMemory();
+    runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
     sprintStatus *memoriaStatus = (sprintStatus *) getStatusMemory();
 
     // ----- configs: idealmente esto iria en otra func.
