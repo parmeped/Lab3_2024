@@ -37,6 +37,7 @@ typedef struct sprintAnimalStatus status;
 struct sprintAnimalStatus
 {
     int totalSteps;
+    int amountOfSteps;
     Destinos runner;
 };
 

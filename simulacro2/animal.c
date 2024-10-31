@@ -10,7 +10,8 @@ int memoryId, statusMemId;
 
 const char* destinoToString(Destinos destino) 
 {
-    switch (destino) {
+    switch (destino) 
+    {
         case MSG_PERRO:
             return "Perro";
         case MSG_GATO:
@@ -24,7 +25,8 @@ const char* destinoToString(Destinos destino)
 
 const int destinoToInt(Destinos destino) 
 {
-    switch (destino) {
+    switch (destino) 
+    {
         case MSG_PERRO:
             return 0;
         case MSG_GATO:
@@ -38,7 +40,8 @@ const int destinoToInt(Destinos destino)
 
 const char* eventoToString(Eventos evento) 
 {
-    switch (evento) {
+    switch (evento) 
+    {
         case EVT_CORRO:
             return "Corro";
         case EVT_FIN:
@@ -52,20 +55,19 @@ void generarEventoCorrer(Destinos remitente, int cantidad_pasos, int pasos)
 {
     mensaje msg;
     msg.long_dest = remitente;
-    msg.int_rte = 0;
     msg.int_evento = EVT_CORRO;
-    printf("Generando evento %s\n", eventoToString(msg.int_evento));
     printf("Cantidad de pasos %d\n", cantidad_pasos);
     printf("Pasos %d\n", pasos);
     enviar_mensaje(id_cola_mensajes, MSG_TABLERO, remitente, msg.int_evento, "");
     spinner(1);
 }
 
-void sumoPasos(int pasos, Destinos destino) 
+void sumoPasos(int pasos, int cantidadPasos, Destinos destino) 
 {
     status *memoria = NULL;
     memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
-    memoria[destinoToInt(destino)].totalSteps += pasos;    
+    memoria[destinoToInt(destino)].totalSteps = pasos;
+    memoria[destinoToInt(destino)].amountOfSteps = cantidadPasos;
 }
 
 void *funcionAnimal(void *input)
@@ -81,27 +83,16 @@ void *funcionAnimal(void *input)
 		logInfof("Esperando inicio carrera, Thread: %s", destinoToString(((struct animal_config*)input)->destino));
 		spinner(1);
 	}
-
+    
     while(memoriaStatus->run == 1)
 	{
-        logInfof("Esperando mensaje para %s", destinoToString(((struct animal_config*)input)->destino));
-        recibir_mensajes(id_cola_mensajes, ((struct animal_config*)input)->destino, &msg);
-        if (msg.int_evento == EVT_FIN)
-        {
-            logInfof("Finalizado thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
-            break;
-        }
     	printf("Thread: %s\n", destinoToString(((struct animal_config*)input)->destino));
         printf("MinSpeed: %d, MaxSpeed: %d\n", ((struct animal_config*)input)->min_speed, ((struct animal_config*)input)->max_speed);
 		pthread_mutex_lock (&mutex);
             pasos += randomNumber(((struct animal_config*)input)->min_speed, ((struct animal_config*)input)->max_speed);
             cantidad_pasos++;
             generarEventoCorrer(((struct animal_config*)input)->destino, cantidad_pasos, pasos);
-            sumoPasos(pasos, ((struct animal_config*)input)->destino);
-            if (pasos >= max_pasos)
-            {
-                break;
-            }
+            sumoPasos(pasos, cantidad_pasos, ((struct animal_config*)input)->destino);
         pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
@@ -138,6 +129,7 @@ int main()
     sprintStatus *memoryStatus = NULL;
     memoryStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
+    // ----- configs: idealmente esto iria en otra func.
 	struct animal_config *gato_config = (struct animal_config *)malloc(sizeof(struct animal_config));
     struct animal_config *perro_config = (struct animal_config *)malloc(sizeof(struct animal_config));
     struct animal_config *conejo_config = (struct animal_config *)malloc(sizeof(struct animal_config));
@@ -179,6 +171,7 @@ int main()
 		perror ("No puedo crear thread Conejo");
 		exit (-1);
 	}
+    // --------- fin configs
 
 	id_cola_mensajes = creo_id_cola_mensajes(CLAVE_BASE);
 	

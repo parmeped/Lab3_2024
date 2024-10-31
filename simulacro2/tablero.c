@@ -2,16 +2,42 @@
 #include "../shared/framework.h"
 
 int statusMemId;
-// Tablero keeps a tab on how everyones doing, when someone wins they print message and send STOP to everyone. 
-// Array should be kept on memory..? 
-void procesar_evento(int id_cola_mensajes, mensaje msg)
+
+const int destinoToInt(Destinos destino) 
+{
+    switch (destino) 
+    {
+        case MSG_PERRO:
+            return 0;
+        case MSG_GATO:
+            return 1;
+        case MSG_CONEJO:
+            return 2;
+        default:
+            return -1;
+    }
+}
+
+void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria)
 {
 	printf("Remitente %d\n", msg.int_rte);
 	switch (msg.int_evento)
 	{
 		case EVT_CORRO:
 			printf("Alguien corriendo\n");
-			
+			if (memoria[destinoToInt(msg.long_dest)].totalSteps >= max_pasos)
+			{
+				int winnerAmountOfSteps = memoria[destinoToInt(msg.long_dest)].amountOfSteps;
+				for (int i = 0; i < RUNNERS_AMOUNT; i++)
+				{
+					if (memoria[i].amountOfSteps == winnerAmountOfSteps && memoria[i].totalSteps >= max_pasos)
+					{
+						// print ganadores. se podria hacer un if para mostrar si hubo mas de un ganador y entonces mostrar "Ganadores"
+						printf("Ganador %s\n", destinoToString(memoria[i].runner));
+					}
+				}
+				memoriaStatus->run = 0;				
+			}			
 		case EVT_NINGUNO:
 		case EVT_FIN:
 		default:
@@ -21,7 +47,6 @@ void procesar_evento(int id_cola_mensajes, mensaje msg)
 	printf("------------------------------\n");	
 }
 		
-// to start both processes need to be up and running and communicate through a key. 
 int main()
 {
 	int 	id_cola_mensajes, memoryId;
@@ -37,7 +62,7 @@ int main()
 	
 	id_cola_mensajes = creo_id_cola_mensajes(CLAVE_BASE);
 
-	borrar_mensajes(id_cola_mensajes); //Borra todos los mensajes que haya en la cola.
+	borrar_mensajes(id_cola_mensajes);
 	while(memoriaStatus->run == 0)
 	{
 		logInfo("Esperando inicio carrera");
