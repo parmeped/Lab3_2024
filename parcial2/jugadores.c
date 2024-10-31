@@ -53,10 +53,10 @@ void processEvent(int id_cola_mensajes, mensaje msg, int pasos)
 			run(pasos, msg.int_rte);
 			break;			
 		case EVT_FIN:
-            die();
+            die(msg.int_rte);
             break;
         case EVT_SOBREVIVIO:
-            finish();
+            finish(msg.int_rte);
             break;
 		case EVT_NINGUNO:
 		default:
@@ -72,9 +72,10 @@ void *runnerFunction(void *input)
     int pasos = 0;
     sprintStatus *memoriaStatus = (sprintStatus *) getStatusMemory();
 	runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
-    int memPos = ((struct runnerConfig*)input)->destino;
-    memoria[memPos].alive = 1;
-    memoria[memPos].finished = 0;
+    // try to get this working
+    //int memPos = ((struct runnerConfig*)input)->destino;
+    memoria[((struct runnerConfig*)input)->destino].alive = 1;
+    memoria[((struct runnerConfig*)input)->destino].finished = 0;
 
     while(memoriaStatus->run == 0)
 	{
@@ -83,14 +84,14 @@ void *runnerFunction(void *input)
 	}
     
     // and still alive!
-    while(memoriaStatus->run == 1 && memoria[memPos].alive == 1)
+    while(memoriaStatus->run == 1 && memoria[((struct runnerConfig*)input)->destino].alive == 1 && memoria[((struct runnerConfig*)input)->destino].finished == 0)
 	{
     	printf("Thread: %s\n", destinoToString(((struct runnerConfig*)input)->destino));
         printf("MinSpeed: %d, MaxSpeed: %d\n", ((struct runnerConfig*)input)->min_speed, ((struct runnerConfig*)input)->max_speed);
         recibir_mensajes(id_cola_mensajes, MSG_POINTER, &msg);
 		pthread_mutex_lock (&mutex);
             pasos += randomNumber(((struct runnerConfig*)input)->min_speed, ((struct runnerConfig*)input)->max_speed);
-            processEvent(id_cola_mensajes, msg, pasos, ((struct runnerConfig*)input)->destino);
+            processEvent(id_cola_mensajes, msg, pasos);
         pthread_mutex_unlock (&mutex);
 	};
 	printf ("Hijo  : Termino\n");
@@ -113,19 +114,19 @@ int main()
 
     mosquito1->min_speed = min_mosquito;
     mosquito1->max_speed = max_mosquito;
-    mosquito1->destino = MSG_MOSQUITO1;
+    mosquito1->runner = MSG_MOSQUITO1;
 
     memoria[MSG_MOSQUITO1].runner = MSG_MOSQUITO1;
 
     mosquito2->min_speed = min_mosquito;
     mosquito2->max_speed = max_mosquito;
-    mosquito2->destino = MSG_MOSQUITO2;
+    mosquito2->runner = MSG_MOSQUITO2;
     
     memoria[MSG_MOSQUITO2].runner = MSG_MOSQUITO2;
 
     smoke->min_speed = min_smoke;
     smoke->max_speed = max_smoke;
-    smoke->destino = MSG_SMOKE;
+    smoke->runner = MSG_SMOKE;
 
     memoria[MSG_SMOKE].runner = MSG_SMOKE;
 
@@ -154,8 +155,6 @@ int main()
 	
 	pthread_mutex_init (&mutex, NULL);
     
-	opcion = menu();  
-
 	while(memoriaStatus->run == 0)
     {
         logInfo("Esperando inicio carrera");
