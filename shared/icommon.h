@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
+#include <stdarg.h>
 
 typedef enum
 {
