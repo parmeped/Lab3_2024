@@ -51,6 +51,11 @@ const char* eventoToString(Eventos evento)
     }
 }
 
+status *getAnimalStatusMemory()
+{
+    return (status *)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
+}
+
 void generarEventoCorrer(Destinos remitente, int cantidad_pasos, int pasos) 
 {
     mensaje msg;
@@ -65,23 +70,18 @@ void generarEventoCorrer(Destinos remitente, int cantidad_pasos, int pasos)
 void sumoPasos(int pasos, int cantidadPasos, Destinos destino) 
 {
     status *memoria = NULL;
-    memoria = getAnimalStatusMemory();
+    memoria = (status *)getAnimalStatusMemory();
 
     printf("Sumando pasos - Pasos: %d, CantidadPasos: %d\n", pasos, cantidadPasos);
     memoria[destinoToInt(destino)].totalSteps = pasos;
     memoria[destinoToInt(destino)].amountOfSteps = cantidadPasos;    
 }
 
-void mostrandoPasos(Destinos destino) 
+void muestroPasos(Destinos destino) 
 {
     status *memoria = NULL;
-    memoria = getAnimalStatusMemory();
+    memoria = (status *)getAnimalStatusMemory();
     logInfof("Pasos de %s: %d", destinoToString(destino), memoria[destinoToInt(destino)].totalSteps);
-}
-
-status *getAnimalStatusMemory()
-{
-    return (status *)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
 }
 
 void *funcionAnimal(void *input)
