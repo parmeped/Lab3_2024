@@ -1,5 +1,4 @@
-#include "def.h"
-#include "../shared/framework.h"
+#include "shared.c"
 
 int memoryId, statusMemId;
 
@@ -13,50 +12,6 @@ sprintStatus *getStatusMemory()
     return (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 }
 
-const int destinoToInt(Destinos destino) 
-{
-    switch (destino) 
-    {
-        case MSG_PERRO:
-            return 0;
-        case MSG_GATO:
-            return 1;
-        case MSG_CONEJO:
-            return 2;
-        default:
-            return -1;
-    }
-}
-
-const char* intToDestino(int destino) 
-{
-	switch (destino) 
-	{
-		case 0:
-			return "Perro";
-		case 1:
-			return "Gato";
-		case 2:
-			return "Conejo";
-		default:
-			return "Desconocido";
-	}
-}
-
-const char* destinoToString(Destinos destino) 
-{
-    switch (destino) 
-    {
-        case MSG_PERRO:
-            return "Perro";
-        case MSG_GATO:
-            return "Gato";
-        case MSG_CONEJO:
-            return "Conejo";
-        default:
-            return "Desconocido";
-    }
-}
 
 void procesar_evento(int id_cola_mensajes, mensaje msg)
 {
@@ -69,12 +24,12 @@ void procesar_evento(int id_cola_mensajes, mensaje msg)
 	switch (msg.int_evento)
 	{
 		case EVT_CORRO:			
-			printf("Pasos: %d\n", memoria[destinoToInt(msg.int_rte)].totalSteps);
-			printf("Cantidad de pasos: %d\n", memoria[destinoToInt(msg.int_rte)].totalSteps);
+			printf("Pasos: %d\n", memoria[intToDestino(msg.int_rte)].totalSteps);
+			printf("Cantidad de pasos: %d\n", memoria[intToDestino(msg.int_rte)].totalSteps);
 
-			if (memoria[destinoToInt(msg.int_rte)].totalSteps >= max_pasos)
+			if (memoria[intToDestino(msg.int_rte)].totalSteps >= max_pasos)
 			{
-				int winnerAmountOfSteps = memoria[destinoToInt(msg.int_rte)].amountOfSteps;
+				int winnerAmountOfSteps = memoria[intToDestino(msg.int_rte)].amountOfSteps;
 				for (int i = 0; i < RUNNERS_AMOUNT; i++)
 				{
 					if (memoria[i].amountOfSteps == winnerAmountOfSteps && memoria[i].totalSteps >= max_pasos)

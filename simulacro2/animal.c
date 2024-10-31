@@ -1,55 +1,11 @@
 #include <pthread.h>
-#include "def.h"
-#include "../shared/framework.h"
+#include "shared.c"
 
 int id_cola_mensajes;
 pthread_mutex_t mutex;
 int animalMemoryId, statusMemId;
 
 #define SALIR			0
-
-const char* destinoToString(Destinos destino) 
-{
-    switch (destino) 
-    {
-        case MSG_PERRO:
-            return "Perro";
-        case MSG_GATO:
-            return "Gato";
-        case MSG_CONEJO:
-            return "Conejo";
-        default:
-            return "Desconocido";
-    }
-}
-// this may not be necessary at all, simply having it on the enum in the desired order would be fine.
-const int destinoToInt(Destinos destino) 
-{
-    switch (destino) 
-    {
-        case MSG_PERRO:
-            return 0;
-        case MSG_GATO:
-            return 1;
-        case MSG_CONEJO:
-            return 2;
-        default:
-            return -1;
-    }
-}
-
-const char* eventoToString(Eventos evento) 
-{
-    switch (evento) 
-    {
-        case EVT_CORRO:
-            return "Corro";
-        case EVT_FIN:
-            return "Fin";
-        default:
-            return "Desconocido";
-    }
-}
 
 status *getAnimalStatusMemory()
 {
@@ -59,11 +15,9 @@ status *getAnimalStatusMemory()
 void generarEventoCorrer(Destinos remitente, int cantidad_pasos, int pasos) 
 {
     mensaje msg;
-    msg.long_dest = remitente;
-    msg.int_evento = EVT_CORRO;
     printf("Cantidad de pasos %d\n", cantidad_pasos);
     printf("Pasos %d\n", pasos);
-    enviar_mensaje(id_cola_mensajes, MSG_TABLERO, destinoToInt(remitente), msg.int_evento, "");
+    enviar_mensaje(id_cola_mensajes, MSG_TABLERO, destinoToInt(remitente), EVT_CORRO, "");
     spinner(1);
 }
 
