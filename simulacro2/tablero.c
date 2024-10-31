@@ -3,6 +3,11 @@
 
 int memoryId, statusMemId;
 
+status *getAnimalStatusMemory()
+{
+    return (status *)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
+}
+
 const int destinoToInt(Destinos destino) 
 {
     switch (destino) 
@@ -54,7 +59,7 @@ void procesar_evento(int id_cola_mensajes, mensaje msg)
 	printf("RemitenteInt: %d\n", msg.int_rte);
 	
 	status *memoria = NULL;
-	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
+	memoria = (status *)getAnimalStatusMemory();
     sprintStatus *memoriaStatus = NULL;
     memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
@@ -92,11 +97,9 @@ int main()
 	int 	id_cola_mensajes;
 	int		i;	
 
-	mensaje	msg;
-	status *memoria = NULL;
-	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
-    sprintStatus *memoriaStatus = NULL;
-    memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+	mensaje	msg;	
+	status *memoria = (status *)getAnimalStatusMemory();
+    sprintStatus *memoriaStatus =  = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
 	int cantidad = 0;
 	
