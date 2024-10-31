@@ -76,6 +76,12 @@ void *funcionAnimal(void *input)
     sprintStatus *memoriaStatus = NULL;
     memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 	
+    while(memoriaStatus->run == 0)
+	{
+		logInfof("Esperando inicio carrera, Thread: %s", destinoToString(((struct animal_config*)input)->destino));
+		spinner(1);
+	}
+
     while(memoriaStatus->run == 1)
 	{
         logInfof("Esperando mensaje para %s", destinoToString(((struct animal_config*)input)->destino));
