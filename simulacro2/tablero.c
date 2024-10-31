@@ -18,7 +18,23 @@ const int destinoToInt(Destinos destino)
     }
 }
 
-void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria)
+const char* destinoToString(Destinos destino) 
+{
+    switch (destino) 
+    {
+        case MSG_PERRO:
+            return "Perro";
+        case MSG_GATO:
+            return "Gato";
+        case MSG_CONEJO:
+            return "Conejo";
+        default:
+            return "Desconocido";
+    }
+}
+
+
+void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintStatus *memoriaStatus)
 {
 	printf("Remitente %d\n", msg.int_rte);
 	switch (msg.int_evento)
@@ -33,7 +49,7 @@ void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria)
 					if (memoria[i].amountOfSteps == winnerAmountOfSteps && memoria[i].totalSteps >= max_pasos)
 					{
 						// print ganadores. se podria hacer un if para mostrar si hubo mas de un ganador y entonces mostrar "Ganadores"
-						printf("Ganador %s\n", destinoToString(memoria[i].runner));
+						logInfof("Ganador %s\n", destinoToString(memoria[i].runner));
 					}
 				}
 				memoriaStatus->run = 0;				
@@ -73,7 +89,7 @@ int main()
 	while(memoriaStatus->run == 1)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
-		procesar_evento(id_cola_mensajes, msg);
+		procesar_evento(id_cola_mensajes, msg, memoria, memoriaStatus);
 	};
 
 	shmdt((char *)memoria);
