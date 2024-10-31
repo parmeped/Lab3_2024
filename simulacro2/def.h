@@ -32,12 +32,17 @@ struct animal_config {
     Destinos destino;    
 };
 
-typedef struct sprintStatus status;
+typedef struct sprintAnimalStatus status;
 
-struct sprintStatus
+struct sprintAnimalStatus
 {
     int totalSteps;
     Destinos runner;
+};
+
+struct sprintStatus
+{
+    int run;
 };
 
 #endif

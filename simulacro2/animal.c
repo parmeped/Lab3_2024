@@ -4,7 +4,7 @@
 
 int id_cola_mensajes;
 pthread_mutex_t mutex;
-int memoryId;
+int memoryId, statusMemId;
 
 #define SALIR			0
 
@@ -73,7 +73,10 @@ void *funcionAnimal(void *input)
 	mensaje	msg;
     int cantidad_pasos = 0;
     int pasos = 0;
-	while(1)
+    sprintStatus *memoriaStatus = NULL;
+    memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+	
+    while(memoriaStatus[0]->run == 1)
 	{
         logInfof("Esperando mensaje para %s", destinoToString(((struct animal_config*)input)->destino));
         recibir_mensajes(id_cola_mensajes, ((struct animal_config*)input)->destino, &msg);
@@ -105,6 +108,7 @@ int menu(void)
 
     printf("Menu\n\n");
     printf("0.\tSalir\n\n");
+    printf("1.\tEmpezar\n\n");
     printf("Elija opcion: \n");
     fflush(stdin);  
     while((scanf(" %d", &opcion) != 1)
@@ -125,6 +129,8 @@ int main()
     
     status *memoria = NULL;
 	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
+    sprintStatus *tablero = NULL;
+    tablero = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
 	struct animal_config *gato_config = (struct animal_config *)malloc(sizeof(struct animal_config));
     struct animal_config *perro_config = (struct animal_config *)malloc(sizeof(struct animal_config));

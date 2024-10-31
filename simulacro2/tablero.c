@@ -1,6 +1,7 @@
 #include "def.h"
 #include "../shared/framework.h"
 
+int statusMemId;
 // Tablero keeps a tab on how everyones doing, when someone wins they print message and send STOP to everyone. 
 // Array should be kept on memory..? 
 void procesar_evento(int id_cola_mensajes, mensaje msg)
@@ -29,14 +30,16 @@ int main()
 	mensaje	msg;
 	status *memoria = NULL;
 	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
+    sprintStatus *memoriaStatus = NULL;
+    memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
 	int cantidad = 0;
 	
 	id_cola_mensajes = creo_id_cola_mensajes(CLAVE_BASE);
 
 	borrar_mensajes(id_cola_mensajes); //Borra todos los mensajes que haya en la cola.
-
-	while(1)
+	logInfo("Esperando inicio carrera");
+	while(memoriaStatus[0]->run == 1)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
 		procesar_evento(id_cola_mensajes, msg);
@@ -44,6 +47,7 @@ int main()
 
 	shmdt((char *)memoria);
     libero_memoria(memoryId);
+	libero_memoria(statusMemId);
     logInfo("Programa terminado y memoria liberada");
 	
 	return 0;
