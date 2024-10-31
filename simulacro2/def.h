@@ -40,7 +40,9 @@ struct sprintAnimalStatus
     Destinos runner;
 };
 
-struct sprintStatus
+typedef struct sStatus sprintStatus;
+
+struct sStatus
 {
     int run;
 };
