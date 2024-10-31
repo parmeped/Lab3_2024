@@ -22,7 +22,7 @@ const char* destinoToString(Destinos destino)
             return "Desconocido";
     }
 }
-
+// this may not be necessary at all, simply having it on the enum in the desired order would be fine.
 const int destinoToInt(Destinos destino) 
 {
     switch (destino) 
@@ -58,18 +58,30 @@ void generarEventoCorrer(Destinos remitente, int cantidad_pasos, int pasos)
     msg.int_evento = EVT_CORRO;
     printf("Cantidad de pasos %d\n", cantidad_pasos);
     printf("Pasos %d\n", pasos);
-    enviar_mensaje(id_cola_mensajes, MSG_TABLERO, remitente, msg.int_evento, "");
+    enviar_mensaje(id_cola_mensajes, MSG_TABLERO, destinoToInt(remitente), msg.int_evento, "");
     spinner(1);
 }
 
 void sumoPasos(int pasos, int cantidadPasos, Destinos destino) 
 {
     status *memoria = NULL;
-    memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
+    memoria = getAnimalStatusMemory();
 
     printf("Sumando pasos - Pasos: %d, CantidadPasos: %d\n", pasos, cantidadPasos);
     memoria[destinoToInt(destino)].totalSteps = pasos;
-    memoria[destinoToInt(destino)].amountOfSteps = cantidadPasos;
+    memoria[destinoToInt(destino)].amountOfSteps = cantidadPasos;    
+}
+
+void mostrandoPasos(Destinos destino) 
+{
+    status *memoria = NULL;
+    memoria = getAnimalStatusMemory();
+    logInfof("Pasos de %s: %d", destinoToString(destino), memoria[destinoToInt(destino)].totalSteps);
+}
+
+status *getAnimalStatusMemory()
+{
+    return (status *)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
 }
 
 void *funcionAnimal(void *input)
@@ -95,6 +107,7 @@ void *funcionAnimal(void *input)
             cantidad_pasos++;
             generarEventoCorrer(((struct animal_config*)input)->destino, cantidad_pasos, pasos);
             sumoPasos(pasos, cantidad_pasos, ((struct animal_config*)input)->destino);
+            muestroPasos(((struct animal_config*)input)->destino);
         pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");

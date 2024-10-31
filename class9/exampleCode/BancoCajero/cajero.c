@@ -13,6 +13,7 @@ pthread_mutex_t mutex;
 
 void procesar_evento(mensaje msg);
 int menu();
+status *NewFunction();
 int importe();
 int cliente();
 void consulta_saldo();

@@ -48,7 +48,6 @@ const char* destinoToString(Destinos destino)
     }
 }
 
-
 void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintStatus *memoriaStatus)
 {
 	printf("Remitente %s esta corriendo!\n", intToDestino(msg.int_rte));
