@@ -85,14 +85,14 @@ int main()
 
 		if (memoria[MSG_MOSQUITO1].totalSteps >= finish_line)
 		{			
-			printf("muerto");
+			printf("asd");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO1, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
 		}
 
 		if (memoria[MSG_MOSQUITO2].totalSteps >= finish_line)
 		{			
-			printf("muerto");
+			printf("asd");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO2, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
 		}
