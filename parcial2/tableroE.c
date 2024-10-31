@@ -59,11 +59,12 @@ int main()
 		spinner(1);
 	}
 
-	printf("mosquitos: %d\n", mosquitos);
 
 	logInfo("Iniciando Carrera");
 	while(memoriaStatus->run == 1)
 	{
+		printf("mosquitos: %d\n", mosquitos);
+		
 		if (mosquitos <= 0) 
 		{
 			logWarn("Gano el humo!");
