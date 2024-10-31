@@ -103,7 +103,7 @@ int main()
 
 		}
 
-		spinner(1);
+		spinner(2);
 	};
 
 	shmdt((char *)memoria);
