@@ -102,7 +102,7 @@ int main()
 		{
 			if (memoria[i].alive == 0)
 			{
-				printf("enviando a %s", memoria[i].runner);
+				printf("enviando a %d", memoria[i].runner);
 				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
 			}
 
