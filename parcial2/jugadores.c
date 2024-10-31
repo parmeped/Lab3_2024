@@ -71,26 +71,26 @@ void *runnerFunction(void *input)
 	mensaje	msg;
     int pasos = 0;
     sprintStatus *memoriaStatus = (sprintStatus *) getStatusMemory();
-	runnerStats *memoria = (runnerStats *)getRunnersStatusMemory();
-    // try to get this working
-    //int memPos = ((struct runnerConfig*)input)->destino;
-    memoria[((struct runnerConfig*)input)->destino].alive = 1;
-    memoria[((struct runnerConfig*)input)->destino].finished = 0;
+	runnerStats *memoria = (runnerStats *) getRunnersStatusMemory();
+
+    int memPos = ((struct runner_config*)input)->runner;
+    memoria[memPos].alive = 1;
+    memoria[memPos].finished = 0;
 
     while(memoriaStatus->run == 0)
 	{
-		logInfof("Esperando inicio carrera supervivencia, Thread: %s", destinoToString(((struct runnerConfig*)input)->destino));
+		logInfof("Esperando inicio carrera supervivencia, Thread: %s", destinoToString(((struct runner_config*)input)->runner));
 		spinner(spinner_inicio);
 	}
     
     // and still alive!
-    while(memoriaStatus->run == 1 && memoria[((struct runnerConfig*)input)->destino].alive == 1 && memoria[((struct runnerConfig*)input)->destino].finished == 0)
+    while(memoriaStatus->run == 1 && memoria[memPos].alive == 1 && memoria[memPos].finished == 0)
 	{
-    	printf("Thread: %s\n", destinoToString(((struct runnerConfig*)input)->destino));
-        printf("MinSpeed: %d, MaxSpeed: %d\n", ((struct runnerConfig*)input)->min_speed, ((struct runnerConfig*)input)->max_speed);
+    	printf("Thread: %s\n", destinoToString(((struct runner_config*)input)->runner));
+        printf("MinSpeed: %d, MaxSpeed: %d\n", ((struct runner_config*)input)->min_speed, ((struct runner_config*)input)->max_speed);
         recibir_mensajes(id_cola_mensajes, MSG_POINTER, &msg);
 		pthread_mutex_lock (&mutex);
-            pasos += randomNumber(((struct runnerConfig*)input)->min_speed, ((struct runnerConfig*)input)->max_speed);
+            pasos += randomNumber(((struct runner_config*)input)->min_speed, ((struct runner_config*)input)->max_speed);
             processEvent(id_cola_mensajes, msg, pasos);
         pthread_mutex_unlock (&mutex);
 	};
