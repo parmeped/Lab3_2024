@@ -118,7 +118,7 @@ int main()
 	}
 
 	logInfo("Iniciando Carrera");
-	while(memoriaStatus->run == 1 || !stop)
+	while(memoriaStatus->run == 1 && !stop)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
 		procesar_evento(id_cola_mensajes, msg);

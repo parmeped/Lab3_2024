@@ -194,7 +194,7 @@ int main()
     
 	opcion = menu();  
 
-	while(opcion!= SALIR || !stop)   
+	while(opcion!= SALIR && !stop)   
 	{
 		opcion = menu();
         if (opcion == 1)
