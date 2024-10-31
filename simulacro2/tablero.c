@@ -3,6 +3,12 @@
 
 int statusMemId;
 
+volatile sig_atomic_t stop;
+
+void handle_sigint(int sig) {
+    stop = 1;
+}
+
 const int destinoToInt(Destinos destino) 
 {
     switch (destino) 
@@ -52,6 +58,7 @@ void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintS
 {
 	printf("Remitente %s esta corriendo!\n", intToDestino(msg.int_rte));
 	printf("RemitenteInt: %d\n", msg.int_rte);
+	
 	switch (msg.int_evento)
 	{
 		case EVT_CORRO:			
@@ -86,6 +93,8 @@ int main()
 	int 	id_cola_mensajes, memoryId;
 	int		i;	
 
+	signal(SIGINT, handle_sigint);
+
 	mensaje	msg;
 	status *memoria = NULL;
 	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
@@ -104,10 +113,10 @@ int main()
 	}
 
 	logInfo("Iniciando Carrera");
-	while(memoriaStatus->run == 1)
+	while(memoriaStatus->run == 1 || !stop)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
-		procesar_evento(id_cola_mensajes, msg, memoria, memoriaStatus);
+		procesar_evento(id_cola_mensajes, msg, &memoria, &memoriaStatus);
 	};
 
 	shmdt((char *)memoria);

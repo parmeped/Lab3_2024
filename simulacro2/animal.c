@@ -8,6 +8,12 @@ int animalMemoryId, statusMemId;
 
 #define SALIR			0
 
+volatile sig_atomic_t stop;
+
+void handle_sigint(int sig) {
+    stop = 1;
+}
+
 const char* destinoToString(Destinos destino) 
 {
     switch (destino) 
@@ -77,13 +83,6 @@ void sumoPasos(int pasos, int cantidadPasos, Destinos destino)
     memoria[destinoToInt(destino)].amountOfSteps = cantidadPasos;    
 }
 
-void muestroPasos(Destinos destino) 
-{
-    status *memoria = NULL;
-    memoria = (status *)getAnimalStatusMemory();
-    logInfof("Pasos de %s: %d", destinoToString(destino), memoria[destinoToInt(destino)].totalSteps);
-}
-
 void *funcionAnimal(void *input)
 {
 	mensaje	msg;
@@ -107,7 +106,6 @@ void *funcionAnimal(void *input)
             cantidad_pasos++;
             generarEventoCorrer(((struct animal_config*)input)->destino, cantidad_pasos, pasos);
             sumoPasos(pasos, cantidad_pasos, ((struct animal_config*)input)->destino);
-            muestroPasos(((struct animal_config*)input)->destino);
         pthread_mutex_unlock (&mutex);	
 	};
 	printf ("Hijo  : Termino\n");
@@ -139,8 +137,10 @@ int main()
 	pthread_attr_t 	atributos;
     int opcion;
     
+    signal(SIGINT, handle_sigint);
+
     status *memoria = NULL;
-	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
+	memoria = (status *)getAnimalStatusMemory();
     sprintStatus *memoryStatus = NULL;
     memoryStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
@@ -194,7 +194,7 @@ int main()
     
 	opcion = menu();  
 
-	while(opcion!= SALIR)   
+	while(opcion!= SALIR || !stop)   
 	{
 		opcion = menu();
         if (opcion == 1)

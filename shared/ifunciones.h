@@ -10,6 +10,7 @@
 #include <sys/msg.h>
 #include <time.h>
 #include <string.h>
+#include <signal.h>
 
 #define SEMAFORO0 0
 
