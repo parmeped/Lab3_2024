@@ -8,6 +8,11 @@ status *getAnimalStatusMemory()
     return (status *)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
 }
 
+sprintStatus *getStatusMemory()
+{
+    return (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+}
+
 const int destinoToInt(Destinos destino) 
 {
     switch (destino) 
@@ -58,20 +63,18 @@ void procesar_evento(int id_cola_mensajes, mensaje msg)
 	printf("Remitente %s esta corriendo!\n", intToDestino(msg.int_rte));
 	printf("RemitenteInt: %d\n", msg.int_rte);
 	
-	status *memoria = NULL;
-	memoria = (status *)getAnimalStatusMemory();
-    sprintStatus *memoriaStatus = NULL;
-    memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+	status *memoria = (status *)getAnimalStatusMemory();
+    sprintStatus *memoriaStatus = (sprintStatus*)getStatusMemory();
 
 	switch (msg.int_evento)
 	{
 		case EVT_CORRO:			
-			printf("Pasos: %d\n", memoria[destinoToInt(msg.long_dest)].totalSteps);
-			printf("Cantidad de pasos: %d\n", memoria[destinoToInt(msg.long_dest)].totalSteps);
+			printf("Pasos: %d\n", memoria[destinoToInt(msg.int_rte)].totalSteps);
+			printf("Cantidad de pasos: %d\n", memoria[destinoToInt(msg.int_rte)].totalSteps);
 
-			if (memoria[destinoToInt(msg.long_dest)].totalSteps >= max_pasos)
+			if (memoria[destinoToInt(msg.int_rte)].totalSteps >= max_pasos)
 			{
-				int winnerAmountOfSteps = memoria[destinoToInt(msg.long_dest)].amountOfSteps;
+				int winnerAmountOfSteps = memoria[destinoToInt(msg.int_rte)].amountOfSteps;
 				for (int i = 0; i < RUNNERS_AMOUNT; i++)
 				{
 					if (memoria[i].amountOfSteps == winnerAmountOfSteps && memoria[i].totalSteps >= max_pasos)
@@ -99,7 +102,7 @@ int main()
 
 	mensaje	msg;	
 	status *memoria = (status *)getAnimalStatusMemory();
-    sprintStatus *memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+    sprintStatus *memoriaStatus = (sprintStatus*)getStatusMemory();
 
 	int cantidad = 0;
 	
