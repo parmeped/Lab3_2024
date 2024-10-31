@@ -5,7 +5,7 @@ int memoryId, statusMemId;
 
 status *getAnimalStatusMemory()
 {
-    return (status *)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
+    return (status *)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
 }
 
 const int destinoToInt(Destinos destino) 
@@ -99,7 +99,7 @@ int main()
 
 	mensaje	msg;	
 	status *memoria = (status *)getAnimalStatusMemory();
-    sprintStatus *memoriaStatus =  = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
+    sprintStatus *memoriaStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
 	int cantidad = 0;
 	
