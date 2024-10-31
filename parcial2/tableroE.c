@@ -69,6 +69,16 @@ int main()
 			break;
 		}
 
+		logInfof("Iniciando turno %d", turno++);
+		for (i = 0; i < runners_amount; i++)
+		{
+			if (memoria[i].alive == 0)
+			{
+				printf("enviando a %d", memoria[i].runner);
+				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
+			}
+		}
+
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO1].totalSteps)
 		{
 			printf("muerto");
@@ -95,17 +105,6 @@ int main()
 			printf("asd");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO2, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
-		}
-
-		logInfof("Iniciando turno %d", turno++);
-		for (i = 0; i < runners_amount; i++)
-		{
-			if (memoria[i].alive == 0)
-			{
-				printf("enviando a %d", memoria[i].runner);
-				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
-			}
-
 		}
 
 		spinner(2);
