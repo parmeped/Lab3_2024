@@ -83,7 +83,8 @@ void *runnerFunction(void *input)
 		spinner(spinner_inicio);
 	}
     
-    // and still alive!
+    printf("arrancando");
+    
     while(memoriaStatus->run == 1 && memoria[memPos].alive == 1 && memoria[memPos].finished == 0)
 	{
     	printf("Thread: %s\n", destinoToString(((struct runner_config*)input)->runner));
