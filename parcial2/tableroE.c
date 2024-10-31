@@ -32,7 +32,7 @@ int menu(void)
 int main()
 {
 	int 	id_cola_mensajes;
-	int		i, opcion, turno = 1;	
+	int		opcion, turno = 1;	
 	int 	mosquitos = amount_mosquitos;
 
 	mensaje	msg;	
@@ -87,7 +87,7 @@ int main()
 			mosquitos--;
 		}
 
-		logInfof("Iniciando turno %d", turno);
+		logInfof("Iniciando turno %d", turno++);
 		for (i = 0; i < runners_amount; i++)
 		{
 			if (memoria[i].alive == 0)
