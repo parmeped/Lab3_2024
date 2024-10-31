@@ -103,7 +103,7 @@ int main()
 
 		}
 
-		mSpinner(turn_duration*1000);
+		spinner(1);
 	};
 
 	shmdt((char *)memoria);
