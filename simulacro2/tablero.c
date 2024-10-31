@@ -3,12 +3,6 @@
 
 int memoryId, statusMemId;
 
-volatile sig_atomic_t stop;
-
-void handle_sigint(int sig) {
-    stop = 1;
-}
-
 const int destinoToInt(Destinos destino) 
 {
     switch (destino) 
@@ -98,8 +92,6 @@ int main()
 	int 	id_cola_mensajes;
 	int		i;	
 
-	signal(SIGINT, handle_sigint);
-
 	mensaje	msg;
 	status *memoria = NULL;
 	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
@@ -118,7 +110,7 @@ int main()
 	}
 
 	logInfo("Iniciando Carrera");
-	while(memoriaStatus->run == 1 && !stop)
+	while(memoriaStatus->run == 1)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
 		procesar_evento(id_cola_mensajes, msg);

@@ -8,12 +8,6 @@ int animalMemoryId, statusMemId;
 
 #define SALIR			0
 
-volatile sig_atomic_t stop;
-
-void handle_sigint(int sig) {
-    stop = 1;
-}
-
 const char* destinoToString(Destinos destino) 
 {
     switch (destino) 
@@ -194,7 +188,7 @@ int main()
     
 	opcion = menu();  
 
-	while(opcion!= SALIR && !stop)   
+	while(opcion!= SALIR)   
 	{
 		opcion = menu();
         if (opcion == 1)
