@@ -1,30 +1,18 @@
 #include "def.h"
 #include "../shared/framework.h"
 
+// Tablero keeps a tab on how everyones doing, when someone wins they print message and send STOP to everyone. 
+// Array should be kept on memory..? 
 void procesar_evento(int id_cola_mensajes, mensaje msg)
 {
-	char 	cadena[LARGO_TMENSAJE];
-	int 	count = 0;
-	int	cliente=0;
-	int 	importe=0;
-	char 	*token;
-	int	i;
-
-	printf("Destino   %d\n", (int) msg.long_dest);
 	printf("Remitente %d\n", msg.int_rte);
-	printf("Evento    %d\n", msg.int_evento);
-	printf("Mensaje   %s\n", msg.char_mensaje);
 	switch (msg.int_evento)
 	{
 		case EVT_CORRO:
 			printf("Alguien corriendo\n");
-		break;	
-		case EVT_FIN:
-			logInfo("Finalizado!\n");
-		break;
+			
 		case EVT_NINGUNO:
-			printf("Ninguno?\n");
-		break;
+		case EVT_FIN:
 		default:
 			printf("\nEvento sin definir\n");
 		break;
@@ -32,13 +20,16 @@ void procesar_evento(int id_cola_mensajes, mensaje msg)
 	printf("------------------------------\n");	
 }
 		
+// to start both processes need to be up and running and communicate through a key. 
 int main()
 {
-	int 	id_cola_mensajes;
+	int 	id_cola_mensajes, memoryId;
 	int		i;	
 
 	mensaje	msg;
-	
+	status *memoria = NULL;
+	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
+
 	int cantidad = 0;
 	
 	id_cola_mensajes = creo_id_cola_mensajes(CLAVE_BASE);

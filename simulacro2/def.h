@@ -10,6 +10,8 @@
 
 #define max_pasos 117
 
+#define RUNNERS_AMOUNT 3
+
 typedef enum {
 MSG_NADIE, //0
 MSG_TABLERO, //1
@@ -28,6 +30,14 @@ struct animal_config {
     int min_speed;
     int max_speed;
     Destinos destino;    
+};
+
+typedef struct sprintStatus status;
+
+struct sprintStatus
+{
+    int totalSteps;
+    Destinos runner;
 };
 
 #endif
