@@ -131,8 +131,6 @@ int main()
 	pthread_attr_t 	atributos;
     int opcion;
     
-    signal(SIGINT, handle_sigint);
-
     status *memoria = NULL;
 	memoria = (status *)getAnimalStatusMemory();
     sprintStatus *memoryStatus = NULL;
