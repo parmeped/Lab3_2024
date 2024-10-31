@@ -192,7 +192,9 @@ int main()
         if (opcion == 1)
         {
             logInfo("Iniciando carrera");
+            pthread_mutex_lock(&mutex);
             memoryStatus->run = 1;
+            pthread_mutex_unlock(&mutex);
         } 
 	} 
 

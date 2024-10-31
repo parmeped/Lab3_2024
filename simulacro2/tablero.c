@@ -44,6 +44,7 @@ int main()
 		spinner(1);
 	}
 
+	logInfo("Iniciando Carrera");
 	while(memoriaStatus->run == 1)
 	{
 		recibir_mensajes(id_cola_mensajes, MSG_TABLERO, &msg);
