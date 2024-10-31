@@ -52,12 +52,13 @@ const char* destinoToString(Destinos destino)
 void procesar_evento(int id_cola_mensajes, mensaje msg, status *memoria, sprintStatus *memoriaStatus)
 {
 	printf("Remitente %s esta corriendo!\n", intToDestino(msg.int_rte));
+	printf("RemitenteInt: %d\n", msg.int_rte);
 	switch (msg.int_evento)
 	{
 		case EVT_CORRO:			
 			printf("Pasos: %d\n", memoria[destinoToInt(msg.long_dest)].totalSteps);
 			printf("Cantidad de pasos: %d\n", memoria[destinoToInt(msg.long_dest)].totalSteps);
-			
+
 			if (memoria[destinoToInt(msg.long_dest)].totalSteps >= max_pasos)
 			{
 				int winnerAmountOfSteps = memoria[destinoToInt(msg.long_dest)].amountOfSteps;
@@ -112,6 +113,7 @@ int main()
 
 	shmdt((char *)memoria);
     libero_memoria(memoryId);
+	shmdt((char *)memoriaStatus);
 	libero_memoria(statusMemId);
     logInfo("Programa terminado y memoria liberada");
 	

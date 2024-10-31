@@ -4,7 +4,7 @@
 
 int id_cola_mensajes;
 pthread_mutex_t mutex;
-int memoryId, statusMemId;
+int animalMemoryId, statusMemId;
 
 #define SALIR			0
 
@@ -65,7 +65,9 @@ void generarEventoCorrer(Destinos remitente, int cantidad_pasos, int pasos)
 void sumoPasos(int pasos, int cantidadPasos, Destinos destino) 
 {
     status *memoria = NULL;
-    memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
+    memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
+
+    printf("Sumando pasos - Pasos: %d, CantidadPasos: %d\n", pasos, cantidadPasos);
     memoria[destinoToInt(destino)].totalSteps = pasos;
     memoria[destinoToInt(destino)].amountOfSteps = cantidadPasos;
 }
@@ -125,7 +127,7 @@ int main()
     int opcion;
     
     status *memoria = NULL;
-	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &memoryId, CLAVE_BASE);
+	memoria = (status*)creo_memoria(sizeof(status) * RUNNERS_AMOUNT, &animalMemoryId, CLAVE_BASE);
     sprintStatus *memoryStatus = NULL;
     memoryStatus = (sprintStatus*)creo_memoria(sizeof(sprintStatus), &statusMemId, CLAVE_BASE_2);
 
@@ -193,7 +195,9 @@ int main()
 
 	printf("Saliendo");
     shmdt((char *)memoria);
-    libero_memoria(memoryId);
+    libero_memoria(animalMemoryId);
+    shmdt((char *)memoryStatus);
+    libero_memoria(statusMemId);
     logInfo("Programa terminado y memoria liberada");
 	return 0;
 }
