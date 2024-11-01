@@ -64,7 +64,7 @@ int main()
 	while(memoriaStatus->run == 1)
 	{
 		printf("mosquitos: %d\n", mosquitos);
-		
+
 		if (mosquitos <= 0) 
 		{
 			logWarn("Gano el humo!");
@@ -81,36 +81,33 @@ int main()
 				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
 			}
 		}
+		spinner(1);
 
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO1].totalSteps)
 		{
-			printf("muerto");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO1, MSG_POINTER, EVT_FIN, "");
 			mosquitos--;
 		}
 
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO2].totalSteps)
 		{
-			printf("muerto");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO2, MSG_POINTER, EVT_FIN, "");
 			mosquitos--;
 		}
 
 		if (memoria[MSG_MOSQUITO1].totalSteps >= finish_line)
 		{			
-			printf("asd");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO1, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
 		}
 
 		if (memoria[MSG_MOSQUITO2].totalSteps >= finish_line)
 		{			
-			printf("asd");
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO2, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
 		}
 
-		spinner(2);
+		mSpinner(turn_duration*1000);
 	};
 
 	shmdt((char *)memoria);
