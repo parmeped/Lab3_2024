@@ -75,8 +75,8 @@ int main()
 		logInfof("Iniciando turno %d", turno++);
 		for (i = 0; i < runners_amount; i++)
 		{
-			printf("alive: %d\n", i, memoria[i].alive);
-			printf("runner: %d\n", i, memoria[i].runner);
+			printf("alive: %d\n", memoria[i].alive);
+			printf("runner: %d\n", memoria[i].runner);
 			if (memoria[i].alive != 0)
 			{
 				printf("enviando a %d", memoria[i].runner);
