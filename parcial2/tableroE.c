@@ -81,7 +81,7 @@ int main()
 				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
 			}
 		}
-		spinner(1);
+		mSpinner(turn_duration);
 
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO1].totalSteps)
 		{
@@ -106,8 +106,6 @@ int main()
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO2, MSG_POINTER, EVT_SOBREVIVIO, "");
 			mosquitos--;
 		}
-
-		mSpinner(turn_duration*1000);
 	};
 
 	shmdt((char *)memoria);
