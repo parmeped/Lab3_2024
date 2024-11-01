@@ -81,7 +81,7 @@ int main()
 				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
 			}
 		}
-		spinner(10);
+		spinner(5);
 
 		printf("steps humo: %d", memoria[MSG_SMOKE].totalSteps);
 		printf("steps mosquito1: %d", memoria[MSG_MOSQUITO1].totalSteps);
