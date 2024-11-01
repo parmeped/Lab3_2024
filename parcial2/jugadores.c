@@ -80,7 +80,7 @@ void *runnerFunction(void *input)
     logInfof("Esperando inicio carrera supervivencia, Thread: %s", destinoToString(((struct runner_config*)input)->runner));
     while(memoriaStatus->run == 0)
 	{
-		mSpinner(turn_duration/2);
+		usleepMs(turn_duration/5);
 	}
     
     printf("arrancando");
