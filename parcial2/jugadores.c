@@ -90,6 +90,7 @@ void *runnerFunction(void *input)
     	printf("Thread: %s\n", destinoToString(((struct runner_config*)input)->runner));
         printf("MinSpeed: %d, MaxSpeed: %d\n", ((struct runner_config*)input)->min_speed, ((struct runner_config*)input)->max_speed);
         recibir_mensajes(id_cola_mensajes, MSG_POINTER, &msg);
+        printf("esperando mensaje");
 		pthread_mutex_lock (&mutex);
             pasos += randomNumber(((struct runner_config*)input)->min_speed, ((struct runner_config*)input)->max_speed);
             processEvent(id_cola_mensajes, msg, pasos);
