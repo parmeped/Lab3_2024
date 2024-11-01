@@ -83,10 +83,10 @@ int main()
 		}
 		mSpinner(turn_duration);
 
-		printf("steps humo:", memoria[MSG_SMOKE].totalSteps);
-		printf("steps mosquito1:", memoria[MSG_MOSQUITO1].totalSteps);
-		printf("steps mosquito2:", memoria[MSG_MOSQUITO2].totalSteps);
-		
+		printf("steps humo: %d", memoria[MSG_SMOKE].totalSteps);
+		printf("steps mosquito1: %d", memoria[MSG_MOSQUITO1].totalSteps);
+		printf("steps mosquito2: %d", memoria[MSG_MOSQUITO2].totalSteps);
+
 		if (memoria[MSG_SMOKE].totalSteps >= memoria[MSG_MOSQUITO1].totalSteps)
 		{
 			enviar_mensaje(id_cola_mensajes, MSG_MOSQUITO1, MSG_POINTER, EVT_FIN, "");
