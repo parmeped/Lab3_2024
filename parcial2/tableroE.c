@@ -75,7 +75,7 @@ int main()
 		logInfof("Iniciando turno %d", turno++);
 		for (i = 0; i < runners_amount; i++)
 		{
-			if (memoria[i].alive == 0)
+			if (memoria[i].alive != 0)
 			{
 				printf("enviando a %d", memoria[i].runner);
 				enviar_mensaje(id_cola_mensajes, memoria[i].runner, MSG_POINTER, EVT_CORRO, "");
