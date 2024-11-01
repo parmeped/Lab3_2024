@@ -164,8 +164,7 @@ int main()
 
     while(1)
     {
-        logInfo("Esperando fin carrera");
-        spinner(1);
+        usleep(1);
     }
 
 	printf("Saliendo");
