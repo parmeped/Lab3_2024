@@ -1,6 +1,7 @@
 CC = g++
 all : panel cci
 r : clean memClean pull all
+rel : r
 reload : r
 
 panel : panel.c ../shared/framework.h ../shared/definiciones.h 
