@@ -4,8 +4,8 @@
 
 #define LARGO_MENSAJE 100
 
-#define FILE_PATH "paneles.dat";
-#define DEFAULT_MESSAGE "default";
+#define FILE_PATH "paneles.dat"
+#define DEFAULT_MESSAGE "default"
 
 typedef struct paneles panel;
 
