@@ -12,10 +12,7 @@
 #include <string.h>
 #include <signal.h>
 
-#define SEMAFORO0 0
 
-
-#define LARGO_TMENSAJE 1024
 
 typedef struct tipo_mensajes mensaje;
 struct tipo_mensajes 

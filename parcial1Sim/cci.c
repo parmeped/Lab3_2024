@@ -108,7 +108,7 @@ int main()
 	int id_semaforo, opcion;
 	
 	id_semaforo = creo_semaforo(CANT_SEMAFORO);
-	inicia_semaforo(id_semaforo, VERDE);
+	inicio_semaforo(id_semaforo, CUAL_SEMAFORO, VERDE);
 	
     fileSetup();
 
@@ -119,10 +119,10 @@ int main()
 		switch(opcion)
 		{
 			case LEO: 
-			    consulta_saldo();
+			    leo();
 			    break;
 			case ESCRIBO: 
-    			    deposito();
+                escribo();
 			    break;
 			case SALIR: 
 			    printf("Salir:\n");

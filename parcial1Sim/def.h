@@ -4,6 +4,8 @@
 
 #define LARGO_MENSAJE 100
 
+#define MAX_MENU 2
+
 #define FILE_PATH "paneles.dat"
 #define DEFAULT_MESSAGE "default"
 
