@@ -3,12 +3,17 @@
 
 #define LOG_LEVEL DEBUG
 
-#define CLAVE_BASE 35
-#define CLAVE_BASE_2 36
+#define CLAVE_BASE      35
+#define CLAVE_BASE_2    36
 
-#define CUAL_SEMAFORO 0
-#define CANT_SEMAFORO 1
-#define TIEMPO_SLEEP 5
+#define CUAL_SEMAFORO   0
+#define CANT_SEMAFORO   1
+#define TIEMPO_SLEEP    5
+
+#define SALIR		    0
+
+#define ROJO            0
+#define VERDE           1
 
 #include <stdio.h>
 #include <time.h>

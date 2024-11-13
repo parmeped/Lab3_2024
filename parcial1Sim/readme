@@ -1,0 +1,13 @@
+cci tiene menu con opciones
+    inicializa semaforo y datos iniciales
+    1. leer panel
+        q panel
+            muestra mensaje de x panel
+    2. escribir panel
+        q panel 
+            q mensaje
+
+panel (recibe por param el nro de panel)
+    carga mensaje inicial "default"
+    cada 100ms:
+        chequea mensaje. Solo actualiza pantalla cuando hay cambios.
