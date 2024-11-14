@@ -7,11 +7,11 @@ FILE* panelFile;
 // store current message
 panel pannel;
 
-void leo(int *panelId)
+void leo(int panelId)
 {
     panelFile = abrir_archivo_lectura(FILE_PATH);
     panel tempPanel;
-    fseek(panelFile, *panelId * sizeof(panel), SEEK_SET);
+    fseek(panelFile, panelId * sizeof(panel), SEEK_SET);
     fread(&tempPanel, sizeof(panel), 1, panelFile);
     // only print if panel message is different than stored one
     if (strcmp(tempPanel.mensaje, pannel.mensaje) != 0)
