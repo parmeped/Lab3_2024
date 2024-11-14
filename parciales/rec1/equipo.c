@@ -63,6 +63,8 @@ int main(int argc, char *argv[])
     int run = CONTINUE;
     mensaje			msg;
 
+    libero_semaforo(id_semaforo, CUAL_SEMAFORO);
+
     while(run) 
     {
         recibir_mensajes(id_cola_mensajes, teamId, &msg);
