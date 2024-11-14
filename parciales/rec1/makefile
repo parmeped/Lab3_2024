@@ -18,3 +18,6 @@ memClean :
 
 pull :
 	git pull
+
+run : all 
+	./file1 ./file2 1 ./file2 2
