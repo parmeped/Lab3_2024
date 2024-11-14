@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
 	char cadena[LARGO_MENSAJE];
     int turno = 0;
 	int id_cola_mensajes 	= creo_id_cola_mensajes(CLAVE_BASE);
+    int id_semaforo = creo_semaforo(CANT_SEMAFORO);
     int ultTurno = 0;
 	
     mensaje			msg;
@@ -100,8 +101,8 @@ int main(int argc, char *argv[])
 
 	while(turno < MAX_TURNS)
     {
-        recibir_mensaje(id_cola_mensajes, MSG_PANEL, &msg);
-		turno = procesar_evento(id_cola_mensajes,  msg);
+        recibir_mensajes(id_cola_mensajes, MSG_PANEL, &msg);
+		turno = procesar_evento(id_cola_mensajes, id_semaforo, turno, msg);
         if (turno != ultTurno)
         {
             ultTurno = turno;

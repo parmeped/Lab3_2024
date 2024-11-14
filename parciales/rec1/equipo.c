@@ -39,6 +39,7 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
             logInfo("Evento sin definir");
             return CONTINUE;
     }
+    return CONTINUE;
 }
 
 
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
 
     while(run) 
     {
-        recibir_mensaje(id_cola_mensajes, teamId, &msg);
+        recibir_mensajes(id_cola_mensajes, teamId, &msg);
 		run = procesar_evento_equipo(id_cola_mensajes, teamId, id_semaforo, msg);
         usleepMs(TIME_CHECK_MS);
     }
