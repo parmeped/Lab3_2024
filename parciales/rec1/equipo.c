@@ -47,7 +47,6 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
             break;
     }
     return CONTINUE;
-    break;
 }
 
 
