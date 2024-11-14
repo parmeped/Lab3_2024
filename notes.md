@@ -24,3 +24,4 @@ su root
 
 ## path
 cd Documents/Lab3_2024
+cd Documents/Lab3_2024/parciales/rec1

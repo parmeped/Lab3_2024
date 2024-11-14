@@ -1,17 +1,17 @@
 CC = g++
-all : panel cci
+all : file1 file2
 r : clean memClean pull all
 rel : r
 reload : r
 
-panel : panel.c ../shared/framework.h ../shared/definiciones.h 
-	cc -o panel panel.c
+file1 : file1.c ../../shared/framework.h ../../shared/definiciones.h 
+	cc -o file1 file1.c
 
-cci : cci.c ../shared/framework.h ../shared/definiciones.h
-	cc -o cci cci.c -lpthread
+file2 : file2.c ../../shared/framework.h ../../shared/definiciones.h
+	cc -o file2 file2.c -lpthread
 
 clean : 
-	rm -rf *o *dat panel cci	
+	rm -rf *o *dat file1 file2	
 
 memClean :
 	for id in $(ipcs -m | awk 'NR>3 {print $2}'); do ipcrm -m $id; done
