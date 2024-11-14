@@ -39,8 +39,8 @@ int panelNumberMenu()
         }
         fflush(stdin);
     }
-    
-    return panelNumber--;
+    panelNumber--;
+    return panelNumber;
 }
 
 void leo()
@@ -63,7 +63,7 @@ void escribo()
     int panelNumber = panelNumberMenu();
     
     logInfof("Panel seleccionado: %d", panelNumber);
-    
+
     panelFile = abrir_archivo_escritura(FILE_PATH);    
 
     fseek(panelFile, panelNumber * sizeof(panel), SEEK_SET);
