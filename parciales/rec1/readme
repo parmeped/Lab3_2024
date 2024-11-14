@@ -1,1 +1,32 @@
 // write order of files to run
+
+dos procesos, uno por equipo
+mismo proceso equipo. recibe el equipoId por parametro
+tercer proceso panel
+partido termina cuando uno de los equipos llega a max cantidad de goles (por parametro)
+    this can be received by panel.
+
+
+partido por turnos
+    max 6 turnos
+    each turn:
+    3 tiros, a random de 10 a 35 (en def file)
+        > 70 == 7 ptos
+        1 tiro random 1 a 2
+            1 == -3
+            2 == 3
+turno cada 500
+
+panel recibe info de los equipos y muestra lo sucedido
+al final se informa ganador y tantos
+
+guardo en un archivo los resultados de los equipos
+    equipoId, goles
+
+usar mensajes para comunicar:
+    panel => 
+        TURNO
+        FIN
+    equipo =>
+        TURNO_JUGADO
+        FIN
