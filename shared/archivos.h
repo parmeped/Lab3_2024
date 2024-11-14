@@ -19,9 +19,8 @@ FILE *append_archivo(char *path)
 FILE *abrir_archivo(char *path, char *modo)
 {
     char msg[100];
-    sprintf(msg, "Abriendo archivo: %s, modo: %s", path, modo);
+    //sprintf(msg, "Abriendo archivo: %s, modo: %s", path, modo);
     
-    logWarn(msg);
     FILE *fp;
     fp = fopen(path, modo);
 

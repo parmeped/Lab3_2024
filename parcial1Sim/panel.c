@@ -9,20 +9,18 @@ panel pannel;
 
 void leo(int panelId)
 {
-    logInfo("Leyendo panel");
     FILE* panelFile;
     panelFile = abrir_archivo_lectura(FILE_PATH);
     panel tempPanel;
     fseek(panelFile, panelId * sizeof(panel), SEEK_SET);
     fread(&tempPanel, sizeof(panel), 1, panelFile);
+    
     // only print if panel message is different than stored one
     if (strcmp(tempPanel.mensaje, pannel.mensaje) != 0)
     {
-        logInfo("Mensaje actualizado");
         strcpy(pannel.mensaje, tempPanel.mensaje);
         printf("Panel %d: %s\n", tempPanel.nro_panel, tempPanel.mensaje);
     }
-    logInfo("Cerrando archivo");
     cerrar_archivo(panelFile);
 }
 
