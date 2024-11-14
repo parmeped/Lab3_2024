@@ -103,6 +103,7 @@ int main(int argc, char *argv[])
 	while(turno < MAX_TURNS)
     {
         recibir_mensajes(id_cola_mensajes, MSG_PANEL, &msg);
+        logInfo("no paso");
 		turno = procesar_evento(id_cola_mensajes, id_semaforo, turno, msg);
         if (turno != ultTurno)
         {
