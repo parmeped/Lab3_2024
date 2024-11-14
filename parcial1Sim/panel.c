@@ -33,10 +33,10 @@ int main(int argc, char *argv[])
         logInfo("Valor invalido de id para panel");
         return 1;
     }
-    panelId--;
     int id_semaforo = creo_semaforo(CANT_SEMAFORO);
 
     logInfof("Iniciando panel: %d", panelId);
+    panelId--;
 
     while(1) 
     {
