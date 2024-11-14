@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
 		run = procesar_evento_equipo(id_cola_mensajes, teamId, id_semaforo, msg);
         // sleep for 500 ms
-        usleepMs(TIME_CHECK_MS);
+        usleep(TIME_CHECK_MS);
         logInfo("Esperando 500ms");
     }
     logInfo("Exit");

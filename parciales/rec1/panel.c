@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
             ultTurno = turno;
             enviarMensajeTurno(id_cola_mensajes);
         }
-        usleepMs(TIME_CHECK_MS);
+        usleep(TIME_CHECK_MS);
         logInfo("Esperando 500ms");
 	}
     
