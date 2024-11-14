@@ -16,6 +16,14 @@ void fileSetup()
         equipos[i].turno = 0;
         fwrite(&equipos[i], sizeof(equipo), 1, equipoFile);
     }
+    // detallo equipos 
+    fseek(equipoFile, 0, SEEK_SET);
+    for (int i = 0; i < MAX_TEAMS; i++)
+    {
+        fread(&equipos[i], sizeof(equipo), 1, equipoFile);
+        logInfof("Equipo %d, turno %d, puntos %d, goles %d", 
+            equipos[i].nro_equipo, equipos[i].turno, equipos[i].puntos, equipos[i].goles);
+    }
     cerrar_archivo(equipoFile);
 }
 
