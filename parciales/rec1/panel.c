@@ -101,7 +101,8 @@ int main(int argc, char *argv[])
     enviarMensajeTurno(id_cola_mensajes);
     libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 
-	while(turno < MAX_TURNS + 1)
+	//while(turno < MAX_TURNS + 1)
+    while(1)
     {
         logInfof("recibo mensaje, turno: %d", turno);
         libero_semaforo(id_semaforo, CUAL_SEMAFORO);

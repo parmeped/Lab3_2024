@@ -65,7 +65,8 @@ int main(int argc, char *argv[])
 
     libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 
-    while(run) 
+    //while(run) 
+    while(1)
     {
         recibir_mensajes(id_cola_mensajes, teamId, &msg);
 
