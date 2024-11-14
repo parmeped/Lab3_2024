@@ -34,7 +34,6 @@ FILE *abrir_archivo(char *path, char *modo)
 
 void cerrar_archivo(FILE *fp)
 {    
-    logWarn("Cerrando archivo.");
     fclose(fp);
 }
 

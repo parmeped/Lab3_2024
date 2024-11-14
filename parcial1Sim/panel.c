@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
     while(1) 
     {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
-            logInfo("Tengo semaforo");
             leo(panelId);
         libero_semaforo(id_semaforo, CUAL_SEMAFORO);
         usleepMs(TIEMPO_SLEEP_PANEL);
