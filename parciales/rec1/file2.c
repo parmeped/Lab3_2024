@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     
     // check for panelId argument, try to parse to number
     int panelId = atoi(argv[1]);
-    if (panelId < 1) 
+    if (panelId < 1 || panelId > MAX_PANNELS) 
     {
         logInfo("Valor invalido de id para panel");
         return 1;

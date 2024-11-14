@@ -37,7 +37,9 @@ int panelNumberMenu()
                 break;
             }
         }
+        fflush(stdin);
     }
+    logInfo("Panel seleccionado: %d", panelNumber);
     return panelNumber--;
 }
 

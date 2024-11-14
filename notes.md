@@ -25,3 +25,7 @@ su root
 ## path
 cd Documents/Lab3_2024
 cd Documents/Lab3_2024/parciales/rec1
+
+## Process
+top (list top processes)
+kill [pId]
