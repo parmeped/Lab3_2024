@@ -27,6 +27,7 @@ int procesar_evento(int id_cola_mensajes, int semaphoreId, int turno, mensaje ms
         case EVT_TURNO:
             logInfo("Recibido evento de turno");
             return turno;
+            break;
         case EVT_TURNO_JUGADO:
                 espera_semaforo(semaphoreId, CUAL_SEMAFORO);
                     logInfo("Recibido evento de turno jugado");
@@ -62,11 +63,14 @@ int procesar_evento(int id_cola_mensajes, int semaphoreId, int turno, mensaje ms
             break;
         case FIN:
             logInfo("Recibido evento de fin");
+            return turno;
             break;
         default:
             logInfo("Evento sin definir");
+            return turno;
             break;
     }
+    return turno;
 }
 
 void enviarMensajeTurno(int id_cola_mensajes)

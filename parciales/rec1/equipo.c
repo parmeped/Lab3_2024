@@ -32,17 +32,22 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
                 logInfo("Jugado turno");
             libero_semaforo(id_semaforo, CUAL_SEMAFORO);
             return CONTINUE;
+            break;
         case EVT_TURNO_JUGADO:
             logInfo("Recibido evento de turno jugado");
             return CONTINUE;
+            break;
         case FIN:
             logInfo("Recibido evento de fin");
             return STOP;
+            break;
         default:
             logInfo("Evento sin definir");
             return CONTINUE;
+            break;
     }
     return CONTINUE;
+    break;
 }
 
 
