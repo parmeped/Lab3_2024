@@ -78,7 +78,7 @@ void enviarMensajeTurno(int id_cola_mensajes)
 int main(int argc, char *argv[])
 {
     int maxGoals = atoi(argv[1]);
-    if (maxGoals < 1 || maxGoals > MAX_TEAMS) 
+    if (maxGoals < 1) 
     {
         logInfo("Valor invalido para maximos goles");
         return 1;
