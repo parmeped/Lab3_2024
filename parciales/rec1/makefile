@@ -20,4 +20,6 @@ pull :
 	git pull
 
 run : all 
-	./file1 ./file2 1 ./file2 2
+	gnome-terminal ./file1
+	gnome-terminal ./file2 1
+	gnome-terminal ./file2 2
