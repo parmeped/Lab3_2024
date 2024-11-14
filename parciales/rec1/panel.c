@@ -69,6 +69,7 @@ int procesar_evento(int id_cola_mensajes, int semaphoreId, int turno, mensaje ms
 
 void enviarMensajeTurno(int id_cola_mensajes)
 {
+    logInfo("Empezando turnos");
     for (int i = 0; i < MAX_TEAMS; i++)
     {
         enviar_mensaje(id_cola_mensajes, i, MSG_PANEL, EVT_TURNO, "");
@@ -110,6 +111,8 @@ int main(int argc, char *argv[])
         }
         usleepMs(TIME_CHECK_MS);
 	}
+    
+    logInfo("Finalizado");
     // envio evento fin a equipos
     for (int i = 0; i < MAX_TEAMS; i++)
     {
