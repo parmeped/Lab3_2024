@@ -1,7 +1,7 @@
 #include "def.h"
 #include "../../shared/framework.h"
 
-equipo team
+equipo team;
 
 int calcular_puntaje()
 {
