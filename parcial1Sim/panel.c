@@ -3,12 +3,13 @@
 
 #define TIEMPO_SLEEP_PANEL 100
 
-FILE* panelFile;
+
 // store current message
 panel pannel;
 
 void leo(int panelId)
 {
+    FILE* panelFile;
     panelFile = abrir_archivo_lectura(FILE_PATH);
     panel tempPanel;
     fseek(panelFile, panelId * sizeof(panel), SEEK_SET);
