@@ -47,6 +47,7 @@ int procesar_evento(int id_cola_mensajes, int semaphoreId, int turno, mensaje ms
                         {
                             logInfo("No todos los equipos jugaron el turno actual");
                             libero_semaforo(semaphoreId, CUAL_SEMAFORO);
+                            cerrar_archivo(equiposFile);
                             return turno;
                         }
                     }
