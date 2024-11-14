@@ -46,6 +46,7 @@ int procesar_evento(int id_cola_mensajes, int semaphoreId, int turno, mensaje ms
                         if (equipos[i].turno < turno)
                         {
                             logInfo("No todos los equipos jugaron el turno actual");
+                            libero_semaforo(semaphoreId, CUAL_SEMAFORO);
                             return turno;
                         }
                     }
