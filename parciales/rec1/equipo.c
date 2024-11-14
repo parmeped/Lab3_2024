@@ -10,15 +10,13 @@ int calcular_puntaje()
 
 int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mensaje msg)
 {
-    logInfo("TeamEventProc");
-    logInfof("Evento: %d", msg.int_evento);
     switch (msg.int_evento)
     {
         case EVT_TURNO:
             espera_semaforo(id_semaforo, CUAL_SEMAFORO);
                 logInfo("Recibido evento de turno");
-                // abro archivo
-                FILE* equiposFile = abrir_archivo_lectura(FILE_PATH);
+                // abro archivo lectura escritura
+                FILE* equiposFile = abrir_archivo_escritura(FILE_PATH);
 
                 // subo turno y calculo puntaje
                 fseek(equiposFile, teamId * sizeof(equipo), SEEK_SET);
@@ -31,7 +29,6 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
                 fwrite(&equipos[teamId], sizeof(equipo), 1, equiposFile);
                 cerrar_archivo(equiposFile);
                 enviar_mensaje(messageQueueId, MSG_PANEL, teamId, EVT_TURNO_JUGADO, "");
-                logInfo("Enviado mensaje de evt turno");
             libero_semaforo(id_semaforo, CUAL_SEMAFORO);
             return CONTINUE;
         case EVT_TURNO_JUGADO:
@@ -66,16 +63,13 @@ int main(int argc, char *argv[])
     int run = CONTINUE;
     mensaje			msg;
 
-    libero_semaforo(id_semaforo, CUAL_SEMAFORO);
-
     while(run) 
     {
         recibir_mensajes(id_cola_mensajes, teamId, &msg);
 
 		run = procesar_evento_equipo(id_cola_mensajes, teamId, id_semaforo, msg);
         // sleep for 500 ms
-        usleep(TIME_CHECK_MS);
-        logInfo("Esperando 500ms");
+        usleepMs(TIME_CHECK_MS);        
     }
     logInfo("Exit");
     
