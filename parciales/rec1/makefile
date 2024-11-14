@@ -1,17 +1,17 @@
 CC = g++
-all : file1 file2
+all : panel equipo
 r : clean memClean pull all
 rel : r
 reload : r
 
-file1 : file1.c ../../shared/framework.h ../../shared/definiciones.h 
-	cc -o file1 file1.c
+panel : panel.c ../../shared/framework.h ../../shared/definiciones.h 
+	cc -o panel panel.c
 
-file2 : file2.c ../../shared/framework.h ../../shared/definiciones.h
-	cc -o file2 file2.c
+equipo : equipo.c ../../shared/framework.h ../../shared/definiciones.h
+	cc -o equipo equipo.c
 
 clean : 
-	rm -rf *o *dat file1 file2	
+	rm -rf *o *dat panel equipo	
 
 memClean :
 	for id in $(ipcs -m | awk 'NR>3 {print $2}'); do ipcrm -m $id; done
@@ -19,7 +19,3 @@ memClean :
 pull :
 	git pull
 
-run : all 
-	gnome-terminal -- sudo ./file1
-	gnome-terminal -- sudo ./file2 1
-	gnome-terminal -- sudo ./file2 2
