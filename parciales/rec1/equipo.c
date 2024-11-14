@@ -30,7 +30,7 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
                 fseek(equiposFile, teamId * sizeof(equipo), SEEK_SET);
                 fwrite(&equipos[teamId], sizeof(equipo), 1, equiposFile);
                 cerrar_archivo(equiposFile);
-                enviar_mensaje(messageQueueId, teamId, MSG_PANEL, EVT_TURNO_JUGADO, "");
+                enviar_mensaje(messageQueueId, MSG_PANEL, teamId, EVT_TURNO_JUGADO, "");
                 logInfo("Enviado mensaje de evt turno");
             libero_semaforo(id_semaforo, CUAL_SEMAFORO);
             return CONTINUE;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     int id_cola_mensajes 	= creo_id_cola_mensajes(CLAVE_BASE);
     int run = CONTINUE;
     mensaje			msg;
-    
+
     libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 
     while(run) 
