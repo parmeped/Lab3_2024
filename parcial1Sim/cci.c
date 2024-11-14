@@ -18,7 +18,6 @@ void fileSetup()
         fwrite(&paneles[i], sizeof(panel), 1, panelFile);
     }
     cerrar_archivo(panelFile);
-    return;
 }
 
 void leo()
@@ -63,12 +62,14 @@ void escribo()
         fflush(stdin);
     }
     // check if panel number is valid
-    if (panelNumber < 0 || panelNumber > 2)
+    if (panelNumber < 1 || panelNumber > MAX_PANNELS)
     {
         printf("Numero de panel invalido, intente de nuevo: ");
         fflush(stdin);
         return;
     }
+    panelNumber--;
+    
     // open file for reading and writing
     panelFile = abrir_archivo_escritura(FILE_PATH);    
     // seek to the panel number
@@ -78,8 +79,7 @@ void escribo()
     printf("Ingrese el mensaje: ");
     scanf("%s", paneles[panelNumber].mensaje);
     fwrite(&paneles[panelNumber], sizeof(panel), 1, panelFile);
-    cerrar_archivo(panelFile);
-    return;
+    cerrar_archivo(panelFile);    
 }
 
 int menu(void)
