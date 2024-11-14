@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
     int id_cola_mensajes 	= creo_id_cola_mensajes(CLAVE_BASE);
     int run = CONTINUE;
     mensaje			msg;
+    
+    libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 
     while(run) 
     {
