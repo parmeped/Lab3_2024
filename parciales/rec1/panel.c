@@ -85,10 +85,10 @@ int main(int argc, char *argv[])
     // TODO: this is another win con!
 
 	char cadena[LARGO_MENSAJE];
-    int turno = 0;
+    int turno = 1;
 	int id_cola_mensajes 	= creo_id_cola_mensajes(CLAVE_BASE);
     int id_semaforo = creo_semaforo(CANT_SEMAFORO);
-    int ultTurno = 0;
+    int ultTurno = 1;
 	
     mensaje			msg;
 
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
     // envio mensaje de turno a todos los equipos
     enviarMensajeTurno(id_cola_mensajes);
 
-	while(turno < MAX_TURNS)
+	while(turno < MAX_TURNS + 1)
     {
         recibir_mensajes(id_cola_mensajes, MSG_PANEL, &msg);
 		turno = procesar_evento(id_cola_mensajes, id_semaforo, turno, msg);

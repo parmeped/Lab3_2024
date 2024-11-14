@@ -47,7 +47,6 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
 
 int main(int argc, char *argv[])
 {
-    
     // check for teamId argument, try to parse to number
     int teamId = atoi(argv[1]);
     if (teamId < 1 || teamId > MAX_TEAMS) 
