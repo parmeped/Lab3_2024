@@ -8,7 +8,7 @@ file1 : file1.c ../../shared/framework.h ../../shared/definiciones.h
 	cc -o file1 file1.c
 
 file2 : file2.c ../../shared/framework.h ../../shared/definiciones.h
-	cc -o file2 file2.c -lpthread
+	cc -o file2 file2.c
 
 clean : 
 	rm -rf *o *dat file1 file2	

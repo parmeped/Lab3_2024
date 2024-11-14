@@ -23,20 +23,20 @@ void fileSetup()
 
 int panelNumberMenu() 
 {
-    // ask for panel number, check if input is number, else rerun input request
     int panelNumber;
     printf("Ingrese el numero de panel: ");
     while (scanf("%d", &panelNumber) != 1)
     {
-        printf("Numero de panel invalido, intente de nuevo: ");
-        fflush(stdin);
-    }
-    // check if panel number is valid
-    if (panelNumber < 1 || panelNumber > MAX_PANNELS)
-    {
-        printf("Numero de panel invalido, intente de nuevo: ");
-        fflush(stdin);        
-    }
+        while (1)
+        {
+            printf("Numero de panel invalido, intente de nuevo: ");
+            fflush(stdin);
+            scanf("%d", &panelNumber);
+            if (panelNumber >= 1 && panelNumber <= MAX_PANNELS)
+            {
+                break;
+            }
+        }
     return panelNumber--;
 }
 
