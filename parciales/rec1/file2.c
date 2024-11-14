@@ -18,8 +18,10 @@ void leo(int panelId)
     if (strcmp(tempPanel.mensaje, pannel.mensaje) != 0)
     {
         strcpy(pannel.mensaje, tempPanel.mensaje);
-        printf("Panel %d: %s\n", tempPanel.nro_panel, tempPanel.mensaje);
+        printf("Panel %d: %s\n", pannel.nro_panel, pannel.mensaje);
     }
+    // clean tempPanel
+    memset(&tempPanel, 0, sizeof(panel));
     cerrar_archivo(panelFile);
 }
 
