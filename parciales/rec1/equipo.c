@@ -1,7 +1,7 @@
 #include "def.h"
 #include "../../shared/framework.h"
 
-equipo equipos[MAX_TEAMS];
+equipo team
 
 int calcular_puntaje()
 {
@@ -21,15 +21,15 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
 
                 // subo turno y calculo puntaje
                 fseek(equiposFile, teamId * sizeof(equipo), SEEK_SET);
-                fread(&equipos[teamId], sizeof(equipo), 1, equiposFile);
-                equipos[teamId].turno++;
-                equipos[teamId].puntos += calcular_puntaje();
+                fread(&team, sizeof(equipo), 1, equiposFile);
+                team.turno++;
+                team.puntos += calcular_puntaje();
 
                 // guardo cambios
                 fseek(equiposFile, teamId * sizeof(equipo), SEEK_SET);
-                fwrite(&equipos[teamId], sizeof(equipo), 1, equiposFile);
+                fwrite(&team, sizeof(equipo), 1, equiposFile);
                 cerrar_archivo(equiposFile);
-                logInfof("teamid: %d, turno: %d, puntos: %d", equipos[teamId].nro_equipo, equipos[teamId].turno, equipos[teamId].puntos);
+                logInfof("teamid: %d, turno: %d, puntos: %d", team.nro_equipo, team.turno, team.puntos);
                 enviar_mensaje(messageQueueId, MSG_PANEL, teamId, EVT_TURNO_JUGADO, "");
                 logInfo("Jugado turno");
             libero_semaforo(id_semaforo, CUAL_SEMAFORO);
