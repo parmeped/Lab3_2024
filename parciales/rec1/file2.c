@@ -15,13 +15,11 @@ void leo(int panelId)
     fread(&tempPanel, sizeof(panel), 1, panelFile);
     
     // only print if panel message is different than stored one
-    logInfof("Panel temp: %s", tempPanel.mensaje);
-    logInfof("Panel pannel: %s", pannel.mensaje);
     if (strcmp(tempPanel.mensaje, pannel.mensaje) != 0)
     {
         strcpy(pannel.mensaje, tempPanel.mensaje);
         printf("Panel %d: %s\n", pannel.nro_panel, pannel.mensaje);
-    }
+    }    
     cerrar_archivo(panelFile);
 }
 
