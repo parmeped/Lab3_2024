@@ -20,6 +20,6 @@ pull :
 	git pull
 
 run : all 
-	gnome-terminal ./file1
-	gnome-terminal ./file2 1
-	gnome-terminal ./file2 2
+	gnome-terminal --sudo ./file1
+	gnome-terminal --sudo ./file2 1
+	gnome-terminal --sudo ./file2 2
