@@ -29,6 +29,7 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
                 fwrite(&equipos[teamId], sizeof(equipo), 1, equiposFile);
                 cerrar_archivo(equiposFile);
                 enviar_mensaje(messageQueueId, MSG_PANEL, teamId, EVT_TURNO_JUGADO, "");
+                logInfo("Jugado turno");
             libero_semaforo(id_semaforo, CUAL_SEMAFORO);
             return CONTINUE;
         case EVT_TURNO_JUGADO:
