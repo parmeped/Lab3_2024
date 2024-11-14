@@ -1,6 +1,8 @@
 #include "def.h"
 #include "../../shared/framework.h"
 
+equipo equipos[MAX_TEAMS];
+
 int calcular_puntaje()
 {
     return 10;
