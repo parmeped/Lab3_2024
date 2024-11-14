@@ -21,6 +21,7 @@ void fileSetup()
 
 int procesar_evento(int id_cola_mensajes, int semaphoreId, int turno, mensaje msg)
 {
+    logInfo("PanelEventProc");
     // check for event
     switch (msg.int_evento)
     {

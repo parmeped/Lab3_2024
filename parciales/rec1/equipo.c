@@ -10,6 +10,7 @@ int calcular_puntaje()
 
 int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mensaje msg)
 {
+    logInfo("TeamEventProc");
     switch (msg.int_evento)
     {
         case EVT_TURNO:
@@ -67,9 +68,11 @@ int main(int argc, char *argv[])
     while(run) 
     {
         recibir_mensajes(id_cola_mensajes, teamId, &msg);
+
 		run = procesar_evento_equipo(id_cola_mensajes, teamId, id_semaforo, msg);
         usleepMs(TIME_CHECK_MS);
     }
+    logInfo("Exit");
     
     return 0;
 }
