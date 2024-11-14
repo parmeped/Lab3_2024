@@ -43,7 +43,6 @@ void sem_oper(int id, int cual, int op)
 void libero_semaforo(int id, int cual)
 {
     sem_oper(id, cual, 1);
-    usleep(100);
 }
 
 void libero_semaforo_spinner(int id, int cual, int sleepTime)
