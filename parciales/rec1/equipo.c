@@ -28,6 +28,7 @@ int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mens
                 fseek(equiposFile, teamId * sizeof(equipo), SEEK_SET);
                 fwrite(&equipos[teamId], sizeof(equipo), 1, equiposFile);
                 cerrar_archivo(equiposFile);
+                logInfof("teamid: %d, turno: %d, puntos: %d", equipos[teamId].nro_equipo, equipos[teamId].turno, equipos[teamId].puntos);
                 enviar_mensaje(messageQueueId, MSG_PANEL, teamId, EVT_TURNO_JUGADO, "");
                 logInfo("Jugado turno");
             libero_semaforo(id_semaforo, CUAL_SEMAFORO);

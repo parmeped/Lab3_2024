@@ -103,13 +103,11 @@ int main(int argc, char *argv[])
 
     // envio mensaje de turno a todos los equipos
     enviarMensajeTurno(id_cola_mensajes);
-    libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 
 	//while(turno < MAX_TURNS + 1)
     while(1)
     {
         logInfof("recibo mensaje, turno: %d", turno);
-        libero_semaforo(id_semaforo, CUAL_SEMAFORO);
         recibir_mensajes(id_cola_mensajes, MSG_PANEL, &msg);
 		turno = procesar_evento(id_cola_mensajes, id_semaforo, turno, msg);
         if (turno != ultTurno)
