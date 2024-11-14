@@ -1,5 +1,5 @@
 #include "def.h"
-#include "../shared/framework.h"
+#include "../../shared/framework.h"
 
 #define TIEMPO_SLEEP_PANEL 100
 

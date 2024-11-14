@@ -1,6 +1,6 @@
 
 #include "def.h"
-#include "../shared/framework.h"
+#include "../../shared/framework.h"
 
 #define LEO 1
 #define ESCRIBO 2
