@@ -37,6 +37,7 @@ int panelNumberMenu()
                 break;
             }
         }
+    }
     return panelNumber--;
 }
 
