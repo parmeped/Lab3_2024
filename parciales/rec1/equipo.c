@@ -68,6 +68,14 @@ int main(int argc, char *argv[])
     int id_cola_mensajes 	= creo_id_cola_mensajes(CLAVE_BASE);
     int run = CONTINUE;
     mensaje			msg;
+    Destiny dest;
+
+    if (teamId == 0){
+        dest = MSG_EQUIPO1;
+    }
+    else {
+        dest = MSG_EQUIPO2;
+    }
 
     libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 
@@ -75,7 +83,7 @@ int main(int argc, char *argv[])
     while(1)
     {
         logInfof("recibo mensaje, teamId: %d", teamId);
-        recibir_mensajes(id_cola_mensajes, teamId, &msg);
+        recibir_mensajes(id_cola_mensajes, dest, &msg);
 
 		run = procesar_evento_equipo(id_cola_mensajes, teamId, id_semaforo, msg);
         usleep(TIME_CHECK_MS);
