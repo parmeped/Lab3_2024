@@ -109,6 +109,7 @@ int main(int argc, char *argv[])
             enviarMensajeTurno(id_cola_mensajes);
         }
         usleepMs(TIME_CHECK_MS);
+        logInfo("Esperando 500ms");
 	}
     
     logInfo("Finalizado");
