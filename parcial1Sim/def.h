@@ -4,6 +4,7 @@
 
 #define LARGO_MENSAJE 100
 
+#define MAX_PANNELS 3
 #define MAX_MENU 2
 
 #define FILE_PATH "paneles.dat"

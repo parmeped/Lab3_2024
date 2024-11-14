@@ -10,6 +10,8 @@
 #define CANT_SEMAFORO   1
 #define TIEMPO_SLEEP    5
 
+#define TIEMPO_SLEEP_MS    50
+
 #define LARGO_TMENSAJE 1024
 
 #define SALIR		    0

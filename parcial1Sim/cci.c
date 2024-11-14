@@ -5,15 +5,13 @@
 #define ESCRIBO 2
 
 FILE *panelFile;
-// have an array of 3 panel in memory
-panel paneles[3];
 
-
+panel paneles[MAX_PANNELS];
 
 void fileSetup()
 {
     panelFile = abrir_archivo_escritura(FILE_PATH);
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < MAX_PANNELS; i++)
     {
         paneles[i].nro_panel = i;
         strcpy(paneles[i].mensaje, DEFAULT_MESSAGE);
@@ -34,11 +32,14 @@ void leo()
         fflush(stdin);
     }
     // check if panel number is valid
-    if (panelNumber < 0 || panelNumber > 2)
+    if (panelNumber < 1 || panelNumber > MAX_PANNELS)
     {
         printf("Numero de panel invalido, intente de nuevo: ");
+        fflush(stdin);
         return;
     }
+    panelNumber--;
+    
     // open file for reading
     panelFile = abrir_archivo_lectura(FILE_PATH);
     // seek to the panel number
@@ -65,6 +66,7 @@ void escribo()
     if (panelNumber < 0 || panelNumber > 2)
     {
         printf("Numero de panel invalido, intente de nuevo: ");
+        fflush(stdin);
         return;
     }
     // open file for reading and writing
@@ -119,10 +121,14 @@ int main()
 		switch(opcion)
 		{
 			case LEO: 
-			    leo();
-			    break;
+                espera_semaforo(id_semaforo, CUAL_SEMAFORO);
+                    leo();
+                libero_semaforo(id_semaforo, CUAL_SEMAFORO);
+                break;
 			case ESCRIBO: 
-                escribo();
+                espera_semaforo(id_semaforo, CUAL_SEMAFORO);
+                    escribo();
+                libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 			    break;
 			case SALIR: 
 			    printf("Salir:\n");
@@ -130,6 +136,8 @@ int main()
 			default:    
 			    printf("Opcion no valida\n");
 		}
+
+        usleepMs(TIEMPO_SLEEP);
 		opcion = menu(); 
 	}
 	return 0;
