@@ -73,6 +73,7 @@ int main(int argc, char *argv[])
     //while(run) 
     while(1)
     {
+        logInfof("recibo mensaje, teamId: %d", teamId);
         recibir_mensajes(id_cola_mensajes, teamId, &msg);
 
 		run = procesar_evento_equipo(id_cola_mensajes, teamId, id_semaforo, msg);
