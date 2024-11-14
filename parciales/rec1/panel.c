@@ -21,7 +21,7 @@ void fileSetup()
 
 int procesar_evento(int id_cola_mensajes, int semaphoreId, int turno, mensaje msg)
 {
-    logInfo("PanelEventProc");
+    logInfo("PanelEventProc");    
     // check for event
     switch (msg.int_evento)
     {
@@ -98,6 +98,7 @@ int main(int argc, char *argv[])
 
     // envio mensaje de turno a todos los equipos
     enviarMensajeTurno(id_cola_mensajes);
+    libero_semaforo(id_semaforo, CUAL_SEMAFORO);
 
 	while(turno < MAX_TURNS)
     {
