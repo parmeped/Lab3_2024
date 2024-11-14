@@ -9,6 +9,7 @@ panel pannel;
 
 void leo(int panelId)
 {
+    logInfo("Leyendo panel");
     FILE* panelFile;
     panelFile = abrir_archivo_lectura(FILE_PATH);
     panel tempPanel;
@@ -17,9 +18,11 @@ void leo(int panelId)
     // only print if panel message is different than stored one
     if (strcmp(tempPanel.mensaje, pannel.mensaje) != 0)
     {
+        logInfo("Mensaje actualizado");
         strcpy(pannel.mensaje, tempPanel.mensaje);
         printf("Panel %d: %s\n", tempPanel.nro_panel, tempPanel.mensaje);
     }
+    logInfo("Cerrando archivo");
     cerrar_archivo(panelFile);
 }
 
@@ -42,6 +45,7 @@ int main(int argc, char *argv[])
     while(1) 
     {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
+            logInfo("Tengo semaforo");
             leo(panelId);
         libero_semaforo(id_semaforo, CUAL_SEMAFORO);
         usleepMs(TIEMPO_SLEEP_PANEL);
