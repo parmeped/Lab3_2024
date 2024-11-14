@@ -10,6 +10,7 @@ int calcular_puntaje()
 
 int procesar_evento_equipo(int messageQueueId, int teamId, int id_semaforo, mensaje msg)
 {
+    logInfo("teamid: %d, procesando evento", teamId);
     switch (msg.int_evento)
     {
         case EVT_TURNO:
