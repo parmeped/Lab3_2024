@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
     panelId--;
     int id_semaforo = creo_semaforo(CANT_SEMAFORO);
 
-    logInfo("Iniciando panel: %d", panelId);
-    
+    logInfof("Iniciando panel: %d", panelId);
+
     while(1) 
     {
         espera_semaforo(id_semaforo, CUAL_SEMAFORO);
